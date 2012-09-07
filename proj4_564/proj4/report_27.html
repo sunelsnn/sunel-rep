@@ -1,0 +1,363 @@
+<html>  <head>  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Model Advisor Report for 'neuronpoolv2'</title>  
+<style><!--
+H3 {font-size:14pt; font-weight:200;}  
+H4 {font-size:9pt; font-weight:normal;}  
+
+--></style>  
+<script>
+<!--
+
+function expandGroup(caller) {
+var targetId, targetElement ;
+targetId = caller.id + "d" ;
+targetElement = document.getElementById(targetId) ;
+if (targetElement.style.display == "none") {
+   targetElement.style.display = "" ;
+   caller.src = "minus.png" ;
+ } else {
+   targetElement.style.display = "none" ;
+   caller.src = "plus.png" ;
+ }
+}
+
+function updateVisibleChecks()
+{
+
+var showFailed = document.getElementById("Failed Checkbox").checked;
+var showPassed = document.getElementById("Passed Checkbox").checked;
+var showWarning = document.getElementById("Warning Checkbox").checked;
+var showNotRun = document.getElementById("Not Run Checkbox").checked;
+var allshowFlag = showFailed && showPassed && showWarning && showNotRun;
+var passedChecks = document.getElementsByName("Passed Check");
+var failedChecks = document.getElementsByName("Failed Check");
+var warningChecks = document.getElementsByName("Warning Check");
+var notRunChecks = document.getElementsByName("Not Run Check");
+var i;
+
+if(failedChecks==null){failedChecks = 0;}
+if(passedChecks==null){passedChecks = 0;}
+if(warningChecks==null){warningChecks = 0;}
+if(notRunChecks==null){notRunChecks = 0;}
+
+for(i = 0; i < passedChecks.length; i++)
+{
+    passedChecks[i].style.display = "none";
+}     
+for(i = 0; i < failedChecks.length; i++)
+{
+    failedChecks[i].style.display = "none";
+}     
+for(i = 0; i < warningChecks.length; i++)
+{
+    warningChecks[i].style.display = "none";
+}     
+for(i = 0; i < notRunChecks.length; i++)
+{
+    notRunChecks[i].style.display = "none";
+}     
+
+if(showFailed || allshowFlag)
+{
+     for(i = 0; i < failedChecks.length; i++)
+    {
+		failedChecks[i].style.display = "";
+    }     
+}
+
+if(showPassed || allshowFlag)
+{
+     for(i = 0; i < passedChecks.length; i++)
+    {
+		passedChecks[i].style.display = "";
+    }     
+}
+
+if(showWarning || allshowFlag)
+{
+     for(i = 0; i < warningChecks.length; i++)
+    {
+		warningChecks[i].style.display = "";
+    }     
+}
+
+if(showNotRun || allshowFlag)
+{
+     for(i = 0; i < notRunChecks.length; i++)
+    {
+		notRunChecks[i].style.display = "";
+    }     
+}
+}
+
+function MATableShrink(o,tagNameStr,tagNameStr1)
+{
+
+var temp = document.getElementsByName(tagNameStr);
+if (temp[0].style.display == "") 
+{
+    temp[0].style.display = "none";
+    o.innerHTML = '<img src="plus.png"/>';
+    temp = document.getElementsByName(tagNameStr1);
+    if(temp[0] != undefined)
+    {
+        temp[0].style.display = "";
+    }
+} 
+else 
+{
+    temp[0].style.display = "";
+    o.innerHTML = '<img src="minus.png"/>';
+    temp = document.getElementsByName(tagNameStr1);
+    if(temp[0] != undefined)
+    {
+        temp[0].style.display = "none";
+    }
+}
+}
+
+function selectGroup(group) {
+var i; 
+// when groupid is o_1ck, find every thing start with o_1.
+var targetId = new RegExp(group.id.substr(0,group.id.length-2) + "\\w+");
+//var targetId = /out_2\w+/;
+var matchResult;
+var elementsArray = document.forms[0].elements;
+for (i=0; i< elementsArray.length; i++) {
+  if (elementsArray[i].type == "checkbox")  {
+   if (elementsArray[i].disabled == false) {     
+     //if ((elementsArray[i].id == targetId) ) {
+     matchResult = elementsArray[i].id.match(targetId);
+     if (matchResult != null) {
+       elementsArray[i].checked=group.checked;
+     }
+    }
+   }
+}  
+}
+
+// set focus to first text element of first form in the page
+function sf(){
+var i; //must declare local loop counter to avoid default global declaration
+var elementsArray = document.forms[0].elements;
+for(i=0; i < elementsArray.length; i++) {
+  if ((elementsArray[i].type == "text") && ((elementsArray[i].name != "Model"))) {
+    elementsArray[i].focus();
+    break;    
+  }
+ }
+}
+
+//set initial state for each selection element in the page
+function initiateState() {
+var i;
+var elementsArray = document.forms[0].elements;
+for (i=0; i< elementsArray.length; i++) {
+  if ((elementsArray[i].type == "select-one") ) {
+    elementsArray[i].click();
+  }
+}  
+}
+
+//translate special characters into escape sequence
+function subEncode(srcString) {
+  var srcList = new Array('z', '(', ')', '?', '&', '$', '|', '^', '{' , '}','\'','\"','\\', '[', ']', '/', '#', '<', '>', '.', '+', '=', '~', '@', '%', '`', ',', ' ', '*', ':', '!', ':');
+  var dstList = new Array('z0','z1','z2','z3','z4','z5','z6','z7','z8','z9','za','zb','zc','zd','ze','zf','zg','zh','zi','zj','zk','zl','zm','zn','zo','zp','zq','zs','zt','zu','zv','zw');
+  var dstString;
+  var i; //must declare local loop counter to avoid default global declaration
+  dstString = '';
+  for (i=0; i < srcString.length; i++) {
+   c = srcString.charAt(i);
+   newc = c;
+   for (j=0; j < srcList.length; j++) {
+     if (c==srcList[j]) {
+       newc = dstList[j];
+       }
+     }
+   dstString+= newc;
+   }
+  return dstString;
+}
+  
+// encode each "text" field of the form
+function htmlEncode(form) {
+var elementsArray = form.elements;
+var i; //must declare loop counter to avoid default global declaration
+for(i=0; i < elementsArray.length; i++) {
+  if ((elementsArray[i].type == "text") || (elementsArray[i].type == "select") || (elementsArray[i].type == "submit")) {
+    elementsArray[i].value=subEncode(elementsArray[i].value);
+  }
+}
+//  form.MatchCase.click();
+}
+
+// make sure only one parameter is checked on update parameter page
+function uncheckOthers(form, thischeckbox) {
+var elementsArray = form.elements;
+var i; //must declare loop counter to avoid default global declaration
+if (thischeckbox.checked) {
+  for(i=0; i < elementsArray.length; i++) {
+    if (elementsArray[i].type == "checkbox") 
+      if ((elementsArray[i].checked) && (elementsArray[i].name.substring(0,12)=="paramChecked") && (elementsArray[i].name != thischeckbox.name)) {
+        elementsArray[i].checked=false;
+      }
+    }
+  }
+}
+
+// select/unselect all found objects in the table
+function selectAll(form, select) {
+var elementsArray = form.elements;
+var i; //must declare loop counter to avoid default global declaration
+for(i=0; i < elementsArray.length; i++) {
+  if (elementsArray[i].type == "checkbox")  {
+   if (elementsArray[i].disabled == false) {
+    if (select) 
+      elementsArray[i].checked=true
+    else
+      elementsArray[i].checked=false
+   }
+  }
+}
+}
+
+// -->
+</script></head>  
+<body>  
+<table width="100%" border="0"><tr><td colspan="2" align="center"><b>Report name: Model Advisor - <font color="#800000">By Task</font></b>
+</td>
+</tr>
+<tr><td align="left"><b>Simulink version: <font color="#800000">7.6</font></b>
+</td>
+<td align="right"><b>Model version: <font color="#800000">1.5</font></b>
+</td>
+</tr>
+<tr><td align="left"><b>System: <font color="#800000">neuronpoolv2</font></b>
+</td>
+<td align="right"><b>Current run: <font color="#800000">26-Nov-2011 12:50:09</font></b>
+</td>
+</tr>
+</table>
+<br /><font color="#800000"><b>Run Summary</b></font><br /><table width="60%" border="0"><tr><td align="left"><b><input  type="checkbox" onClick="updateVisibleChecks()" id ="Passed Checkbox"  checked = "checked" /> Pass</b>
+</td>
+<td align="left"><b><input  type="checkbox" onClick="updateVisibleChecks()" id ="Failed Checkbox"  checked = "checked" />Fail</b>
+</td>
+<td align="left"><b><input  type="checkbox" onClick="updateVisibleChecks()" id ="Warning Checkbox"  checked = "checked" />Warning</b>
+</td>
+<td align="left"><b><input  type="checkbox" onClick="updateVisibleChecks()" id ="Not Run Checkbox"  checked = "checked" />Not Run</b>
+</td>
+<td align="left"><b>Total</b>
+</td>
+</tr>
+<tr><td align="left">&#160;&#160;<img src="task_passed.png"/> 13</td>
+<td align="left">&#160;&#160;<img src="task_failed.png"/> 0</td>
+<td align="left">&#160;&#160;<img src="task_warning.png"/> 6</td>
+<td align="left">&#160;&#160;<img src="icon_task.png"/> 0</td>
+<td align="left"> 19</td>
+</tr>
+</table>
+<!-- Compile Status Flag --><!-- Service Status Flag -->
+<!-- mdladv_ignore_start --><br /><br /><font color="#800000"><b><!-- mdladv_ignore_start --><span onclick="MATableShrink(this,'By Task','SubResults_By Task')"  onmouseover= "this.style.cursor = 'pointer' "><img src="minus.png"/></span><!-- mdladv_ignore_finish -->By Task</b></font><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><span name = "By Task"  id = "By Task"><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><br /><br /><font color="#800000"><b><!-- mdladv_ignore_start -->&#160; &#160; <span onclick="MATableShrink(this,'Simulation Performance and Accuracy','SubResults_Simulation Performance and Accuracy')"  onmouseover= "this.style.cursor = 'pointer' "><img src="minus.png"/></span><!-- mdladv_ignore_finish -->Simulation Performance and Accuracy</b></font><span name = "SubResults_Simulation Performance and Accuracy"  style="display:none"  id= "SubResults_Simulation Performance and Accuracy" >&#160;&#160;<img src="task_passed.png" />1&#160;&#160;<img src="task_failed.png" />0&#160;&#160;<img src="task_warning.png" />0&#160;&#160;<img src="icon_task.png" />0</span><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><span name = "Simulation Performance and Accuracy"  id = "Simulation Performance and Accuracy"><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Passed Check"  id = "Passed Check" style="margin-left: 20pt;"><!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_16" /><!-- mdladv_ignore_start --><img border="0" src="task_passed.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Check for non-continuous signals driving derivative ports</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p /><p /><font color="#008000">Passed</font><!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --></span><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><br /><br /><font color="#800000"><b><!-- mdladv_ignore_start -->&#160; &#160; <span onclick="MATableShrink(this,'Simulation Runtime Accuracy Diagnostics','SubResults_Simulation Runtime Accuracy Diagnostics')"  onmouseover= "this.style.cursor = 'pointer' "><img src="minus.png"/></span><!-- mdladv_ignore_finish -->Simulation Runtime Accuracy Diagnostics</b></font><span name = "SubResults_Simulation Runtime Accuracy Diagnostics"  style="display:none"  id= "SubResults_Simulation Runtime Accuracy Diagnostics" >&#160;&#160;<img src="task_passed.png" />2&#160;&#160;<img src="task_failed.png" />0&#160;&#160;<img src="task_warning.png" />0&#160;&#160;<img src="icon_task.png" />0</span><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><span name = "Simulation Runtime Accuracy Diagnostics"  id = "Simulation Runtime Accuracy Diagnostics"><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Passed Check"  id = "Passed Check" style="margin-left: 20pt;"><!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_13" /><!-- mdladv_ignore_start --><img border="0" src="task_passed.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Runtime diagnostics for S-functions</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p /> <p /> <p /><font color="#008000">Passed</font><!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Passed Check"  id = "Passed Check" style="margin-left: 20pt;"><!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_14" /><!-- mdladv_ignore_start --><img border="0" src="task_passed.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Check if Read/Write diagnostics are enabled for Data Store blocks</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p /><p /><font color="#008000">Passed</font><!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --></span><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><br /><br /><font color="#800000"><b><!-- mdladv_ignore_start -->&#160; &#160; <span onclick="MATableShrink(this,'Managing Data Store Memory Blocks','SubResults_Managing Data Store Memory Blocks')"  onmouseover= "this.style.cursor = 'pointer' "><img src="minus.png"/></span><!-- mdladv_ignore_finish -->Managing Data Store Memory Blocks</b></font><span name = "SubResults_Managing Data Store Memory Blocks"  style="display:none"  id= "SubResults_Managing Data Store Memory Blocks" >&#160;&#160;<img src="task_passed.png" />2&#160;&#160;<img src="task_failed.png" />0&#160;&#160;<img src="task_warning.png" />1&#160;&#160;<img src="icon_task.png" />0</span><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><span name = "Managing Data Store Memory Blocks"  id = "Managing Data Store Memory Blocks"><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Warning Check" id = "Warning Check" style="margin-left: 20pt;"> <!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_15" /><!-- mdladv_ignore_start --><img border="0" src="task_warning.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Check Data Store Memory blocks for multitasking, strong typing, and shadowing issues</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><b>Duplicate data store names</b> checking is not set to 'error'.  Duplicate usage of data store names can lead to unintended shadowing of data stores of higher model scope.  Consider changing this setting to 'error' on the <a href="matlab:modeladvisorprivate('openSimprmAdvancedPage','neuronpoolv2','Data Validity')">Data Validity</a> page of the <b>Configuration Parameters</b> dialog box.<p /><!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Passed Check"  id = "Passed Check" style="margin-left: 20pt;"><!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_25" /><!-- mdladv_ignore_start --><img border="0" src="task_passed.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Check data store block sample times for modeling errors</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p /><p /><font color="#008000">Passed</font><!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Passed Check"  id = "Passed Check" style="margin-left: 20pt;"><!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_26" /><!-- mdladv_ignore_start --><img border="0" src="task_passed.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Check for potential ordering issues involving data store access</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p /><p /><font color="#008000">Passed</font><!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --></span><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><br /><br /><font color="#800000"><b><!-- mdladv_ignore_start -->&#160; &#160; <span onclick="MATableShrink(this,'Model Referencing','SubResults_Model Referencing')"  onmouseover= "this.style.cursor = 'pointer' "><img src="minus.png"/></span><!-- mdladv_ignore_finish -->Model Referencing</b></font><span name = "SubResults_Model Referencing"  style="display:none"  id= "SubResults_Model Referencing" >&#160;&#160;<img src="task_passed.png" />3&#160;&#160;<img src="task_failed.png" />0&#160;&#160;<img src="task_warning.png" />1&#160;&#160;<img src="icon_task.png" />0</span><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><span name = "Model Referencing"  id = "Model Referencing"><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Passed Check"  id = "Passed Check" style="margin-left: 20pt;"><!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_5" /><!-- mdladv_ignore_start --><img border="0" src="task_passed.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Check for parameter tunability information ignored for referenced models</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p /><p /><font color="#008000">Passed</font><!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Passed Check"  id = "Passed Check" style="margin-left: 20pt;"><!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_6" /><!-- mdladv_ignore_start --><img border="0" src="task_passed.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Check for implicit signal resolution</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p /><p /><font color="#008000">Passed</font><!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Warning Check" id = "Warning Check" style="margin-left: 20pt;"> <!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_19" /><!-- mdladv_ignore_start --><img border="0" src="task_warning.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Check for proper bus usage</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p align="left">Your model uses buses properly. However, this check failed because your model is not configured to detect future changes that might result in improper bus usage. To detect such changes, set the 'Bus signal treated as vector' diagnostic to error in the configuration parameters and rerun the check.<br /><a href="matlab: modeladvisorprivate openSimprmAdvancedPage neuronpoolv2 'Connectivity' ">Buses - Bus signal treated as vector</a>
+</p>
+<!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Passed Check"  id = "Passed Check" style="margin-left: 20pt;"><!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_3" /><!-- mdladv_ignore_start --><img border="0" src="task_passed.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Check root model Inport block specifications</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p /><font color="#008000">Passed</font><!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --></span><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><br /><br /><font color="#800000"><b><!-- mdladv_ignore_start -->&#160; &#160; <span onclick="MATableShrink(this,'Upgrading to the Current Simulink Version','SubResults_Upgrading to the Current Simulink Version')"  onmouseover= "this.style.cursor = 'pointer' "><img src="minus.png"/></span><!-- mdladv_ignore_finish -->Upgrading to the Current Simulink Version</b></font><span name = "SubResults_Upgrading to the Current Simulink Version"  style="display:none"  id= "SubResults_Upgrading to the Current Simulink Version" >&#160;&#160;<img src="task_passed.png" />2&#160;&#160;<img src="task_failed.png" />0&#160;&#160;<img src="task_warning.png" />4&#160;&#160;<img src="icon_task.png" />0</span><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><span name = "Upgrading to the Current Simulink Version"  id = "Upgrading to the Current Simulink Version"><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Warning Check" id = "Warning Check" style="margin-left: 20pt;"> <!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_1" /><!-- mdladv_ignore_start --><img border="0" src="task_warning.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Check model, local libraries, and referenced models for known upgrade issues</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p>The Model Advisor has checked blocks, settings, and references in your model for issues in using it with this version of Simulink.  As a first step in resolving any issues described below, you should run the Simulink update tool, slupdate, on models and libraries that have reported issues. Note that there could be more issues beyond the ones identified here. See <a href="matlab:doc slupdate">doc('slupdate')</a> for more information.</p><p>Referenced model update status:</p><ul><li><font color="#008000">Passed - (No models referenced from this file need updating)</font></li></ul><p>Library update status (only referenced blocks are checked):</p><ul><li><font color="#008000">Passed - (No non-MathWorks libraries are linked by this block diagram)</font></li></ul><p>S-function update status for the Level 2 API (see <a href="matlab:helpview([docroot,'/toolbox/simulink/sfg/simulink_sfg.map'],'overview')">Writing S-Functions</a>):</p><ul><li><font color="#008000">Passed</font></li></ul><p><b>Blocks recommended for update, grouped by update reason:</b></p><p /><p><b>Update reason</b> &#8212; The following subsystem output ports specify an initial output value. Since the simulation is not using this InitialOutput parameter, the value is meaningless. To improve the clarity of your design, use set_param to set the initial output to empty [].  For more information, type "help set_param" at the MATLAB command line.:</p><p /><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:22">neuronpoolv2/Subsystem/Sigmoid1/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:35">neuronpoolv2/Subsystem/Sigmoid2/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:64">neuronpoolv2/Subsystem1/Sigmoid1/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:77">neuronpoolv2/Subsystem1/Sigmoid2/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:113">neuronpoolv2/Subsystem2/Sigmoid1/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:126">neuronpoolv2/Subsystem2/Sigmoid2/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:162">neuronpoolv2/Subsystem3/Sigmoid1/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:175">neuronpoolv2/Subsystem3/Sigmoid2/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:483">neuronpoolv2/Subsystem4/Sigmoid1/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:496">neuronpoolv2/Subsystem4/Sigmoid2/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:520">neuronpoolv2/Subsystem5/Sigmoid1/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:533">neuronpoolv2/Subsystem5/Sigmoid2/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:285">neuronpoolv2/Subsystem6/Sigmoid1/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:298">neuronpoolv2/Subsystem6/Sigmoid2/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:334">neuronpoolv2/Subsystem7/Sigmoid1/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:347">neuronpoolv2/Subsystem7/Sigmoid2/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:557">neuronpoolv2/Subsystem8/Sigmoid1/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:570">neuronpoolv2/Subsystem8/Sigmoid2/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:632">neuronpoolv2/Subsystem9/Sigmoid1/y</a><p /><a href="matlab: modeladvisorprivate hiliteSystem SID:neuronpoolv2:645">neuronpoolv2/Subsystem9/Sigmoid2/y</a><!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Warning Check" id = "Warning Check" style="margin-left: 20pt;"> <!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_12" /><!-- mdladv_ignore_start --><img border="0" src="task_warning.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Check usage of function-call connections</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p /><p align="left"><b>Check 'Invalid function-call connection' setting</b>
+<br />Verify that the <b>Invalid function-call connection</b> diagnostic is set to <tt>error</tt>.<br /><br /><b><font color="Green">Passed </font>
+</b>
+<br /><b>Diagnostics > Connectivity > Invalid function-call connection</b> is set to <tt>error</tt>.<br />_________________________________________________________________________________________</p>
+<p align="left"><b>Check 'Context-dependent inputs' setting</b>
+<br />Verify that the <b>Context-dependent inputs</b> diagnostic is set to <tt>Enable All</tt>.<br /><br /><b><font color="Orange">Warning </font>
+</b>
+<br /><b>Diagnostics > Connectivity > Context-dependent inputs</b> is set to <tt>Use local settings</tt>. This might lead to non-deterministic model execution.<br /><br /><b>Recommended Action</b>
+<br />Set <a href = "matlab: modeladvisorprivate openSimprmAdvancedPage neuronpoolv2 'Diagnostics/Connectivity' ">Diagnostics > Connectivity > Context-dependent inputs</a> to <tt>Enable All</tt>.</p>
+<!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Passed Check"  id = "Passed Check" style="margin-left: 20pt;"><!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_17" /><!-- mdladv_ignore_start --><img border="0" src="task_passed.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Check model, local libraries, and referenced models for known upgrade issues requiring compile time information</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p /><font color="#008000">Passed</font><!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Warning Check" id = "Warning Check" style="margin-left: 20pt;"> <!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_19" /><!-- mdladv_ignore_start --><img border="0" src="task_warning.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Check for proper bus usage</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p align="left">Your model uses buses properly. However, this check failed because your model is not configured to detect future changes that might result in improper bus usage. To detect such changes, set the 'Bus signal treated as vector' diagnostic to error in the configuration parameters and rerun the check.<br /><a href="matlab: modeladvisorprivate openSimprmAdvancedPage neuronpoolv2 'Connectivity' ">Buses - Bus signal treated as vector</a>
+</p>
+<!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Passed Check"  id = "Passed Check" style="margin-left: 20pt;"><!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_20" /><!-- mdladv_ignore_start --><img border="0" src="task_passed.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Check for calls to slDataTypeAndScale()</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p align="left">Search for blocks that have data type parameters specified by using slDataTypeAndScale().<br /><br /><b>Automatic Replacement Cases</b>
+<br />Identify unnecessary calls to slDataTypeAndScale() that the model advisor can automatically replace.<br /><br /><b>See Also</b>
+<ul><li>slRemoveDataTypeAndScale() automatic replacement cases</li>
+</ul>
+<b><font color="Green">Passed </font>
+</b>
+<br />No calls to slDataTypeAndScale() require automatic replacement.<br />_________________________________________________________________________________________</p>
+<p /><p align="left"><b>Manual Inspection Cases</b>
+<br />Identify calls to slDataTypeAndScale() that might be unnecessary.<br /><br /><b>See Also</b>
+<ul><li>slRemoveDataTypeAndScale() manual inspection cases</li>
+</ul>
+<b><font color="Green">Passed </font>
+</b>
+<br />No calls to slDataTypeAndScale() require manual inspection.</p>
+<!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Warning Check" id = "Warning Check" style="margin-left: 20pt;"> <!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_24" /><!-- mdladv_ignore_start --><img border="0" src="task_warning.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Check consistency of initialization parameters for Outport and Merge blocks</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p /><p align="left"><b>Verify the simplified initialization mode setting</b>
+<br />In the Data Validity Diagnostics pane of the Configuration Parameters dialog box, ensure that the 'Underspecified initialization detection' parameter is set to 'Simplified'.<br /><br /><b>See Also</b>
+<ul><li><a href="matlab:helpview('mapkey:ma.simulink','MATitleCheckConsistencyInitialization')">Check consistency of initialization parameters for Outport and Merge blocks</a></li>
+<li><a href="matlab:helpview('mapkey:Simulink.ConfigSet@Tag_ConfigSet_Debug_Data_Validity_Group','Tag_ConfigSet_Debug_UnderspecifiedInitializationDetection')">Underspecified initialization detection</a></li>
+</ul>
+<b><font color="Red">Failed </font>
+</b>
+<br />This model is not using the simplified initialization mode.<ul><li><a href="matlab: modeladvisorprivate hiliteSystem neuronpoolv2">neuronpoolv2</a>
+</li>
+</ul>
+<b>Recommended Action</b>
+<br />Modify the model to address all of the failed subchecks below, and then rerun this check.<br />_________________________________________________________________________________________</p>
+<a name="Simulink:tools:MAOutportInitParamsCheckHeadingBlockDiagramErrorNeedStrictBusMode"></a><p align="left"><b>Verify the bus diagnostic settings</b>
+<br />In the Connectivity Diagnostics pane of the Configuration Parameters dialog box, ensure that both the 'Mux blocks used to create bus signals' and the 'Bus signal treated as vector' options are set to 'error'.<br /><br /><b>See Also</b>
+<ul><li><a href="matlab:helpview('mapkey:ma.simulink','MAOutportInitParamsCheckHeadingBlockDiagramErrorNeedStrictBusMode')">Verify the bus diagnostic settings</a></li>
+<li><a href="matlab:helpview('mapkey:ma.simulink','MATitleCheckForProperBusUsage')">Check for proper bus usage</a></li>
+<li><a href="matlab:helpview('mapkey:Simulink.ConfigSet@Tag_ConfigSet_Debug_Connectivity_Group','Tag_ConfigSet_Debug_StrictBusMsg')">Mux blocks used to create bus signals</a></li>
+<li><a href="matlab:helpview('mapkey:Simulink.ConfigSet@Tag_ConfigSet_Debug_Connectivity_Group','Tag_ConfigSet_Debug_StrictBusMsg_BusAsVector')">Bus signal treated as vector</a></li>
+</ul>
+<b><font color="Red">Failed </font>
+</b>
+<br />The Model Advisor detected incorrect bus diagnostic settings for this model.<ul><li><a href="matlab: modeladvisorprivate('hiliteSystem',modeladvisorprivate('HTMLjsencode','neuronpoolv2','decode'))">neuronpoolv2</a></li>
+</ul>
+<b>Recommended Action</b>
+<br />After setting both the 'Mux blocks used to create bus signals' and the 'Bus signal treated as vector' options to 'error', ensure that the model updates without any errors.<br />_________________________________________________________________________________________</p>
+<a name="Simulink:tools:MAOutportInitParamsCheckHeadingBlockDiagramErrorNeedMergeDiagnostics"></a><p align="left"><b>Check the run-time diagnostic setting of the Merge block</b>
+<br />In the Data Validity Diagnostics pane of the Configuration Parameters dialog box, ensure that the 'Detect multiple driving blocks executing at the same time step' option of the Merge block is set to 'error'.<br /><br /><b>See Also</b>
+<ul><li><a href="matlab:helpview('mapkey:ma.simulink','MAOutportInitParamsCheckHeadingBlockDiagramErrorNeedMergeDiagnostics')">Check the run-time diagnostic setting of the Merge block</a></li>
+<li><a href="matlab:helpview('mapkey:Simulink.ConfigSet@Tag_ConfigSet_Debug_Data_Validity_Group','Tag_ConfigSet_Debug_MergeDetectMultiDrivingBlocksExec')">Detect multiple driving blocks executing at the same time step</a></li>
+</ul>
+<b><font color="Red">Failed </font>
+</b>
+<br />The Model Advisor detected an incorrect run-time diagnostic setting for the Merge block for this model.<ul><li><a href="matlab: modeladvisorprivate('hiliteSystem',modeladvisorprivate('HTMLjsencode','neuronpoolv2','decode'))">neuronpoolv2</a></li>
+</ul>
+<b>Recommended Action</b>
+<br />After setting the 'Detect multiple driving blocks executing at the same time step' option to 'error', ensure that the model simulates without any errors.<br />_________________________________________________________________________________________</p>
+<!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --></span><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><br /><br /><font color="#800000"><b><!-- mdladv_ignore_start -->&#160; &#160; <span onclick="MATableShrink(this,'Managing Library Links','SubResults_Managing Library Links')"  onmouseover= "this.style.cursor = 'pointer' "><img src="minus.png"/></span><!-- mdladv_ignore_finish -->Managing Library Links</b></font><span name = "SubResults_Managing Library Links"  style="display:none"  id= "SubResults_Managing Library Links" >&#160;&#160;<img src="task_passed.png" />3&#160;&#160;<img src="task_failed.png" />0&#160;&#160;<img src="task_warning.png" />0&#160;&#160;<img src="icon_task.png" />0</span><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><span name = "Managing Library Links"  id = "Managing Library Links"><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Passed Check"  id = "Passed Check" style="margin-left: 20pt;"><!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_9" /><!-- mdladv_ignore_start --><img border="0" src="task_passed.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Identify disabled library links</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p /><font color="#008000">Passed</font><!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Passed Check"  id = "Passed Check" style="margin-left: 20pt;"><!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_10" /><!-- mdladv_ignore_start --><img border="0" src="task_passed.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Identify parameterized library links</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p /><font color="#008000">Passed</font><!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --><div name = "Passed Check"  id = "Passed Check" style="margin-left: 20pt;"><!-- mdladv_ignore_finish -->
+<p><hr /></p>  <A NAME="CheckRecord_11" /><!-- mdladv_ignore_start --><img border="0" src="task_passed.png" />&#160;<!-- mdladv_ignore_finish --><font size="+1"><!-- mdladv_ignore_start --></font><!-- mdladv_ignore_finish --><b>Identify unresolved library links</b><!-- mdladv_ignore_start --><font><!-- mdladv_ignore_finish --></font>
+<p /><p /><font color="#008000">Passed</font><!-- mdladv_ignore_start --></div><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --></span><!-- mdladv_ignore_finish --><!-- mdladv_ignore_start --></span><!-- mdladv_ignore_finish -->
+
+</body>  
+</html>  
