@@ -10,6 +10,8 @@
 #include <pthread.h>
 #include <math.h>
 #include <unistd.h>
+// #include <iostream.h>
+// #include <conio.h>
 void *print_message_function( void *ptr );
 
 pthread_mutex_t pmutex ;
@@ -36,25 +38,30 @@ void main()
      }
 
     // int  iret1, iret2;
+     int iret[Nthreads] ;
 
-     srand ( time(NULL) );
+     /*srand ( time(NULL) );
 
-       /* generate secret number: */
+        generate secret number:
        iSecret = rand() % 10 + 1;
+       */
 
 
      pthread_mutex_init(&pmutex, NULL) ;
 
    //   pmutex.__data = "text1" ;
 
-
-
-
     /* Create independent threads each of which will execute function */
 
+     for (int i=0 ;i<Nthreads ; i++)
+     {
+    	 strcpy(message1, itoa(i)) ;
+iret[i] = pthread_create( &thread1[i], NULL, print_message_function, (void*) message1);
+     }
+     /*
      iret1 = pthread_create( &thread1, NULL, print_message_function, (void*) message1);
      iret2 = pthread_create( &thread2, NULL, print_message_function, (void*) message2);
-
+		*/
 
      /* Wait till threads are complete before main continues. Unless we  */
 
@@ -85,17 +92,23 @@ void *print_message_function( void *ptr )
 
      message = (char *) ptr;
 
+     int sleepcount =0 ;
+
+     while(sleepcount<10){
+
      if (pthread_mutex_trylock(&pmutex))
      {
     	 pthread_mutex_lock(&pmutex) ;
     	 printf("%d", pmutex.__data) ;
     	 pmutex.__data =  atoi(message) ;
+    	 pthread_mutex_unlock(&pmutex) ;
      }
      else
      {
     	 sleep(1) ;
+    	 sleepcount++ ;
      }
-
+     }
 
      printf("%s \n", message);
 
