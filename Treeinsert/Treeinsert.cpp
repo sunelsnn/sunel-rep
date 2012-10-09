@@ -19,8 +19,12 @@ using namespace std ;
 class node
 {
 
+
+
+
+	int info ;
 public :
-	 int info ;
+
 	 bool flag ;
 	 node *leftchild ;
 	 node *rightchild ;
@@ -44,6 +48,10 @@ public :
 			  {  std::cout<<" setting the swap flag twice  " ;  exit(0) ;}
 	  }
 
+  void  writeinfo( int value)
+  {
+	  this.info = value;
+  }
 	};
 
 class BinaryTree
@@ -173,6 +181,8 @@ node* BinaryTree::insertelement(node *tempnode, int element)
 	  return parent ;
   }
 }
+
+
 
 
 node*  BinaryTree::rec_insert(node *rootnode, int element )

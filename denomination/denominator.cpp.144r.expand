@@ -1,0 +1,1824 @@
+
+;; Function int main() (main)
+
+int main() ()
+{
+  struct basic_ostream & D.23341;
+  struct __ostream_type & D.23340;
+  struct basic_ostream & D.23339;
+  int array_index;
+  double total_sum_denominated_sofar;
+  float denomination_factor;
+  int max_denominations;
+  double denominator_array[10];
+  double given_number;
+  int D.23337;
+  double D.23336;
+  double D.23335;
+  double D.23334;
+  struct basic_ostream & D.23333;
+  struct __ostream_type & D.23332;
+  struct basic_ostream & D.23331;
+  double D.23330;
+  double D.23329;
+  double D.23328;
+  double D.23327;
+  double D.23326;
+  double D.23325;
+  double given_number.1;
+  bool D.23322;
+
+  # BLOCK 2
+  # PRED: ENTRY (fallthru)
+  denominator_array[0] = 1.0e+2;
+  denominator_array[1] = 5.0e+1;
+  denominator_array[2] = 2.0e+1;
+  denominator_array[3] = 1.0e+1;
+  denominator_array[4] = 5.0e+0;
+  denominator_array[5] = 1.0e+0;
+  denominator_array[6] = 2.5e-1;
+  denominator_array[7] = 1.000000000000000055511151231257827021181583404541015625e-1;
+  denominator_array[8] = 5.000000000000000277555756156289135105907917022705078125e-2;
+  denominator_array[9] = 1.00000000000000002081668171172168513294309377670288085938e-2;
+  max_denominations_3 = 10;
+  total_sum_denominated_sofar_4 = 0.0;
+  std::operator<< <std::char_traits<char> > (&cout, "\n Please enter a dollar amount to be denominated \n");
+  std::basic_istream<char>::operator>> (&cin, &given_number);
+  std::operator<< <std::char_traits<char> > (&cout, "\n The following  is the denomination  of the given dollar amount for least possible bills/coin criteria");
+  array_index_5 = 0;
+  goto <bb 4>;
+  # SUCC: 4 (fallthru)
+
+  # BLOCK 3
+  # PRED: 4 (true)
+  given_number.1_7 = given_number;
+  D.23325_8 = given_number.1_7 - total_sum_denominated_sofar_1;
+  D.23326_9 = denominator_array[array_index_2];
+  D.23327_10 = D.23325_8 / D.23326_9;
+  denomination_factor_11 = (float) D.23327_10;
+  D.23328_12 = (double) denomination_factor_11;
+  D.23329_13 = floor (D.23328_12);
+  denomination_factor_14 = (float) D.23329_13;
+  D.23330_15 = denominator_array[array_index_2];
+  D.23339_16 = std::operator<< <std::char_traits<char> > (&cout, "\n The total # of $");
+  D.23331_17 = D.23339_16;
+  D.23340_18 = std::basic_ostream<char>::operator<< (D.23331_17, D.23330_15);
+  D.23332_19 = D.23340_18;
+  D.23341_20 = std::operator<< <std::char_traits<char> > (D.23332_19, " bills/coins = ");
+  D.23333_21 = D.23341_20;
+  std::basic_ostream<char>::operator<< (D.23333_21, denomination_factor_14);
+  D.23334_22 = denominator_array[array_index_2];
+  D.23335_23 = (double) denomination_factor_14;
+  D.23336_24 = D.23334_22 * D.23335_23;
+  total_sum_denominated_sofar_25 = D.23336_24 + total_sum_denominated_sofar_1;
+  array_index_26 = array_index_2 + 1;
+  # SUCC: 4 (fallthru)
+
+  # BLOCK 4
+  # PRED: 2 (fallthru) 3 (fallthru)
+  # total_sum_denominated_sofar_1 = PHI <total_sum_denominated_sofar_4(2), total_sum_denominated_sofar_25(3)>
+  # array_index_2 = PHI <array_index_5(2), array_index_26(3)>
+  D.23322_6 = array_index_2 < max_denominations_3;
+  if (D.23322_6 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+  # SUCC: 3 (true) 5 (false)
+
+  # BLOCK 5
+  # PRED: 4 (false)
+  std::operator<< <std::char_traits<char> > (&cout, "\n End of the program \n");
+  D.23337_27 = 0;
+  return D.23337_27;
+  # SUCC: EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (total_sum_denominated_sofar_1 - 1 )
+Partition 2 (array_index_2 - 2 )
+Partition 3 (max_denominations_3 - 3 )
+Partition 4 (total_sum_denominated_sofar_4 - 4 )
+Partition 5 (array_index_5 - 5 )
+Partition 6 (D.23322_6 - 6 )
+Partition 7 (given_number.1_7 - 7 )
+Partition 8 (D.23325_8 - 8 )
+Partition 9 (D.23326_9 - 9 )
+Partition 10 (D.23327_10 - 10 )
+Partition 11 (denomination_factor_11 - 11 )
+Partition 12 (D.23328_12 - 12 )
+Partition 13 (D.23329_13 - 13 )
+Partition 14 (denomination_factor_14 - 14 )
+Partition 15 (D.23330_15 - 15 )
+Partition 16 (D.23339_16 - 16 )
+Partition 17 (D.23331_17 - 17 )
+Partition 18 (D.23340_18 - 18 )
+Partition 19 (D.23332_19 - 19 )
+Partition 20 (D.23341_20 - 20 )
+Partition 21 (D.23333_21 - 21 )
+Partition 22 (D.23334_22 - 22 )
+Partition 23 (D.23335_23 - 23 )
+Partition 24 (D.23336_24 - 24 )
+Partition 25 (total_sum_denominated_sofar_25 - 25 )
+Partition 26 (array_index_26 - 26 )
+Partition 27 (D.23337_27 - 27 )
+
+
+Partition map 
+
+Partition 0 (total_sum_denominated_sofar_1 - 1 )
+Partition 1 (array_index_2 - 2 )
+Partition 2 (total_sum_denominated_sofar_4 - 4 )
+Partition 3 (array_index_5 - 5 )
+Partition 4 (denomination_factor_11 - 11 )
+Partition 5 (denomination_factor_14 - 14 )
+Partition 6 (total_sum_denominated_sofar_25 - 25 )
+Partition 7 (array_index_26 - 26 )
+
+
+Live on entry to BB2 : 
+
+Live on entry to BB3 : total_sum_denominated_sofar_1  array_index_2  
+
+Live on entry to BB4 : 
+
+Live on entry to BB5 : 
+
+Conflict graph:
+
+After sorting:
+Sorted Coalesce list:
+(2147483646) total_sum_denominated_sofar_1 <-> total_sum_denominated_sofar_4
+(2147483646) total_sum_denominated_sofar_1 <-> total_sum_denominated_sofar_25
+(2147483646) array_index_2 <-> array_index_5
+(2147483646) array_index_2 <-> array_index_26
+(2147483646) denomination_factor_11 <-> denomination_factor_14
+
+Partition map 
+
+Partition 0 (total_sum_denominated_sofar_1 - 1 )
+Partition 1 (array_index_2 - 2 )
+Partition 2 (total_sum_denominated_sofar_4 - 4 )
+Partition 3 (array_index_5 - 5 )
+Partition 4 (denomination_factor_11 - 11 )
+Partition 5 (denomination_factor_14 - 14 )
+Partition 6 (total_sum_denominated_sofar_25 - 25 )
+Partition 7 (array_index_26 - 26 )
+
+Coalesce list: (1)total_sum_denominated_sofar_1 & (4)total_sum_denominated_sofar_4 [map: 0, 2] : Success -> 0
+Coalesce list: (1)total_sum_denominated_sofar_1 & (25)total_sum_denominated_sofar_25 [map: 0, 6] : Success -> 0
+Coalesce list: (2)array_index_2 & (5)array_index_5 [map: 1, 3] : Success -> 1
+Coalesce list: (2)array_index_2 & (26)array_index_26 [map: 1, 7] : Success -> 1
+Coalesce list: (11)denomination_factor_11 & (14)denomination_factor_14 [map: 4, 5] : Success -> 4
+Coalesce list: (2)array_index_2 & (26)array_index_2: Already Coalesced.
+Coalesce list: (2)array_index_2 & (5)array_index_2: Already Coalesced.
+Coalesce list: (1)total_sum_denominated_sofar_1 & (25)total_sum_denominated_sofar_1: Already Coalesced.
+Coalesce list: (1)total_sum_denominated_sofar_1 & (4)total_sum_denominated_sofar_1: Already Coalesced.
+After Coalescing:
+
+Partition map 
+
+Partition 0 (total_sum_denominated_sofar_1 - 1 4 25 )
+Partition 1 (array_index_2 - 2 5 26 )
+Partition 2 (max_denominations_3 - 3 )
+Partition 3 (D.23322_6 - 6 )
+Partition 4 (given_number.1_7 - 7 )
+Partition 5 (D.23325_8 - 8 )
+Partition 6 (D.23326_9 - 9 )
+Partition 7 (D.23327_10 - 10 )
+Partition 8 (denomination_factor_11 - 11 14 )
+Partition 9 (D.23328_12 - 12 )
+Partition 10 (D.23329_13 - 13 )
+Partition 11 (D.23330_15 - 15 )
+Partition 12 (D.23339_16 - 16 )
+Partition 13 (D.23331_17 - 17 )
+Partition 14 (D.23340_18 - 18 )
+Partition 15 (D.23332_19 - 19 )
+Partition 16 (D.23341_20 - 20 )
+Partition 17 (D.23333_21 - 21 )
+Partition 18 (D.23334_22 - 22 )
+Partition 19 (D.23335_23 - 23 )
+Partition 20 (D.23336_24 - 24 )
+Partition 21 (D.23337_27 - 27 )
+
+int main() ()
+{
+  struct basic_ostream & D.23341;
+  struct __ostream_type & D.23340;
+  struct basic_ostream & D.23339;
+  int array_index;
+  double total_sum_denominated_sofar;
+  float denomination_factor;
+  int max_denominations;
+  double denominator_array[10];
+  double given_number;
+  int D.23337;
+  double D.23336;
+  double D.23335;
+  double D.23334;
+  struct basic_ostream & D.23333;
+  struct __ostream_type & D.23332;
+  struct basic_ostream & D.23331;
+  double D.23330;
+  double D.23329;
+  double D.23328;
+  double D.23327;
+  double D.23326;
+  double D.23325;
+  double given_number.1;
+  bool D.23322;
+
+  # BLOCK 2
+  # PRED: ENTRY (fallthru)
+  denominator_array[0] = 1.0e+2;
+  denominator_array[1] = 5.0e+1;
+  denominator_array[2] = 2.0e+1;
+  denominator_array[3] = 1.0e+1;
+  denominator_array[4] = 5.0e+0;
+  denominator_array[5] = 1.0e+0;
+  denominator_array[6] = 2.5e-1;
+  denominator_array[7] = 1.000000000000000055511151231257827021181583404541015625e-1;
+  denominator_array[8] = 5.000000000000000277555756156289135105907917022705078125e-2;
+  denominator_array[9] = 1.00000000000000002081668171172168513294309377670288085938e-2;
+  max_denominations_3 = 10;
+  total_sum_denominated_sofar_4 = 0.0;
+  std::operator<< <std::char_traits<char> > (&cout, "\n Please enter a dollar amount to be denominated \n");
+  std::basic_istream<char>::operator>> (&cin, &given_number);
+  std::operator<< <std::char_traits<char> > (&cout, "\n The following  is the denomination  of the given dollar amount for least possible bills/coin criteria");
+  array_index_5 = 0;
+  goto <bb 4>;
+  # SUCC: 4 (fallthru)
+
+  # BLOCK 3
+  # PRED: 4 (true)
+  given_number.1_7 = given_number;
+  D.23325_8 = given_number.1_7 - total_sum_denominated_sofar_1;
+  D.23326_9 = denominator_array[array_index_2];
+  D.23327_10 = D.23325_8 / D.23326_9;
+  denomination_factor_11 = (float) D.23327_10;
+  D.23328_12 = (double) denomination_factor_11;
+  D.23329_13 = floor (D.23328_12);
+  denomination_factor_14 = (float) D.23329_13;
+  D.23330_15 = denominator_array[array_index_2];
+  D.23339_16 = std::operator<< <std::char_traits<char> > (&cout, "\n The total # of $");
+  D.23331_17 = D.23339_16;
+  D.23340_18 = std::basic_ostream<char>::operator<< (D.23331_17, D.23330_15);
+  D.23332_19 = D.23340_18;
+  D.23341_20 = std::operator<< <std::char_traits<char> > (D.23332_19, " bills/coins = ");
+  D.23333_21 = D.23341_20;
+  std::basic_ostream<char>::operator<< (D.23333_21, denomination_factor_14);
+  D.23334_22 = denominator_array[array_index_2];
+  D.23335_23 = (double) denomination_factor_14;
+  D.23336_24 = D.23334_22 * D.23335_23;
+  total_sum_denominated_sofar_25 = D.23336_24 + total_sum_denominated_sofar_1;
+  array_index_26 = array_index_2 + 1;
+  # SUCC: 4 (fallthru)
+
+  # BLOCK 4
+  # PRED: 2 (fallthru) 3 (fallthru)
+  # total_sum_denominated_sofar_1 = PHI <total_sum_denominated_sofar_4(2), total_sum_denominated_sofar_25(3)>
+  # array_index_2 = PHI <array_index_5(2), array_index_26(3)>
+  D.23322_6 = array_index_2 < max_denominations_3;
+  if (D.23322_6 != 0)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+  # SUCC: 3 (true) 5 (false)
+
+  # BLOCK 5
+  # PRED: 4 (false)
+  std::operator<< <std::char_traits<char> > (&cout, "\n End of the program \n");
+  D.23337_27 = 0;
+  return D.23337_27;
+  # SUCC: EXIT
+
+}
+
+
+Partition 3: size 4 align 4
+	denomination_factor_11, offset 0
+Partition 2: size 4 align 4
+	max_denominations_3, offset 0
+Partition 1: size 4 align 4
+	array_index_2, offset 0
+Partition 0: size 8 align 8
+	total_sum_denominated_sofar_1, offset 0
+Partition 4: size 8 align 8
+	given_number, offset 0
+Partition 5: size 80 align 16
+	denominator_array, offset 0
+
+;; Generating RTL for gimple basic block 2
+
+;; denominator_array[0] = 1.0e+2;
+
+(insn 5 4 6 (set (reg:DF 78)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 6 5 0 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -112 [0xffffffffffffff90])) [0 denominator_array+0 S8 A64])
+        (reg:DF 78)) ./denominator.cpp:22 -1
+     (nil))
+
+;; denominator_array[1] = 5.0e+1;
+
+(insn 7 6 8 (set (reg:DF 79)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 8 7 0 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -104 [0xffffffffffffff98])) [0 denominator_array+8 S8 A64])
+        (reg:DF 79)) ./denominator.cpp:22 -1
+     (nil))
+
+;; denominator_array[2] = 2.0e+1;
+
+(insn 9 8 10 (set (reg:DF 80)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC2") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 10 9 0 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -96 [0xffffffffffffffa0])) [0 denominator_array+16 S8 A64])
+        (reg:DF 80)) ./denominator.cpp:22 -1
+     (nil))
+
+;; denominator_array[3] = 1.0e+1;
+
+(insn 11 10 12 (set (reg:DF 81)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC3") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 12 11 0 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -88 [0xffffffffffffffa8])) [0 denominator_array+24 S8 A64])
+        (reg:DF 81)) ./denominator.cpp:22 -1
+     (nil))
+
+;; denominator_array[4] = 5.0e+0;
+
+(insn 13 12 14 (set (reg:DF 82)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC4") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 14 13 0 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -80 [0xffffffffffffffb0])) [0 denominator_array+32 S8 A64])
+        (reg:DF 82)) ./denominator.cpp:22 -1
+     (nil))
+
+;; denominator_array[5] = 1.0e+0;
+
+(insn 15 14 16 (set (reg:DF 83)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC5") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 16 15 0 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -72 [0xffffffffffffffb8])) [0 denominator_array+40 S8 A64])
+        (reg:DF 83)) ./denominator.cpp:22 -1
+     (nil))
+
+;; denominator_array[6] = 2.5e-1;
+
+(insn 17 16 18 (set (reg:DF 84)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC6") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 18 17 0 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -64 [0xffffffffffffffc0])) [0 denominator_array+48 S8 A64])
+        (reg:DF 84)) ./denominator.cpp:22 -1
+     (nil))
+
+;; denominator_array[7] = 1.000000000000000055511151231257827021181583404541015625e-1;
+
+(insn 19 18 20 (set (reg:DF 85)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC7") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 20 19 0 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -56 [0xffffffffffffffc8])) [0 denominator_array+56 S8 A64])
+        (reg:DF 85)) ./denominator.cpp:22 -1
+     (nil))
+
+;; denominator_array[8] = 5.000000000000000277555756156289135105907917022705078125e-2;
+
+(insn 21 20 22 (set (reg:DF 86)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC8") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 22 21 0 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -48 [0xffffffffffffffd0])) [0 denominator_array+64 S8 A64])
+        (reg:DF 86)) ./denominator.cpp:22 -1
+     (nil))
+
+;; denominator_array[9] = 1.00000000000000002081668171172168513294309377670288085938e-2;
+
+(insn 23 22 24 (set (reg:DF 87)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC9") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 24 23 0 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -40 [0xffffffffffffffd8])) [0 denominator_array+72 S8 A64])
+        (reg:DF 87)) ./denominator.cpp:22 -1
+     (nil))
+
+;; max_denominations_3 = 10;
+
+(insn 25 24 0 (set (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [0 max_denominations+0 S4 A32])
+        (const_int 10 [0xa])) ./denominator.cpp:23 -1
+     (nil))
+
+;; total_sum_denominated_sofar_4 = 0.0;
+
+(insn 26 25 27 (set (reg:DF 88)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC10") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:25 -1
+     (nil))
+
+(insn 27 26 0 (set (mem/c/i:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [0 total_sum_denominated_sofar+0 S8 A64])
+        (reg:DF 88)) ./denominator.cpp:25 -1
+     (nil))
+
+;; std::operator<< <std::char_traits<char> > (&cout, "\n Please enter a dollar amount to be denominated \n");
+
+(insn 28 27 29 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC11") [flags 0x2]  <var_decl 0x7f368431a8c0 *.LC11>)) ./denominator.cpp:28 -1
+     (nil))
+
+(insn 29 28 30 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZSt4cout") [flags 0x40]  <var_decl 0x7f368442c280 cout>)) ./denominator.cpp:28 -1
+     (nil))
+
+(call_insn 30 29 0 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc") [flags 0x41]  <function_decl 0x7f36844f2c00 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:28 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+;; std::basic_istream<char>::operator>> (&cin, &given_number);
+
+(insn 31 30 32 (parallel [
+            (set (reg:DI 89)
+                (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) ./denominator.cpp:29 -1
+     (nil))
+
+(insn 32 31 33 (set (reg:DI 4 si)
+        (reg:DI 89)) ./denominator.cpp:29 -1
+     (nil))
+
+(insn 33 32 34 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZSt3cin") [flags 0x40]  <var_decl 0x7f368442c1e0 cin>)) ./denominator.cpp:29 -1
+     (nil))
+
+(call_insn 34 33 0 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZNSirsERd") [flags 0x41]  <function_decl 0x7f368454c400 operator>>>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:29 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+;; std::operator<< <std::char_traits<char> > (&cout, "\n The following  is the denomination  of the given dollar amount for least possible bills/coin criteria");
+
+(insn 35 34 36 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC12") [flags 0x2]  <var_decl 0x7f368431a960 *.LC12>)) ./denominator.cpp:35 -1
+     (nil))
+
+(insn 36 35 37 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZSt4cout") [flags 0x40]  <var_decl 0x7f368442c280 cout>)) ./denominator.cpp:35 -1
+     (nil))
+
+(call_insn 37 36 0 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc") [flags 0x41]  <function_decl 0x7f36844f2c00 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:35 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+;; array_index_5 = 0;
+
+(insn 38 37 0 (set (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])
+        (const_int 0 [0])) ./denominator.cpp:36 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 3
+
+;; given_number.1_7 = given_number;
+
+(insn 42 41 0 (set (reg:DF 60 [ given_number.1 ])
+        (mem/c/i:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [0 given_number+0 S8 A64])) ./denominator.cpp:38 -1
+     (nil))
+
+;; D.23325_8 = given_number.1_7 - total_sum_denominated_sofar_1;
+
+(insn 43 42 0 (set (reg:DF 61 [ D.23325 ])
+        (minus:DF (reg:DF 60 [ given_number.1 ])
+            (mem/c/i:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                    (const_int -24 [0xffffffffffffffe8])) [0 total_sum_denominated_sofar+0 S8 A64]))) ./denominator.cpp:38 -1
+     (nil))
+
+;; D.23326_9 = denominator_array[array_index_2];
+
+(insn 44 43 45 (set (reg:SI 91)
+        (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])) ./denominator.cpp:38 -1
+     (nil))
+
+(insn 45 44 46 (set (reg:DI 90)
+        (sign_extend:DI (reg:SI 91))) ./denominator.cpp:38 -1
+     (nil))
+
+(insn 46 45 0 (set (reg:DF 62 [ D.23326 ])
+        (mem/s/j:DF (plus:DI (plus:DI (mult:DI (reg:DI 90)
+                        (const_int 8 [0x8]))
+                    (reg/f:DI 54 virtual-stack-vars))
+                (const_int -112 [0xffffffffffffff90])) [0 denominator_array S8 A64])) ./denominator.cpp:38 -1
+     (nil))
+
+;; D.23327_10 = D.23325_8 / D.23326_9;
+
+(insn 47 46 0 (set (reg:DF 63 [ D.23327 ])
+        (div:DF (reg:DF 61 [ D.23325 ])
+            (reg:DF 62 [ D.23326 ]))) ./denominator.cpp:38 -1
+     (nil))
+
+;; denomination_factor_11 = (float) D.23327_10;
+
+(insn 48 47 0 (set (mem/c/i:SF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [0 denomination_factor+0 S4 A32])
+        (float_truncate:SF (reg:DF 63 [ D.23327 ]))) ./denominator.cpp:38 -1
+     (nil))
+
+;; D.23328_12 = (double) denomination_factor_11;
+
+(insn 49 48 0 (set (reg:DF 64 [ D.23328 ])
+        (float_extend:DF (mem/c/i:SF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])) [0 denomination_factor+0 S4 A32]))) ./denominator.cpp:39 -1
+     (nil))
+
+;; D.23329_13 = floor (D.23328_12);
+
+(insn 50 49 51 (set (reg:DF 21 xmm0)
+        (reg:DF 64 [ D.23328 ])) ./denominator.cpp:39 -1
+     (nil))
+
+(call_insn/u 51 50 52 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("floor") [flags 0x41]  <function_decl 0x7f3686cf4500 floor>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:39 -1
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:REG_DEP_TRUE (use (reg:DF 21 xmm0))
+        (nil)))
+
+(insn 52 51 0 (set (reg:DF 65 [ D.23329 ])
+        (reg:DF 21 xmm0)) ./denominator.cpp:39 -1
+     (nil))
+
+;; denomination_factor_14 = (float) D.23329_13;
+
+(insn 53 52 0 (set (mem/c/i:SF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [0 denomination_factor+0 S4 A32])
+        (float_truncate:SF (reg:DF 65 [ D.23329 ]))) ./denominator.cpp:39 -1
+     (nil))
+
+;; D.23330_15 = denominator_array[array_index_2];
+
+(insn 54 53 55 (set (reg:SI 93)
+        (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 55 54 56 (set (reg:DI 92)
+        (sign_extend:DI (reg:SI 93))) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 56 55 0 (set (reg:DF 66 [ D.23330 ])
+        (mem/s/j:DF (plus:DI (plus:DI (mult:DI (reg:DI 92)
+                        (const_int 8 [0x8]))
+                    (reg/f:DI 54 virtual-stack-vars))
+                (const_int -112 [0xffffffffffffff90])) [0 denominator_array S8 A64])) ./denominator.cpp:40 -1
+     (nil))
+
+;; D.23339_16 = std::operator<< <std::char_traits<char> > (&cout, "\n The total # of $");
+
+(insn 57 56 58 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC13") [flags 0x2]  <var_decl 0x7f368431aa00 *.LC13>)) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 58 57 59 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZSt4cout") [flags 0x40]  <var_decl 0x7f368442c280 cout>)) ./denominator.cpp:40 -1
+     (nil))
+
+(call_insn 59 58 60 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc") [flags 0x41]  <function_decl 0x7f36844f2c00 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:40 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+(insn 60 59 0 (set (reg/f:DI 67 [ D.23339 ])
+        (reg:DI 0 ax)) ./denominator.cpp:40 -1
+     (nil))
+
+;; D.23331_17 = D.23339_16;
+
+(insn 61 60 0 (set (reg/f:DI 68 [ D.23331 ])
+        (reg/f:DI 67 [ D.23339 ])) ./denominator.cpp:40 -1
+     (nil))
+
+;; D.23340_18 = std::basic_ostream<char>::operator<< (D.23331_17, D.23330_15);
+
+(insn 62 61 63 (set (reg:DF 21 xmm0)
+        (reg:DF 66 [ D.23330 ])) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 63 62 64 (set (reg:DI 5 di)
+        (reg/f:DI 68 [ D.23331 ])) ./denominator.cpp:40 -1
+     (nil))
+
+(call_insn 64 63 65 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZNSolsEd") [flags 0x41]  <function_decl 0x7f36844e3100 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:40 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DF 21 xmm0))
+            (nil))))
+
+(insn 65 64 0 (set (reg/f:DI 69 [ D.23340 ])
+        (reg:DI 0 ax)) ./denominator.cpp:40 -1
+     (nil))
+
+;; D.23332_19 = D.23340_18;
+
+(insn 66 65 0 (set (reg/f:DI 70 [ D.23332 ])
+        (reg/f:DI 69 [ D.23340 ])) ./denominator.cpp:40 -1
+     (nil))
+
+;; D.23341_20 = std::operator<< <std::char_traits<char> > (D.23332_19, " bills/coins = ");
+
+(insn 67 66 68 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC14") [flags 0x2]  <var_decl 0x7f368431aaa0 *.LC14>)) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 68 67 69 (set (reg:DI 5 di)
+        (reg/f:DI 70 [ D.23332 ])) ./denominator.cpp:40 -1
+     (nil))
+
+(call_insn 69 68 70 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc") [flags 0x41]  <function_decl 0x7f36844f2c00 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:40 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+(insn 70 69 0 (set (reg/f:DI 71 [ D.23341 ])
+        (reg:DI 0 ax)) ./denominator.cpp:40 -1
+     (nil))
+
+;; D.23333_21 = D.23341_20;
+
+(insn 71 70 0 (set (reg/f:DI 72 [ D.23333 ])
+        (reg/f:DI 71 [ D.23341 ])) ./denominator.cpp:40 -1
+     (nil))
+
+;; std::basic_ostream<char>::operator<< (D.23333_21, denomination_factor_14);
+
+(insn 72 71 73 (set (reg:SF 94)
+        (mem/c/i:SF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [0 denomination_factor+0 S4 A32])) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 73 72 74 (set (reg:SF 21 xmm0)
+        (reg:SF 94)) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 74 73 75 (set (reg:DI 5 di)
+        (reg/f:DI 72 [ D.23333 ])) ./denominator.cpp:40 -1
+     (nil))
+
+(call_insn 75 74 0 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZNSolsEf") [flags 0x41]  <function_decl 0x7f36844e3200 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:40 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:SF 21 xmm0))
+            (nil))))
+
+;; D.23334_22 = denominator_array[array_index_2];
+
+(insn 76 75 77 (set (reg:SI 96)
+        (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])) ./denominator.cpp:41 -1
+     (nil))
+
+(insn 77 76 78 (set (reg:DI 95)
+        (sign_extend:DI (reg:SI 96))) ./denominator.cpp:41 -1
+     (nil))
+
+(insn 78 77 0 (set (reg:DF 73 [ D.23334 ])
+        (mem/s/j:DF (plus:DI (plus:DI (mult:DI (reg:DI 95)
+                        (const_int 8 [0x8]))
+                    (reg/f:DI 54 virtual-stack-vars))
+                (const_int -112 [0xffffffffffffff90])) [0 denominator_array S8 A64])) ./denominator.cpp:41 -1
+     (nil))
+
+;; D.23335_23 = (double) denomination_factor_14;
+
+(insn 79 78 0 (set (reg:DF 74 [ D.23335 ])
+        (float_extend:DF (mem/c/i:SF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])) [0 denomination_factor+0 S4 A32]))) ./denominator.cpp:41 -1
+     (nil))
+
+;; D.23336_24 = D.23334_22 * D.23335_23;
+
+(insn 80 79 0 (set (reg:DF 75 [ D.23336 ])
+        (mult:DF (reg:DF 73 [ D.23334 ])
+            (reg:DF 74 [ D.23335 ]))) ./denominator.cpp:41 -1
+     (nil))
+
+;; total_sum_denominated_sofar_25 = D.23336_24 + total_sum_denominated_sofar_1;
+
+(insn 81 80 82 (set (reg:DF 97)
+        (mem/c/i:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [0 total_sum_denominated_sofar+0 S8 A64])) ./denominator.cpp:41 -1
+     (nil))
+
+(insn 82 81 83 (set (reg:DF 98)
+        (plus:DF (reg:DF 97)
+            (reg:DF 75 [ D.23336 ]))) ./denominator.cpp:41 -1
+     (nil))
+
+(insn 83 82 0 (set (mem/c/i:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [0 total_sum_denominated_sofar+0 S8 A64])
+        (reg:DF 98)) ./denominator.cpp:41 -1
+     (nil))
+
+;; array_index_26 = array_index_2 + 1;
+
+(insn 84 83 0 (parallel [
+            (set (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                        (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])
+                (plus:SI (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                            (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) ./denominator.cpp:36 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 4
+
+;; 
+
+(code_label 85 84 86 2 "" [0 uses])
+
+(note 86 85 0 NOTE_INSN_BASIC_BLOCK)
+
+;; D.23322_6 = array_index_2 < max_denominations_3;
+
+(insn 87 86 88 (set (reg:SI 99)
+        (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])) ./denominator.cpp:36 -1
+     (nil))
+
+(insn 88 87 89 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 99)
+            (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                    (const_int -8 [0xfffffffffffffff8])) [0 max_denominations+0 S4 A32]))) ./denominator.cpp:36 -1
+     (nil))
+
+(insn 89 88 0 (set (reg:QI 59 [ D.23322 ])
+        (lt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) ./denominator.cpp:36 -1
+     (nil))
+
+;; if (D.23322_6 != 0)
+
+(insn 91 89 92 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 59 [ D.23322 ])
+            (const_int 0 [0]))) ./denominator.cpp:36 -1
+     (nil))
+
+(jump_insn 92 91 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 90)
+            (pc))) ./denominator.cpp:36 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 5
+
+;; std::operator<< <std::char_traits<char> > (&cout, "\n End of the program \n");
+
+(insn 94 93 95 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC15") [flags 0x2]  <var_decl 0x7f368431ab40 *.LC15>)) ./denominator.cpp:44 -1
+     (nil))
+
+(insn 95 94 96 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZSt4cout") [flags 0x40]  <var_decl 0x7f368442c280 cout>)) ./denominator.cpp:44 -1
+     (nil))
+
+(call_insn 96 95 0 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc") [flags 0x41]  <function_decl 0x7f36844f2c00 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:44 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+;; D.23337_27 = 0;
+
+(insn 97 96 0 (set (reg:SI 76 [ D.23337 ])
+        (const_int 0 [0])) ./denominator.cpp:0 -1
+     (nil))
+
+;; return D.23337_27;
+
+(insn 98 97 99 (set (reg:SI 77 [ <retval> ])
+        (reg:SI 76 [ D.23337 ])) ./denominator.cpp:0 -1
+     (nil))
+
+(jump_insn 99 98 100 (set (pc)
+        (label_ref 0)) ./denominator.cpp:0 -1
+     (nil))
+
+(barrier 100 99 0)
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+
+;; Start of basic block ( 0) -> 2
+;; Pred edge  ENTRY (fallthru)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+
+(note 2 3 4 2 NOTE_INSN_FUNCTION_BEG)
+;; End of basic block 2 -> ( 3)
+
+;; Succ edge  3 [100.0%]  (fallthru)
+
+;; Start of basic block ( 2) -> 3
+;; Pred edge  2 [100.0%]  (fallthru)
+(note 4 2 5 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+
+(insn 5 4 6 3 (set (reg:DF 78)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC0") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 6 5 7 3 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -112 [0xffffffffffffff90])) [0 denominator_array+0 S8 A64])
+        (reg:DF 78)) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 7 6 8 3 (set (reg:DF 79)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC1") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 8 7 9 3 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -104 [0xffffffffffffff98])) [0 denominator_array+8 S8 A64])
+        (reg:DF 79)) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 9 8 10 3 (set (reg:DF 80)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC2") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 10 9 11 3 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -96 [0xffffffffffffffa0])) [0 denominator_array+16 S8 A64])
+        (reg:DF 80)) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 11 10 12 3 (set (reg:DF 81)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC3") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 12 11 13 3 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -88 [0xffffffffffffffa8])) [0 denominator_array+24 S8 A64])
+        (reg:DF 81)) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 13 12 14 3 (set (reg:DF 82)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC4") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 14 13 15 3 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -80 [0xffffffffffffffb0])) [0 denominator_array+32 S8 A64])
+        (reg:DF 82)) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 15 14 16 3 (set (reg:DF 83)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC5") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 16 15 17 3 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -72 [0xffffffffffffffb8])) [0 denominator_array+40 S8 A64])
+        (reg:DF 83)) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 17 16 18 3 (set (reg:DF 84)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC6") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 18 17 19 3 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -64 [0xffffffffffffffc0])) [0 denominator_array+48 S8 A64])
+        (reg:DF 84)) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 19 18 20 3 (set (reg:DF 85)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC7") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 20 19 21 3 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -56 [0xffffffffffffffc8])) [0 denominator_array+56 S8 A64])
+        (reg:DF 85)) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 21 20 22 3 (set (reg:DF 86)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC8") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 22 21 23 3 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -48 [0xffffffffffffffd0])) [0 denominator_array+64 S8 A64])
+        (reg:DF 86)) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 23 22 24 3 (set (reg:DF 87)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC9") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 24 23 25 3 (set (mem/s/j/c:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -40 [0xffffffffffffffd8])) [0 denominator_array+72 S8 A64])
+        (reg:DF 87)) ./denominator.cpp:22 -1
+     (nil))
+
+(insn 25 24 26 3 (set (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [0 max_denominations+0 S4 A32])
+        (const_int 10 [0xa])) ./denominator.cpp:23 -1
+     (nil))
+
+(insn 26 25 27 3 (set (reg:DF 88)
+        (mem/u/c/i:DF (symbol_ref/u:DI ("*.LC10") [flags 0x2]) [0 S8 A64])) ./denominator.cpp:25 -1
+     (nil))
+
+(insn 27 26 28 3 (set (mem/c/i:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [0 total_sum_denominated_sofar+0 S8 A64])
+        (reg:DF 88)) ./denominator.cpp:25 -1
+     (nil))
+
+(insn 28 27 29 3 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC11") [flags 0x2]  <var_decl 0x7f368431a8c0 *.LC11>)) ./denominator.cpp:28 -1
+     (nil))
+
+(insn 29 28 30 3 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZSt4cout") [flags 0x40]  <var_decl 0x7f368442c280 cout>)) ./denominator.cpp:28 -1
+     (nil))
+
+(call_insn 30 29 31 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc") [flags 0x41]  <function_decl 0x7f36844f2c00 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:28 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+(insn 31 30 32 3 (parallel [
+            (set (reg:DI 89)
+                (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                    (const_int -32 [0xffffffffffffffe0])))
+            (clobber (reg:CC 17 flags))
+        ]) ./denominator.cpp:29 -1
+     (nil))
+
+(insn 32 31 33 3 (set (reg:DI 4 si)
+        (reg:DI 89)) ./denominator.cpp:29 -1
+     (nil))
+
+(insn 33 32 34 3 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZSt3cin") [flags 0x40]  <var_decl 0x7f368442c1e0 cin>)) ./denominator.cpp:29 -1
+     (nil))
+
+(call_insn 34 33 35 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZNSirsERd") [flags 0x41]  <function_decl 0x7f368454c400 operator>>>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:29 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+(insn 35 34 36 3 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC12") [flags 0x2]  <var_decl 0x7f368431a960 *.LC12>)) ./denominator.cpp:35 -1
+     (nil))
+
+(insn 36 35 37 3 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZSt4cout") [flags 0x40]  <var_decl 0x7f368442c280 cout>)) ./denominator.cpp:35 -1
+     (nil))
+
+(call_insn 37 36 38 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc") [flags 0x41]  <function_decl 0x7f36844f2c00 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:35 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+(insn 38 37 39 3 (set (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])
+        (const_int 0 [0])) ./denominator.cpp:36 -1
+     (nil))
+
+(jump_insn 39 38 40 3 (set (pc)
+        (label_ref 85)) ./denominator.cpp:36 -1
+     (nil)
+ -> 85)
+;; End of basic block 3 -> ( 5)
+
+;; Succ edge  5
+
+(barrier 40 39 90)
+
+;; Start of basic block ( 5) -> 4
+;; Pred edge  5
+(code_label 90 40 41 4 3 "" [1 uses])
+
+(note 41 90 42 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+
+(insn 42 41 43 4 (set (reg:DF 60 [ given_number.1 ])
+        (mem/c/i:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -32 [0xffffffffffffffe0])) [0 given_number+0 S8 A64])) ./denominator.cpp:38 -1
+     (nil))
+
+(insn 43 42 44 4 (set (reg:DF 61 [ D.23325 ])
+        (minus:DF (reg:DF 60 [ given_number.1 ])
+            (mem/c/i:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                    (const_int -24 [0xffffffffffffffe8])) [0 total_sum_denominated_sofar+0 S8 A64]))) ./denominator.cpp:38 -1
+     (nil))
+
+(insn 44 43 45 4 (set (reg:SI 91)
+        (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])) ./denominator.cpp:38 -1
+     (nil))
+
+(insn 45 44 46 4 (set (reg:DI 90)
+        (sign_extend:DI (reg:SI 91))) ./denominator.cpp:38 -1
+     (nil))
+
+(insn 46 45 47 4 (set (reg:DF 62 [ D.23326 ])
+        (mem/s/j:DF (plus:DI (plus:DI (mult:DI (reg:DI 90)
+                        (const_int 8 [0x8]))
+                    (reg/f:DI 54 virtual-stack-vars))
+                (const_int -112 [0xffffffffffffff90])) [0 denominator_array S8 A64])) ./denominator.cpp:38 -1
+     (nil))
+
+(insn 47 46 48 4 (set (reg:DF 63 [ D.23327 ])
+        (div:DF (reg:DF 61 [ D.23325 ])
+            (reg:DF 62 [ D.23326 ]))) ./denominator.cpp:38 -1
+     (nil))
+
+(insn 48 47 49 4 (set (mem/c/i:SF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [0 denomination_factor+0 S4 A32])
+        (float_truncate:SF (reg:DF 63 [ D.23327 ]))) ./denominator.cpp:38 -1
+     (nil))
+
+(insn 49 48 50 4 (set (reg:DF 64 [ D.23328 ])
+        (float_extend:DF (mem/c/i:SF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])) [0 denomination_factor+0 S4 A32]))) ./denominator.cpp:39 -1
+     (nil))
+
+(insn 50 49 51 4 (set (reg:DF 21 xmm0)
+        (reg:DF 64 [ D.23328 ])) ./denominator.cpp:39 -1
+     (nil))
+
+(call_insn/u 51 50 52 4 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("floor") [flags 0x41]  <function_decl 0x7f3686cf4500 floor>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:39 -1
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:REG_DEP_TRUE (use (reg:DF 21 xmm0))
+        (nil)))
+
+(insn 52 51 53 4 (set (reg:DF 65 [ D.23329 ])
+        (reg:DF 21 xmm0)) ./denominator.cpp:39 -1
+     (nil))
+
+(insn 53 52 54 4 (set (mem/c/i:SF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [0 denomination_factor+0 S4 A32])
+        (float_truncate:SF (reg:DF 65 [ D.23329 ]))) ./denominator.cpp:39 -1
+     (nil))
+
+(insn 54 53 55 4 (set (reg:SI 93)
+        (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 55 54 56 4 (set (reg:DI 92)
+        (sign_extend:DI (reg:SI 93))) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 56 55 57 4 (set (reg:DF 66 [ D.23330 ])
+        (mem/s/j:DF (plus:DI (plus:DI (mult:DI (reg:DI 92)
+                        (const_int 8 [0x8]))
+                    (reg/f:DI 54 virtual-stack-vars))
+                (const_int -112 [0xffffffffffffff90])) [0 denominator_array S8 A64])) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 57 56 58 4 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC13") [flags 0x2]  <var_decl 0x7f368431aa00 *.LC13>)) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 58 57 59 4 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZSt4cout") [flags 0x40]  <var_decl 0x7f368442c280 cout>)) ./denominator.cpp:40 -1
+     (nil))
+
+(call_insn 59 58 60 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc") [flags 0x41]  <function_decl 0x7f36844f2c00 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:40 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+(insn 60 59 61 4 (set (reg/f:DI 67 [ D.23339 ])
+        (reg:DI 0 ax)) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 61 60 62 4 (set (reg/f:DI 68 [ D.23331 ])
+        (reg/f:DI 67 [ D.23339 ])) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 62 61 63 4 (set (reg:DF 21 xmm0)
+        (reg:DF 66 [ D.23330 ])) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 63 62 64 4 (set (reg:DI 5 di)
+        (reg/f:DI 68 [ D.23331 ])) ./denominator.cpp:40 -1
+     (nil))
+
+(call_insn 64 63 65 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZNSolsEd") [flags 0x41]  <function_decl 0x7f36844e3100 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:40 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DF 21 xmm0))
+            (nil))))
+
+(insn 65 64 66 4 (set (reg/f:DI 69 [ D.23340 ])
+        (reg:DI 0 ax)) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 66 65 67 4 (set (reg/f:DI 70 [ D.23332 ])
+        (reg/f:DI 69 [ D.23340 ])) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 67 66 68 4 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC14") [flags 0x2]  <var_decl 0x7f368431aaa0 *.LC14>)) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 68 67 69 4 (set (reg:DI 5 di)
+        (reg/f:DI 70 [ D.23332 ])) ./denominator.cpp:40 -1
+     (nil))
+
+(call_insn 69 68 70 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc") [flags 0x41]  <function_decl 0x7f36844f2c00 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:40 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+(insn 70 69 71 4 (set (reg/f:DI 71 [ D.23341 ])
+        (reg:DI 0 ax)) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 71 70 72 4 (set (reg/f:DI 72 [ D.23333 ])
+        (reg/f:DI 71 [ D.23341 ])) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 72 71 73 4 (set (reg:SF 94)
+        (mem/c/i:SF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [0 denomination_factor+0 S4 A32])) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 73 72 74 4 (set (reg:SF 21 xmm0)
+        (reg:SF 94)) ./denominator.cpp:40 -1
+     (nil))
+
+(insn 74 73 75 4 (set (reg:DI 5 di)
+        (reg/f:DI 72 [ D.23333 ])) ./denominator.cpp:40 -1
+     (nil))
+
+(call_insn 75 74 76 4 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZNSolsEf") [flags 0x41]  <function_decl 0x7f36844e3200 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:40 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:SF 21 xmm0))
+            (nil))))
+
+(insn 76 75 77 4 (set (reg:SI 96)
+        (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])) ./denominator.cpp:41 -1
+     (nil))
+
+(insn 77 76 78 4 (set (reg:DI 95)
+        (sign_extend:DI (reg:SI 96))) ./denominator.cpp:41 -1
+     (nil))
+
+(insn 78 77 79 4 (set (reg:DF 73 [ D.23334 ])
+        (mem/s/j:DF (plus:DI (plus:DI (mult:DI (reg:DI 95)
+                        (const_int 8 [0x8]))
+                    (reg/f:DI 54 virtual-stack-vars))
+                (const_int -112 [0xffffffffffffff90])) [0 denominator_array S8 A64])) ./denominator.cpp:41 -1
+     (nil))
+
+(insn 79 78 80 4 (set (reg:DF 74 [ D.23335 ])
+        (float_extend:DF (mem/c/i:SF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])) [0 denomination_factor+0 S4 A32]))) ./denominator.cpp:41 -1
+     (nil))
+
+(insn 80 79 81 4 (set (reg:DF 75 [ D.23336 ])
+        (mult:DF (reg:DF 73 [ D.23334 ])
+            (reg:DF 74 [ D.23335 ]))) ./denominator.cpp:41 -1
+     (nil))
+
+(insn 81 80 82 4 (set (reg:DF 97)
+        (mem/c/i:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [0 total_sum_denominated_sofar+0 S8 A64])) ./denominator.cpp:41 -1
+     (nil))
+
+(insn 82 81 83 4 (set (reg:DF 98)
+        (plus:DF (reg:DF 97)
+            (reg:DF 75 [ D.23336 ]))) ./denominator.cpp:41 -1
+     (nil))
+
+(insn 83 82 84 4 (set (mem/c/i:DF (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -24 [0xffffffffffffffe8])) [0 total_sum_denominated_sofar+0 S8 A64])
+        (reg:DF 98)) ./denominator.cpp:41 -1
+     (nil))
+
+(insn 84 83 85 4 (parallel [
+            (set (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                        (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])
+                (plus:SI (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                            (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) ./denominator.cpp:36 -1
+     (nil))
+;; End of basic block 4 -> ( 5)
+
+;; Succ edge  5 (fallthru)
+
+;; Start of basic block ( 3 4) -> 5
+;; Pred edge  3
+;; Pred edge  4 (fallthru)
+(code_label 85 84 86 5 2 "" [1 uses])
+
+(note 86 85 87 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+
+(insn 87 86 88 5 (set (reg:SI 99)
+        (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])) ./denominator.cpp:36 -1
+     (nil))
+
+(insn 88 87 89 5 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 99)
+            (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                    (const_int -8 [0xfffffffffffffff8])) [0 max_denominations+0 S4 A32]))) ./denominator.cpp:36 -1
+     (nil))
+
+(insn 89 88 91 5 (set (reg:QI 59 [ D.23322 ])
+        (lt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) ./denominator.cpp:36 -1
+     (nil))
+
+(insn 91 89 92 5 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 59 [ D.23322 ])
+            (const_int 0 [0]))) ./denominator.cpp:36 -1
+     (nil))
+
+(jump_insn 92 91 93 5 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 90)
+            (pc))) ./denominator.cpp:36 -1
+     (nil)
+ -> 90)
+;; End of basic block 5 -> ( 4 6)
+
+;; Succ edge  4
+;; Succ edge  6 (fallthru)
+
+;; Start of basic block ( 5) -> 6
+;; Pred edge  5 (fallthru)
+(note 93 92 94 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+
+(insn 94 93 95 6 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC15") [flags 0x2]  <var_decl 0x7f368431ab40 *.LC15>)) ./denominator.cpp:44 -1
+     (nil))
+
+(insn 95 94 96 6 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZSt4cout") [flags 0x40]  <var_decl 0x7f368442c280 cout>)) ./denominator.cpp:44 -1
+     (nil))
+
+(call_insn 96 95 97 6 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc") [flags 0x41]  <function_decl 0x7f36844f2c00 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:44 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+(insn 97 96 98 6 (set (reg:SI 76 [ D.23337 ])
+        (const_int 0 [0])) ./denominator.cpp:0 -1
+     (nil))
+
+(insn 98 97 99 6 (set (reg:SI 77 [ <retval> ])
+        (reg:SI 76 [ D.23337 ])) ./denominator.cpp:0 -1
+     (nil))
+
+(jump_insn 99 98 100 6 (set (pc)
+        (label_ref 101)) ./denominator.cpp:0 -1
+     (nil)
+ -> 101)
+;; End of basic block 6 -> ( 8)
+
+;; Succ edge  8
+
+(barrier 100 99 106)
+
+;; Start of basic block () -> 7
+(note 106 100 103 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+
+(insn 103 106 104 7 (clobber (reg/i:SI 0 ax)) ./denominator.cpp:46 -1
+     (nil))
+
+(insn 104 103 101 7 (clobber (reg:SI 77 [ <retval> ])) ./denominator.cpp:46 -1
+     (nil))
+;; End of basic block 7 -> ( 8)
+
+;; Succ edge  8 (fallthru)
+
+;; Start of basic block ( 6 7) -> 8
+;; Pred edge  6
+;; Pred edge  7 (fallthru)
+(code_label 101 104 107 8 1 "" [1 uses])
+
+(note 107 101 102 8 [bb 8] NOTE_INSN_BASIC_BLOCK)
+
+(insn 102 107 105 8 (set (reg/i:SI 0 ax)
+        (reg:SI 77 [ <retval> ])) ./denominator.cpp:46 -1
+     (nil))
+
+(insn 105 102 0 8 (use (reg/i:SI 0 ax)) ./denominator.cpp:46 -1
+     (nil))
+;; End of basic block 8 -> ( 1)
+
+;; Succ edge  EXIT [100.0%]  (fallthru)
+
+
+;; Function void __static_initialization_and_destruction_0(int, int) (_Z41__static_initialization_and_destruction_0ii)
+
+void __static_initialization_and_destruction_0(int, int) (int __initialize_p, int __priority)
+{
+  void (*<Tbc>) (void *) __comp_dtor .0;
+
+  # BLOCK 2
+  # PRED: ENTRY (fallthru)
+  if (__initialize_p_1(D) == 1)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+  # SUCC: 3 (true) 5 (false)
+
+  # BLOCK 3
+  # PRED: 2 (true)
+  if (__priority_2(D) == 65535)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+  # SUCC: 4 (true) 5 (false)
+
+  # BLOCK 4
+  # PRED: 3 (true)
+  std::ios_base::Init::Init (&__ioinit);
+  __comp_dtor .0_3 = (void (*<Tbc>) (void *)) __comp_dtor ;
+  __cxa_atexit (__comp_dtor .0_3, &__ioinit, &__dso_handle);
+  # SUCC: 5 (fallthru)
+
+  # BLOCK 5
+  # PRED: 2 (false) 4 (fallthru) 3 (false)
+  return;
+  # SUCC: EXIT
+
+}
+
+
+
+Partition map 
+
+Partition 1 (__initialize_p_1(D) - 1 )
+Partition 2 (__priority_2(D) - 2 )
+Partition 3 (__comp_dtor .0_3 - 3 )
+
+
+Partition map 
+
+Partition 0 (__initialize_p_1(D) - 1 )
+Partition 1 (__priority_2(D) - 2 )
+
+
+Live on entry to BB2 : __initialize_p_1(D)  __priority_2(D)  
+
+Live on entry to BB3 : __priority_2(D)  
+
+Live on entry to BB4 : 
+
+Live on entry to BB5 : 
+
+Conflict graph:
+
+After sorting:
+Coalesce List:
+
+Partition map 
+
+Partition 0 (__initialize_p_1(D) - 1 )
+Partition 1 (__priority_2(D) - 2 )
+
+After Coalescing:
+
+Partition map 
+
+Partition 0 (__initialize_p_1(D) - 1 )
+Partition 1 (__priority_2(D) - 2 )
+Partition 2 (__comp_dtor .0_3 - 3 )
+
+void __static_initialization_and_destruction_0(int, int) (int __initialize_p, int __priority)
+{
+  void (*<Tbc>) (void *) __comp_dtor .0;
+
+  # BLOCK 2
+  # PRED: ENTRY (fallthru)
+  if (__initialize_p_1(D) == 1)
+    goto <bb 3>;
+  else
+    goto <bb 5>;
+  # SUCC: 3 (true) 5 (false)
+
+  # BLOCK 3
+  # PRED: 2 (true)
+  if (__priority_2(D) == 65535)
+    goto <bb 4>;
+  else
+    goto <bb 5>;
+  # SUCC: 4 (true) 5 (false)
+
+  # BLOCK 4
+  # PRED: 3 (true)
+  std::ios_base::Init::Init (&__ioinit);
+  __comp_dtor .0_3 = (void (*<Tbc>) (void *)) __comp_dtor ;
+  __cxa_atexit (__comp_dtor .0_3, &__ioinit, &__dso_handle);
+  # SUCC: 5 (fallthru)
+
+  # BLOCK 5
+  # PRED: 2 (false) 4 (fallthru) 3 (false)
+  return;
+  # SUCC: EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; if (__initialize_p_1(D) == 1)
+
+(insn 7 6 8 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])) [0 __initialize_p+0 S4 A32])
+            (const_int 1 [0x1]))) ./denominator.cpp:46 -1
+     (nil))
+
+(jump_insn 8 7 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) ./denominator.cpp:46 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 3
+
+;; if (__priority_2(D) == 65535)
+
+(insn 10 9 11 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                    (const_int -8 [0xfffffffffffffff8])) [0 __priority+0 S4 A32])
+            (const_int 65535 [0xffff]))) ./denominator.cpp:46 -1
+     (nil))
+
+(jump_insn 11 10 0 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 0)
+            (pc))) ./denominator.cpp:46 -1
+     (nil))
+
+;; Generating RTL for gimple basic block 4
+
+;; std::ios_base::Init::Init (&__ioinit);
+
+(insn 13 12 14 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZStL8__ioinit") [flags 0x2]  <var_decl 0x7f368442c6e0 __ioinit>)) /usr/include/c++/4.6/iostream:75 -1
+     (nil))
+
+(call_insn 14 13 0 (call (mem:QI (symbol_ref:DI ("_ZNSt8ios_base4InitC1Ev") [flags 0x41]  <function_decl 0x7f3684973800 __comp_ctor >) [0 S1 A8])
+        (const_int 0 [0])) /usr/include/c++/4.6/iostream:75 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (nil)))
+
+;; __comp_dtor .0_3 = (void (*<Tbc>) (void *)) __comp_dtor ;
+
+(insn 15 14 0 (set (reg/f:DI 59 [ __comp_dtor .0 ])
+        (symbol_ref:DI ("_ZNSt8ios_base4InitD1Ev") [flags 0x41]  <function_decl 0x7f3684973a00 __comp_dtor >)) /usr/include/c++/4.6/iostream:75 -1
+     (nil))
+
+;; __cxa_atexit (__comp_dtor .0_3, &__ioinit, &__dso_handle);
+
+(insn 16 15 17 (set (reg:DI 1 dx)
+        (symbol_ref:DI ("__dso_handle") [flags 0x40]  <var_decl 0x7f36842e8b40 __dso_handle>)) /usr/include/c++/4.6/iostream:75 -1
+     (nil))
+
+(insn 17 16 18 (set (reg:DI 4 si)
+        (symbol_ref:DI ("_ZStL8__ioinit") [flags 0x2]  <var_decl 0x7f368442c6e0 __ioinit>)) /usr/include/c++/4.6/iostream:75 -1
+     (nil))
+
+(insn 18 17 19 (set (reg:DI 5 di)
+        (reg/f:DI 59 [ __comp_dtor .0 ])) /usr/include/c++/4.6/iostream:75 -1
+     (nil))
+
+(call_insn 19 18 0 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__cxa_atexit") [flags 0x41]  <function_decl 0x7f36842fc100 __cxa_atexit>) [0 S1 A8])
+            (const_int 0 [0]))) /usr/include/c++/4.6/iostream:75 -1
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (expr_list:REG_DEP_TRUE (use (reg:DI 1 dx))
+                (nil)))))
+
+;; Generating RTL for gimple basic block 5
+
+;; 
+
+(code_label 20 19 21 5 "" [0 uses])
+
+(note 21 20 0 NOTE_INSN_BASIC_BLOCK)
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 5 NOTE_INSN_DELETED)
+
+;; Start of basic block ( 0) -> 2
+;; Pred edge  ENTRY (fallthru)
+(note 5 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+
+(insn 2 5 3 2 (set (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -4 [0xfffffffffffffffc])) [0 __initialize_p+0 S4 A32])
+        (reg:SI 5 di [ __initialize_p ])) ./denominator.cpp:46 -1
+     (nil))
+
+(insn 3 2 4 2 (set (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                (const_int -8 [0xfffffffffffffff8])) [0 __priority+0 S4 A32])
+        (reg:SI 4 si [ __priority ])) ./denominator.cpp:46 -1
+     (nil))
+
+(note 4 3 6 2 NOTE_INSN_FUNCTION_BEG)
+;; End of basic block 2 -> ( 3)
+
+;; Succ edge  3 [100.0%]  (fallthru)
+
+;; Start of basic block ( 2) -> 3
+;; Pred edge  2 [100.0%]  (fallthru)
+(note 6 4 7 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+
+(insn 7 6 8 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                    (const_int -4 [0xfffffffffffffffc])) [0 __initialize_p+0 S4 A32])
+            (const_int 1 [0x1]))) ./denominator.cpp:46 -1
+     (nil))
+
+(jump_insn 8 7 9 3 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 20)
+            (pc))) ./denominator.cpp:46 -1
+     (nil)
+ -> 20)
+;; End of basic block 3 -> ( 4 6)
+
+;; Succ edge  4 (fallthru)
+;; Succ edge  6
+
+;; Start of basic block ( 3) -> 4
+;; Pred edge  3 (fallthru)
+(note 9 8 10 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+
+(insn 10 9 11 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c/i:SI (plus:DI (reg/f:DI 54 virtual-stack-vars)
+                    (const_int -8 [0xfffffffffffffff8])) [0 __priority+0 S4 A32])
+            (const_int 65535 [0xffff]))) ./denominator.cpp:46 -1
+     (nil))
+
+(jump_insn 11 10 12 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 20)
+            (pc))) ./denominator.cpp:46 -1
+     (nil)
+ -> 20)
+;; End of basic block 4 -> ( 5 6)
+
+;; Succ edge  5 (fallthru)
+;; Succ edge  6
+
+;; Start of basic block ( 4) -> 5
+;; Pred edge  4 (fallthru)
+(note 12 11 13 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+
+(insn 13 12 14 5 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZStL8__ioinit") [flags 0x2]  <var_decl 0x7f368442c6e0 __ioinit>)) /usr/include/c++/4.6/iostream:75 -1
+     (nil))
+
+(call_insn 14 13 15 5 (call (mem:QI (symbol_ref:DI ("_ZNSt8ios_base4InitC1Ev") [flags 0x41]  <function_decl 0x7f3684973800 __comp_ctor >) [0 S1 A8])
+        (const_int 0 [0])) /usr/include/c++/4.6/iostream:75 -1
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (nil)))
+
+(insn 15 14 16 5 (set (reg/f:DI 59 [ __comp_dtor .0 ])
+        (symbol_ref:DI ("_ZNSt8ios_base4InitD1Ev") [flags 0x41]  <function_decl 0x7f3684973a00 __comp_dtor >)) /usr/include/c++/4.6/iostream:75 -1
+     (nil))
+
+(insn 16 15 17 5 (set (reg:DI 1 dx)
+        (symbol_ref:DI ("__dso_handle") [flags 0x40]  <var_decl 0x7f36842e8b40 __dso_handle>)) /usr/include/c++/4.6/iostream:75 -1
+     (nil))
+
+(insn 17 16 18 5 (set (reg:DI 4 si)
+        (symbol_ref:DI ("_ZStL8__ioinit") [flags 0x2]  <var_decl 0x7f368442c6e0 __ioinit>)) /usr/include/c++/4.6/iostream:75 -1
+     (nil))
+
+(insn 18 17 19 5 (set (reg:DI 5 di)
+        (reg/f:DI 59 [ __comp_dtor .0 ])) /usr/include/c++/4.6/iostream:75 -1
+     (nil))
+
+(call_insn 19 18 20 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__cxa_atexit") [flags 0x41]  <function_decl 0x7f36842fc100 __cxa_atexit>) [0 S1 A8])
+            (const_int 0 [0]))) /usr/include/c++/4.6/iostream:75 -1
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (expr_list:REG_DEP_TRUE (use (reg:DI 1 dx))
+                (nil)))))
+;; End of basic block 5 -> ( 6)
+
+;; Succ edge  6 (fallthru)
+
+;; Start of basic block ( 3 5 4) -> 6
+;; Pred edge  3
+;; Pred edge  5 (fallthru)
+;; Pred edge  4
+(code_label 20 19 21 6 5 "" [2 uses])
+
+(note 21 20 22 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+;; End of basic block 6 -> ( 7)
+
+;; Succ edge  7 (fallthru)
+
+;; Start of basic block ( 6) -> 7
+;; Pred edge  6 (fallthru)
+(code_label 22 21 23 7 4 "" [0 uses])
+
+(note 23 22 0 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+;; End of basic block 7 -> ( 1)
+
+;; Succ edge  EXIT [100.0%]  (fallthru)
+
+
+;; Function (static initializers for ./denominator.cpp) (_GLOBAL__sub_I_main)
+
+(static initializers for ./denominator.cpp) ()
+{
+  # BLOCK 2
+  # PRED: ENTRY (fallthru)
+  __static_initialization_and_destruction_0 (1, 65535);
+  return;
+  # SUCC: EXIT
+
+}
+
+
+
+Partition map 
+
+
+After Coalescing:
+
+Partition map 
+
+
+(static initializers for ./denominator.cpp) ()
+{
+  # BLOCK 2
+  # PRED: ENTRY (fallthru)
+  __static_initialization_and_destruction_0 (1, 65535);
+  return;
+  # SUCC: EXIT
+
+}
+
+
+
+;; Generating RTL for gimple basic block 2
+
+;; __static_initialization_and_destruction_0 (1, 65535);
+
+(insn 5 4 6 (set (reg:SI 4 si)
+        (const_int 65535 [0xffff])) ./denominator.cpp:46 -1
+     (nil))
+
+(insn 6 5 7 (set (reg:SI 5 di)
+        (const_int 1 [0x1])) ./denominator.cpp:46 -1
+     (nil))
+
+(call_insn 7 6 0 (call (mem:QI (symbol_ref:DI ("_Z41__static_initialization_and_destruction_0ii") [flags 0x3]  <function_decl 0x7f36842fc000 __static_initialization_and_destruction_0>) [0 S1 A8])
+        (const_int 0 [0])) ./denominator.cpp:46 -1
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:REG_DEP_TRUE (use (reg:SI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:SI 4 si))
+            (nil))))
+
+
+;;
+;; Full RTL generated for this function:
+;;
+(note 1 0 3 NOTE_INSN_DELETED)
+
+;; Start of basic block ( 0) -> 2
+;; Pred edge  ENTRY (fallthru)
+(note 3 1 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+
+(note 2 3 4 2 NOTE_INSN_FUNCTION_BEG)
+;; End of basic block 2 -> ( 3)
+
+;; Succ edge  3 [100.0%]  (fallthru)
+
+;; Start of basic block ( 2) -> 3
+;; Pred edge  2 [100.0%]  (fallthru)
+(note 4 2 5 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+
+(insn 5 4 6 3 (set (reg:SI 4 si)
+        (const_int 65535 [0xffff])) ./denominator.cpp:46 -1
+     (nil))
+
+(insn 6 5 7 3 (set (reg:SI 5 di)
+        (const_int 1 [0x1])) ./denominator.cpp:46 -1
+     (nil))
+
+(call_insn 7 6 8 3 (call (mem:QI (symbol_ref:DI ("_Z41__static_initialization_and_destruction_0ii") [flags 0x3]  <function_decl 0x7f36842fc000 __static_initialization_and_destruction_0>) [0 S1 A8])
+        (const_int 0 [0])) ./denominator.cpp:46 -1
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:REG_DEP_TRUE (use (reg:SI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:SI 4 si))
+            (nil))))
+;; End of basic block 3 -> ( 4)
+
+;; Succ edge  4 (fallthru)
+
+;; Start of basic block ( 3) -> 4
+;; Pred edge  3 (fallthru)
+(code_label 8 7 9 4 6 "" [0 uses])
+
+(note 9 8 0 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+;; End of basic block 4 -> ( 1)
+
+;; Succ edge  EXIT [100.0%]  (fallthru)
+

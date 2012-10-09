@@ -1,0 +1,16 @@
+!SESSION 2012-10-07 11:49:00.078 -----------------------------------------------
+eclipse.buildId=M20110210-1200
+java.version=1.6.0_24
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.cdt.core 1 0 2012-10-07 11:50:56.685
+!MESSAGE Indexed 'Treeinsert' (1 sources, 13 headers) in 0.57 sec: 106 declarations; 337 references; 18 unresolved inclusions; 0 syntax errors; 230 unresolved names (34.18%)
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2012-10-07 11:51:36.787
+!MESSAGE Registering: com.google.appengine.eclipse.sdkbundle_1.5.2.r36v201107211953
+
+!ENTRY com.google.gdt.eclipse.suite 1 0 2012-10-07 11:51:37.694
+!MESSAGE Registering: com.google.gwt.eclipse.sdkbundle_2.3.0.r36v201105191508

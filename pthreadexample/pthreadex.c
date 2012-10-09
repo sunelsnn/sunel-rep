@@ -15,30 +15,36 @@
 void *print_message_function( void *ptr );
 
 pthread_mutex_t pmutex ;
-int Nthreads = 50 ;
-int messages[Nthreads] ;
-char mesg[][];
+//#define Nthreads 5
+int *messages;
+//char mesg[50][10];
 
 void main()
 
 {
 
-     pthread_t thread[10] ;
+
+	int Nthreads=5;
+	messages = (int*) calloc(Nthreads, sizeof(int)) ;
+
+     pthread_t *threadk = (pthread_t*) calloc(Nthreads, sizeof(pthread_t)) ;
      char *message1 = "Thread 1";
 
      char *message2 = "Thread 2";
 
-
-
      //int Nthreads = 50 ;
+    int i=0;
 
-     for (int i=0; i< Nthreads ;i++)
+     // for( int i=0; i<Nthreads;i++)
+/*    while(i<Nthreads)
      {
     	 messages[i] =i ;
+    	 i++ ;
      }
-
+*/
     // int  iret1, iret2;
-     int iret[Nthreads] ;
+  //   int *iret  = (int*)  calloc(Nthreads, sizeof(int)) ;
+    int iret[5] ;
 
      /*srand ( time(NULL) );
 
@@ -53,10 +59,14 @@ void main()
 
     /* Create independent threads each of which will execute function */
 
-     for (int i=0 ;i<Nthreads ; i++)
+     for ( i=0;i<Nthreads; i++)
      {
-    	 strcpy(message1, itoa(i)) ;
-iret[i] = pthread_create( &thread1[i], NULL, print_message_function, (void*) message1);
+    	// message1= (char*) (&i) ;
+
+    	//strcpy( message1,(char*) i);   //= itoa(i) ;
+    	//  printf("%c", message1) ;
+    	 iret[i] = pthread_create( threadk[i], NULL, print_message_function, (void*) message1);
+
      }
      /*
      iret1 = pthread_create( &thread1, NULL, print_message_function, (void*) message1);
@@ -69,16 +79,24 @@ iret[i] = pthread_create( &thread1[i], NULL, print_message_function, (void*) mes
 
      /* the process and all threads before the threads have completed.   */
 
-     pthread_join( thread1, NULL);
+     //pthread_join( thread1, NULL);
 
-     pthread_join( thread2, NULL);
+     //pthread_join( thread2, NULL);
+
+     for(i=0;i<Nthreads;i++)
+     {
+    	 pthread_join(threadk[i],NULL) ;
+     }
 
 
-     printf("Thread 1 returns: %d\n",iret1);
+     // printf("Thread 1 returns: %d\n",iret1);
 
-     printf("Thread 2 returns: %d\n",iret2);
+     // printf("Thread 2 returns: %d\n",iret2);
 
      exit(0);
+
+
+
 
 }
 
@@ -87,10 +105,10 @@ iret[i] = pthread_create( &thread1[i], NULL, print_message_function, (void*) mes
 void *print_message_function( void *ptr )
 
 {
+	 printf("entering print message") ;
+     int *message;
 
-     char *message;
-
-     message = (char *) ptr;
+     message = (int *) ptr;
 
      int sleepcount =0 ;
 
@@ -99,18 +117,20 @@ void *print_message_function( void *ptr )
      if (pthread_mutex_trylock(&pmutex))
      {
     	 pthread_mutex_lock(&pmutex) ;
-    	 printf("%d", pmutex.__data) ;
-    	 pmutex.__data =  atoi(message) ;
+    	// printf("%d", pmutex.__data) ;
+    	// pmutex.__data =  atoi(message) ;
+    	 printf('%d', message) ;
+    	 sleep(0.005);
     	 pthread_mutex_unlock(&pmutex) ;
      }
      else
      {
-    	 sleep(1) ;
+    	 sleep(0.005) ;
     	 sleepcount++ ;
      }
      }
 
-     printf("%s \n", message);
+    // printf("%s \n", message);
 
 }
 
@@ -146,4 +166,4 @@ main(int argc, char *argv[])
     exit(EXIT_SUCCESS);
 }
 */
- */
+

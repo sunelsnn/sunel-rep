@@ -1,0 +1,1 @@
+Treeinsert.d: ../Treeinsert.cpp

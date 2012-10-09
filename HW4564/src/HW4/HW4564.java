@@ -6,6 +6,12 @@ public class HW4564 {
 
 	/**
 	 * @param args
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
 	 */
 	public static int[][] Amat = new int[2][2] ;
 	public static float[][] qval = new float[2][2] ;

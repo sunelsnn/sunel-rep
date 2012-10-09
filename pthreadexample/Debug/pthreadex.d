@@ -1,0 +1,1 @@
+pthreadex.d: ../pthreadex.c

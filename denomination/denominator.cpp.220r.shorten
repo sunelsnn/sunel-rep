@@ -1,0 +1,705 @@
+
+;; Function int main() (main)
+
+(note 1 0 3 NOTE_INSN_DELETED)
+
+(note 3 1 145 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+
+(insn/f 145 3 146 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0 S8 A8])
+        (reg/f:DI 6 bp)) ./denominator.cpp:18 42 {*pushdi2_rex64}
+     (nil))
+
+(insn/f 146 145 147 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) ./denominator.cpp:18 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn/f 147 146 148 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -128 [0xffffffffffffff80])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0 A8]))
+        ]) ./denominator.cpp:18 911 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+
+(note 148 147 2 2 NOTE_INSN_PROLOGUE_END)
+
+(note 2 148 122 2 NOTE_INSN_FUNCTION_BEG)
+
+(insn 122 2 123 2 (set (reg:DI 0 ax [78])
+        (const_int 4636737291354636288 [0x4059000000000000])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 123 122 124 2 (set (mem/s/j/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -112 [0xffffffffffffff90])) [0 denominator_array+0 S8 A64])
+        (reg:DI 0 ax [78])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 124 123 125 2 (set (reg:DI 0 ax [79])
+        (const_int 4632233691727265792 [0x4049000000000000])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 125 124 126 2 (set (mem/s/j/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -104 [0xffffffffffffff98])) [0 denominator_array+8 S8 A64])
+        (reg:DI 0 ax [79])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 126 125 127 2 (set (reg:DI 0 ax [80])
+        (const_int 4626322717216342016 [0x4034000000000000])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 127 126 128 2 (set (mem/s/j/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -96 [0xffffffffffffffa0])) [0 denominator_array+16 S8 A64])
+        (reg:DI 0 ax [80])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 128 127 129 2 (set (reg:DI 0 ax [81])
+        (const_int 4621819117588971520 [0x4024000000000000])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 129 128 130 2 (set (mem/s/j/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -88 [0xffffffffffffffa8])) [0 denominator_array+24 S8 A64])
+        (reg:DI 0 ax [81])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 130 129 131 2 (set (reg:DI 0 ax [82])
+        (const_int 4617315517961601024 [0x4014000000000000])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 131 130 132 2 (set (mem/s/j/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -80 [0xffffffffffffffb0])) [0 denominator_array+32 S8 A64])
+        (reg:DI 0 ax [82])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 132 131 133 2 (set (reg:DI 0 ax [83])
+        (const_int 4607182418800017408 [0x3ff0000000000000])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 133 132 134 2 (set (mem/s/j/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -72 [0xffffffffffffffb8])) [0 denominator_array+40 S8 A64])
+        (reg:DI 0 ax [83])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 134 133 135 2 (set (reg:DI 0 ax [84])
+        (const_int 4598175219545276416 [0x3fd0000000000000])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 135 134 136 2 (set (mem/s/j/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -64 [0xffffffffffffffc0])) [0 denominator_array+48 S8 A64])
+        (reg:DI 0 ax [84])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 136 135 137 2 (set (reg:DI 0 ax [85])
+        (const_int 4591870180066957722 [0x3fb999999999999a])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 137 136 138 2 (set (mem/s/j/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -56 [0xffffffffffffffc8])) [0 denominator_array+56 S8 A64])
+        (reg:DI 0 ax [85])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 138 137 139 2 (set (reg:DI 0 ax [86])
+        (const_int 4587366580439587226 [0x3fa999999999999a])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 139 138 140 2 (set (mem/s/j/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -48 [0xffffffffffffffd0])) [0 denominator_array+64 S8 A64])
+        (reg:DI 0 ax [86])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 140 139 141 2 (set (reg:DI 0 ax [87])
+        (const_int 4576918229304087675 [0x3f847ae147ae147b])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 141 140 25 2 (set (mem/s/j/c:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -40 [0xffffffffffffffd8])) [0 denominator_array+72 S8 A64])
+        (reg:DI 0 ax [87])) ./denominator.cpp:22 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 25 141 142 2 (set (mem/c/i:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 max_denominations+0 S4 A32])
+        (const_int 10 [0xa])) ./denominator.cpp:23 64 {*movsi_internal}
+     (nil))
+
+(insn 142 25 143 2 (set (reg:DI 0 ax [88])
+        (const_int 0 [0])) ./denominator.cpp:25 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 143 142 28 2 (set (mem/c/i:DI (plus:DI (reg/f:DI 6 bp)
+                (const_int -24 [0xffffffffffffffe8])) [0 total_sum_denominated_sofar+0 S8 A64])
+        (reg:DI 0 ax [88])) ./denominator.cpp:25 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 28 143 29 2 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC11") [flags 0x2]  <var_decl 0x7f368431a8c0 *.LC11>)) ./denominator.cpp:28 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 29 28 30 2 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZSt4cout") [flags 0x40]  <var_decl 0x7f368442c280 cout>)) ./denominator.cpp:28 62 {*movdi_internal_rex64}
+     (nil))
+
+(call_insn 30 29 144 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc") [flags 0x41]  <function_decl 0x7f36844f2c00 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:28 929 {*call_value_0_rex64}
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+(insn 144 30 32 2 (set (reg:DI 0 ax [89])
+        (plus:DI (reg/f:DI 6 bp)
+            (const_int -32 [0xffffffffffffffe0]))) ./denominator.cpp:29 249 {*lea_1}
+     (nil))
+
+(insn 32 144 33 2 (set (reg:DI 4 si)
+        (reg:DI 0 ax [89])) ./denominator.cpp:29 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 33 32 34 2 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZSt3cin") [flags 0x40]  <var_decl 0x7f368442c1e0 cin>)) ./denominator.cpp:29 62 {*movdi_internal_rex64}
+     (nil))
+
+(call_insn 34 33 35 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZNSirsERd") [flags 0x41]  <function_decl 0x7f368454c400 operator>>>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:29 929 {*call_value_0_rex64}
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+(insn 35 34 36 2 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC12") [flags 0x2]  <var_decl 0x7f368431a960 *.LC12>)) ./denominator.cpp:35 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 36 35 37 2 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZSt4cout") [flags 0x40]  <var_decl 0x7f368442c280 cout>)) ./denominator.cpp:35 62 {*movdi_internal_rex64}
+     (nil))
+
+(call_insn 37 36 38 2 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc") [flags 0x41]  <function_decl 0x7f36844f2c00 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:35 929 {*call_value_0_rex64}
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+(insn 38 37 108 2 (set (mem/c/i:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])
+        (const_int 0 [0])) ./denominator.cpp:36 64 {*movsi_internal}
+     (nil))
+
+(jump_insn 108 38 109 2 (set (pc)
+        (label_ref 85)) ./denominator.cpp:36 606 {jump}
+     (nil)
+ -> 85)
+
+(barrier 109 108 90)
+
+(code_label 90 109 41 3 3 "" [1 uses])
+
+(note 41 90 42 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+
+(insn 42 41 43 3 (set (reg:DF 21 xmm0 [orig:60 given_number.1 ] [60])
+        (mem/c/i:DF (plus:DI (reg/f:DI 6 bp)
+                (const_int -32 [0xffffffffffffffe0])) [0 given_number+0 S8 A64])) ./denominator.cpp:38 107 {*movdf_internal_rex64}
+     (nil))
+
+(insn 43 42 44 3 (set (reg:DF 21 xmm0 [orig:61 D.23325 ] [61])
+        (minus:DF (reg:DF 21 xmm0 [orig:60 given_number.1 ] [60])
+            (mem/c/i:DF (plus:DI (reg/f:DI 6 bp)
+                    (const_int -24 [0xffffffffffffffe8])) [0 total_sum_denominated_sofar+0 S8 A64]))) ./denominator.cpp:38 741 {*fop_df_1_sse}
+     (nil))
+
+(insn 44 43 45 3 (set (reg:SI 0 ax [91])
+        (mem/c/i:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])) ./denominator.cpp:38 64 {*movsi_internal}
+     (nil))
+
+(insn 45 44 46 3 (set (reg:DI 0 ax [90])
+        (sign_extend:DI (reg:SI 0 ax [91]))) ./denominator.cpp:38 126 {*extendsidi2_rex64}
+     (nil))
+
+(insn 46 45 47 3 (set (reg:DF 22 xmm1 [orig:62 D.23326 ] [62])
+        (mem/s/j:DF (plus:DI (plus:DI (mult:DI (reg:DI 0 ax [90])
+                        (const_int 8 [0x8]))
+                    (reg/f:DI 6 bp))
+                (const_int -112 [0xffffffffffffff90])) [0 denominator_array S8 A64])) ./denominator.cpp:38 107 {*movdf_internal_rex64}
+     (nil))
+
+(insn 47 46 114 3 (set (reg:DF 21 xmm0 [orig:63 D.23327 ] [63])
+        (div:DF (reg:DF 21 xmm0 [orig:61 D.23325 ] [61])
+            (reg:DF 22 xmm1 [orig:62 D.23326 ] [62]))) ./denominator.cpp:38 741 {*fop_df_1_sse}
+     (nil))
+
+(insn 114 47 115 3 (set (reg:V2DF 21 xmm0 [orig:63 D.23327 ] [63])
+        (vec_duplicate:V2DF (reg:DF 21 xmm0 [orig:63 D.23327 ] [63]))) ./denominator.cpp:38 1554 {*vec_dupv2df}
+     (nil))
+
+(insn 115 114 111 3 (set (reg:V4SF 21 xmm0)
+        (vec_concat:V4SF (float_truncate:V2SF (reg:V2DF 21 xmm0 [orig:63 D.23327 ] [63]))
+            (const_vector:V2SF [
+                    (const_double:SF 0.0 [0x0.0p+0])
+                    (const_double:SF 0.0 [0x0.0p+0])
+                ]))) ./denominator.cpp:38 1459 {*sse2_cvtpd2ps}
+     (nil))
+
+(insn 111 115 116 3 (set (mem/c/i:SF (plus:DI (reg/f:DI 6 bp)
+                (const_int -4 [0xfffffffffffffffc])) [0 denomination_factor+0 S4 A32])
+        (reg:SF 21 xmm0)) ./denominator.cpp:38 110 {*movsf_internal}
+     (nil))
+
+(insn 116 111 117 3 (set (reg:V4SF 21 xmm0 [orig:64 D.23328 ] [64])
+        (vec_merge:V4SF (vec_duplicate:V4SF (mem/c/i:SF (plus:DI (reg/f:DI 6 bp)
+                        (const_int -4 [0xfffffffffffffffc])) [0 denomination_factor+0 S4 A32]))
+            (const_vector:V4SF [
+                    (const_double:SF 0.0 [0x0.0p+0])
+                    (const_double:SF 0.0 [0x0.0p+0])
+                    (const_double:SF 0.0 [0x0.0p+0])
+                    (const_double:SF 0.0 [0x0.0p+0])
+                ])
+            (const_int 1 [0x1]))) ./denominator.cpp:39 1502 {*vec_setv4sf_0_sse2}
+     (nil))
+
+(insn 117 116 51 3 (set (reg:V2DF 21 xmm0 [orig:64 D.23328 ] [64])
+        (float_extend:V2DF (vec_select:V2SF (reg:V4SF 21 xmm0 [orig:64 D.23328 ] [64])
+                (parallel [
+                        (const_int 0 [0])
+                        (const_int 1 [0x1])
+                    ])))) ./denominator.cpp:39 1462 {sse2_cvtps2pd}
+     (nil))
+
+(call_insn/u 51 117 118 3 (set (reg:DF 21 xmm0)
+        (call (mem:QI (symbol_ref:DI ("floor") [flags 0x41]  <function_decl 0x7f3686cf4500 floor>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:39 929 {*call_value_0_rex64}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:REG_DEP_TRUE (use (reg:DF 21 xmm0))
+        (nil)))
+
+(insn 118 51 119 3 (set (reg:V2DF 21 xmm0 [orig:65 D.23329 ] [65])
+        (vec_duplicate:V2DF (reg:DF 21 xmm0 [orig:65 D.23329 ] [65]))) ./denominator.cpp:39 1554 {*vec_dupv2df}
+     (nil))
+
+(insn 119 118 112 3 (set (reg:V4SF 21 xmm0)
+        (vec_concat:V4SF (float_truncate:V2SF (reg:V2DF 21 xmm0 [orig:65 D.23329 ] [65]))
+            (const_vector:V2SF [
+                    (const_double:SF 0.0 [0x0.0p+0])
+                    (const_double:SF 0.0 [0x0.0p+0])
+                ]))) ./denominator.cpp:39 1459 {*sse2_cvtpd2ps}
+     (nil))
+
+(insn 112 119 54 3 (set (mem/c/i:SF (plus:DI (reg/f:DI 6 bp)
+                (const_int -4 [0xfffffffffffffffc])) [0 denomination_factor+0 S4 A32])
+        (reg:SF 21 xmm0)) ./denominator.cpp:39 110 {*movsf_internal}
+     (nil))
+
+(insn 54 112 55 3 (set (reg:SI 0 ax [93])
+        (mem/c/i:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])) ./denominator.cpp:40 64 {*movsi_internal}
+     (nil))
+
+(insn 55 54 56 3 (set (reg:DI 0 ax [92])
+        (sign_extend:DI (reg:SI 0 ax [93]))) ./denominator.cpp:40 126 {*extendsidi2_rex64}
+     (nil))
+
+(insn 56 55 113 3 (set (reg:DF 21 xmm0)
+        (mem/s/j:DF (plus:DI (plus:DI (mult:DI (reg:DI 0 ax [92])
+                        (const_int 8 [0x8]))
+                    (reg/f:DI 6 bp))
+                (const_int -112 [0xffffffffffffff90])) [0 denominator_array S8 A64])) ./denominator.cpp:40 107 {*movdf_internal_rex64}
+     (nil))
+
+(insn 113 56 57 3 (set (mem/c:DF (plus:DI (reg/f:DI 6 bp)
+                (const_int -120 [0xffffffffffffff88])) [0 %sfp+-120 S8 A64])
+        (reg:DF 21 xmm0)) ./denominator.cpp:40 107 {*movdf_internal_rex64}
+     (nil))
+
+(insn 57 113 58 3 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC13") [flags 0x2]  <var_decl 0x7f368431aa00 *.LC13>)) ./denominator.cpp:40 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 58 57 59 3 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZSt4cout") [flags 0x40]  <var_decl 0x7f368442c280 cout>)) ./denominator.cpp:40 62 {*movdi_internal_rex64}
+     (nil))
+
+(call_insn 59 58 62 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc") [flags 0x41]  <function_decl 0x7f36844f2c00 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:40 929 {*call_value_0_rex64}
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+(insn 62 59 63 3 (set (reg:DF 21 xmm0)
+        (mem/c:DF (plus:DI (reg/f:DI 6 bp)
+                (const_int -120 [0xffffffffffffff88])) [0 %sfp+-120 S8 A64])) ./denominator.cpp:40 107 {*movdf_internal_rex64}
+     (nil))
+
+(insn 63 62 64 3 (set (reg:DI 5 di)
+        (reg/f:DI 0 ax [orig:68 D.23331 ] [68])) ./denominator.cpp:40 62 {*movdi_internal_rex64}
+     (nil))
+
+(call_insn 64 63 67 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZNSolsEd") [flags 0x41]  <function_decl 0x7f36844e3100 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:40 929 {*call_value_0_rex64}
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DF 21 xmm0))
+            (nil))))
+
+(insn 67 64 68 3 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC14") [flags 0x2]  <var_decl 0x7f368431aaa0 *.LC14>)) ./denominator.cpp:40 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 68 67 69 3 (set (reg:DI 5 di)
+        (reg/f:DI 0 ax [orig:70 D.23332 ] [70])) ./denominator.cpp:40 62 {*movdi_internal_rex64}
+     (nil))
+
+(call_insn 69 68 72 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc") [flags 0x41]  <function_decl 0x7f36844f2c00 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:40 929 {*call_value_0_rex64}
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+(insn 72 69 74 3 (set (reg:SF 21 xmm0 [94])
+        (mem/c/i:SF (plus:DI (reg/f:DI 6 bp)
+                (const_int -4 [0xfffffffffffffffc])) [0 denomination_factor+0 S4 A32])) ./denominator.cpp:40 110 {*movsf_internal}
+     (nil))
+
+(insn 74 72 75 3 (set (reg:DI 5 di)
+        (reg/f:DI 0 ax [orig:72 D.23333 ] [72])) ./denominator.cpp:40 62 {*movdi_internal_rex64}
+     (nil))
+
+(call_insn 75 74 76 3 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZNSolsEf") [flags 0x41]  <function_decl 0x7f36844e3200 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:40 929 {*call_value_0_rex64}
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:SF 21 xmm0))
+            (nil))))
+
+(insn 76 75 77 3 (set (reg:SI 0 ax [96])
+        (mem/c/i:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])) ./denominator.cpp:41 64 {*movsi_internal}
+     (nil))
+
+(insn 77 76 78 3 (set (reg:DI 0 ax [95])
+        (sign_extend:DI (reg:SI 0 ax [96]))) ./denominator.cpp:41 126 {*extendsidi2_rex64}
+     (nil))
+
+(insn 78 77 120 3 (set (reg:DF 22 xmm1 [orig:73 D.23334 ] [73])
+        (mem/s/j:DF (plus:DI (plus:DI (mult:DI (reg:DI 0 ax [95])
+                        (const_int 8 [0x8]))
+                    (reg/f:DI 6 bp))
+                (const_int -112 [0xffffffffffffff90])) [0 denominator_array S8 A64])) ./denominator.cpp:41 107 {*movdf_internal_rex64}
+     (nil))
+
+(insn 120 78 121 3 (set (reg:V4SF 21 xmm0 [orig:74 D.23335 ] [74])
+        (vec_merge:V4SF (vec_duplicate:V4SF (mem/c/i:SF (plus:DI (reg/f:DI 6 bp)
+                        (const_int -4 [0xfffffffffffffffc])) [0 denomination_factor+0 S4 A32]))
+            (const_vector:V4SF [
+                    (const_double:SF 0.0 [0x0.0p+0])
+                    (const_double:SF 0.0 [0x0.0p+0])
+                    (const_double:SF 0.0 [0x0.0p+0])
+                    (const_double:SF 0.0 [0x0.0p+0])
+                ])
+            (const_int 1 [0x1]))) ./denominator.cpp:41 1502 {*vec_setv4sf_0_sse2}
+     (nil))
+
+(insn 121 120 80 3 (set (reg:V2DF 21 xmm0 [orig:74 D.23335 ] [74])
+        (float_extend:V2DF (vec_select:V2SF (reg:V4SF 21 xmm0 [orig:74 D.23335 ] [74])
+                (parallel [
+                        (const_int 0 [0])
+                        (const_int 1 [0x1])
+                    ])))) ./denominator.cpp:41 1462 {sse2_cvtps2pd}
+     (nil))
+
+(insn 80 121 81 3 (set (reg:DF 21 xmm0 [orig:75 D.23336 ] [75])
+        (mult:DF (reg:DF 21 xmm0 [orig:74 D.23335 ] [74])
+            (reg:DF 22 xmm1 [orig:73 D.23334 ] [73]))) ./denominator.cpp:41 730 {*fop_df_comm_sse}
+     (nil))
+
+(insn 81 80 82 3 (set (reg:DF 22 xmm1 [97])
+        (mem/c/i:DF (plus:DI (reg/f:DI 6 bp)
+                (const_int -24 [0xffffffffffffffe8])) [0 total_sum_denominated_sofar+0 S8 A64])) ./denominator.cpp:41 107 {*movdf_internal_rex64}
+     (nil))
+
+(insn 82 81 83 3 (set (reg:DF 21 xmm0 [98])
+        (plus:DF (reg:DF 21 xmm0 [orig:75 D.23336 ] [75])
+            (reg:DF 22 xmm1 [97]))) ./denominator.cpp:41 730 {*fop_df_comm_sse}
+     (nil))
+
+(insn 83 82 84 3 (set (mem/c/i:DF (plus:DI (reg/f:DI 6 bp)
+                (const_int -24 [0xffffffffffffffe8])) [0 total_sum_denominated_sofar+0 S8 A64])
+        (reg:DF 21 xmm0 [98])) ./denominator.cpp:41 107 {*movdf_internal_rex64}
+     (nil))
+
+(insn 84 83 85 3 (parallel [
+            (set (mem/c/i:SI (plus:DI (reg/f:DI 6 bp)
+                        (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])
+                (plus:SI (mem/c/i:SI (plus:DI (reg/f:DI 6 bp)
+                            (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) ./denominator.cpp:36 252 {*addsi_1}
+     (nil))
+
+(code_label 85 84 86 4 2 "" [1 uses])
+
+(note 86 85 87 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+
+(insn 87 86 88 4 (set (reg:SI 0 ax [99])
+        (mem/c/i:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -12 [0xfffffffffffffff4])) [0 array_index+0 S4 A32])) ./denominator.cpp:36 64 {*movsi_internal}
+     (nil))
+
+(insn 88 87 89 4 (set (reg:CCGC 17 flags)
+        (compare:CCGC (reg:SI 0 ax [99])
+            (mem/c/i:SI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -8 [0xfffffffffffffff8])) [0 max_denominations+0 S4 A32]))) ./denominator.cpp:36 6 {*cmpsi_1}
+     (nil))
+
+(insn 89 88 91 4 (set (reg:QI 0 ax [orig:59 D.23322 ] [59])
+        (lt:QI (reg:CCGC 17 flags)
+            (const_int 0 [0]))) ./denominator.cpp:36 585 {*setcc_qi}
+     (nil))
+
+(insn 91 89 92 4 (set (reg:CCZ 17 flags)
+        (compare:CCZ (reg:QI 0 ax [orig:59 D.23322 ] [59])
+            (const_int 0 [0]))) ./denominator.cpp:36 0 {*cmpqi_ccno_1}
+     (nil))
+
+(jump_insn 92 91 93 4 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 90)
+            (pc))) ./denominator.cpp:36 591 {*jcc_1}
+     (nil)
+ -> 90)
+
+(note 93 92 94 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+
+(insn 94 93 95 5 (set (reg:DI 4 si)
+        (symbol_ref/f:DI ("*.LC15") [flags 0x2]  <var_decl 0x7f368431ab40 *.LC15>)) ./denominator.cpp:44 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 95 94 96 5 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZSt4cout") [flags 0x40]  <var_decl 0x7f368442c280 cout>)) ./denominator.cpp:44 62 {*movdi_internal_rex64}
+     (nil))
+
+(call_insn 96 95 97 5 (set (reg:DI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc") [flags 0x41]  <function_decl 0x7f36844f2c00 operator<<>) [0 S1 A8])
+            (const_int 0 [0]))) ./denominator.cpp:44 929 {*call_value_0_rex64}
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (nil))))
+
+(insn 97 96 105 5 (set (reg:SI 0 ax [orig:76 D.23337 ] [76])
+        (const_int 0 [0])) ./denominator.cpp:0 64 {*movsi_internal}
+     (nil))
+
+(insn 105 97 149 5 (use (reg/i:SI 0 ax)) ./denominator.cpp:46 -1
+     (nil))
+
+(note 149 105 150 5 NOTE_INSN_EPILOGUE_BEG)
+
+(insn/f 150 149 151 5 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 6 bp)
+                    (const_int 8 [0x8])))
+            (set (reg/f:DI 6 bp)
+                (mem:DI (reg/f:DI 6 bp) [0 S8 A8]))
+            (clobber (mem:BLK (scratch) [0 A8]))
+        ]) ./denominator.cpp:46 648 {leave_rex64}
+     (expr_list:REG_CFA_DEF_CFA (plus:DI (reg/f:DI 7 sp)
+            (const_int 8 [0x8]))
+        (nil)))
+
+(jump_insn 151 150 152 5 (return) ./denominator.cpp:46 634 {return_internal}
+     (nil))
+
+(barrier 152 151 110)
+
+(note 110 152 0 NOTE_INSN_DELETED)
+
+;; Function void __static_initialization_and_destruction_0(int, int) (_Z41__static_initialization_and_destruction_0ii)
+
+(note 1 0 5 NOTE_INSN_DELETED)
+
+(note 5 1 25 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+
+(insn/f 25 5 26 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0 S8 A8])
+        (reg/f:DI 6 bp)) ./denominator.cpp:46 42 {*pushdi2_rex64}
+     (nil))
+
+(insn/f 26 25 27 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) ./denominator.cpp:46 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn/f 27 26 28 2 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 7 sp)
+                    (const_int -16 [0xfffffffffffffff0])))
+            (clobber (reg:CC 17 flags))
+            (clobber (mem:BLK (scratch) [0 A8]))
+        ]) ./denominator.cpp:46 911 {pro_epilogue_adjust_stack_di_add}
+     (nil))
+
+(note 28 27 2 2 NOTE_INSN_PROLOGUE_END)
+
+(insn 2 28 3 2 (set (mem/c/i:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -4 [0xfffffffffffffffc])) [0 __initialize_p+0 S4 A32])
+        (reg:SI 5 di [ __initialize_p ])) ./denominator.cpp:46 64 {*movsi_internal}
+     (nil))
+
+(insn 3 2 4 2 (set (mem/c/i:SI (plus:DI (reg/f:DI 6 bp)
+                (const_int -8 [0xfffffffffffffff8])) [0 __priority+0 S4 A32])
+        (reg:SI 4 si [ __priority ])) ./denominator.cpp:46 64 {*movsi_internal}
+     (nil))
+
+(note 4 3 7 2 NOTE_INSN_FUNCTION_BEG)
+
+(insn 7 4 8 2 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c/i:SI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -4 [0xfffffffffffffffc])) [0 __initialize_p+0 S4 A32])
+            (const_int 1 [0x1]))) ./denominator.cpp:46 6 {*cmpsi_1}
+     (nil))
+
+(jump_insn 8 7 9 2 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 22)
+            (pc))) ./denominator.cpp:46 591 {*jcc_1}
+     (nil)
+ -> 22)
+
+(note 9 8 10 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+
+(insn 10 9 11 3 (set (reg:CCZ 17 flags)
+        (compare:CCZ (mem/c/i:SI (plus:DI (reg/f:DI 6 bp)
+                    (const_int -8 [0xfffffffffffffff8])) [0 __priority+0 S4 A32])
+            (const_int 65535 [0xffff]))) ./denominator.cpp:46 6 {*cmpsi_1}
+     (nil))
+
+(jump_insn 11 10 12 3 (set (pc)
+        (if_then_else (ne (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref:DI 22)
+            (pc))) ./denominator.cpp:46 591 {*jcc_1}
+     (nil)
+ -> 22)
+
+(note 12 11 13 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+
+(insn 13 12 14 4 (set (reg:DI 5 di)
+        (symbol_ref:DI ("_ZStL8__ioinit") [flags 0x2]  <var_decl 0x7f368442c6e0 __ioinit>)) /usr/include/c++/4.6/iostream:75 62 {*movdi_internal_rex64}
+     (nil))
+
+(call_insn 14 13 15 4 (call (mem:QI (symbol_ref:DI ("_ZNSt8ios_base4InitC1Ev") [flags 0x41]  <function_decl 0x7f3684973800 __comp_ctor >) [0 S1 A8])
+        (const_int 0 [0])) /usr/include/c++/4.6/iostream:75 618 {*call_0}
+     (nil)
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (nil)))
+
+(insn 15 14 16 4 (set (reg/f:DI 0 ax [orig:59 __comp_dtor .0 ] [59])
+        (symbol_ref:DI ("_ZNSt8ios_base4InitD1Ev") [flags 0x41]  <function_decl 0x7f3684973a00 __comp_dtor >)) /usr/include/c++/4.6/iostream:75 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 16 15 17 4 (set (reg:DI 1 dx)
+        (symbol_ref:DI ("__dso_handle") [flags 0x40]  <var_decl 0x7f36842e8b40 __dso_handle>)) /usr/include/c++/4.6/iostream:75 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 17 16 18 4 (set (reg:DI 4 si)
+        (symbol_ref:DI ("_ZStL8__ioinit") [flags 0x2]  <var_decl 0x7f368442c6e0 __ioinit>)) /usr/include/c++/4.6/iostream:75 62 {*movdi_internal_rex64}
+     (nil))
+
+(insn 18 17 19 4 (set (reg:DI 5 di)
+        (reg/f:DI 0 ax [orig:59 __comp_dtor .0 ] [59])) /usr/include/c++/4.6/iostream:75 62 {*movdi_internal_rex64}
+     (nil))
+
+(call_insn 19 18 22 4 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("__cxa_atexit") [flags 0x41]  <function_decl 0x7f36842fc100 __cxa_atexit>) [0 S1 A8])
+            (const_int 0 [0]))) /usr/include/c++/4.6/iostream:75 929 {*call_value_0_rex64}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:REG_DEP_TRUE (use (reg:DI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:DI 4 si))
+            (expr_list:REG_DEP_TRUE (use (reg:DI 1 dx))
+                (nil)))))
+
+(code_label 22 19 23 5 4 "" [2 uses])
+
+(note 23 22 29 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+
+(note 29 23 30 5 NOTE_INSN_EPILOGUE_BEG)
+
+(insn/f 30 29 31 5 (parallel [
+            (set (reg/f:DI 7 sp)
+                (plus:DI (reg/f:DI 6 bp)
+                    (const_int 8 [0x8])))
+            (set (reg/f:DI 6 bp)
+                (mem:DI (reg/f:DI 6 bp) [0 S8 A8]))
+            (clobber (mem:BLK (scratch) [0 A8]))
+        ]) ./denominator.cpp:46 648 {leave_rex64}
+     (expr_list:REG_CFA_DEF_CFA (plus:DI (reg/f:DI 7 sp)
+            (const_int 8 [0x8]))
+        (nil)))
+
+(jump_insn 31 30 32 5 (return) ./denominator.cpp:46 634 {return_internal}
+     (nil))
+
+(barrier 32 31 24)
+
+(note 24 32 0 NOTE_INSN_DELETED)
+
+;; Function (static initializers for ./denominator.cpp) (_GLOBAL__sub_I_main)
+
+(note 1 0 3 NOTE_INSN_DELETED)
+
+(note 3 1 11 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+
+(insn/f 11 3 12 2 (set (mem:DI (pre_dec:DI (reg/f:DI 7 sp)) [0 S8 A8])
+        (reg/f:DI 6 bp)) ./denominator.cpp:46 42 {*pushdi2_rex64}
+     (nil))
+
+(insn/f 12 11 13 2 (set (reg/f:DI 6 bp)
+        (reg/f:DI 7 sp)) ./denominator.cpp:46 62 {*movdi_internal_rex64}
+     (nil))
+
+(note 13 12 2 2 NOTE_INSN_PROLOGUE_END)
+
+(note 2 13 5 2 NOTE_INSN_FUNCTION_BEG)
+
+(insn 5 2 6 2 (set (reg:SI 4 si)
+        (const_int 65535 [0xffff])) ./denominator.cpp:46 64 {*movsi_internal}
+     (nil))
+
+(insn 6 5 7 2 (set (reg:SI 5 di)
+        (const_int 1 [0x1])) ./denominator.cpp:46 64 {*movsi_internal}
+     (nil))
+
+(call_insn 7 6 14 2 (call (mem:QI (symbol_ref:DI ("_Z41__static_initialization_and_destruction_0ii") [flags 0x3]  <function_decl 0x7f36842fc000 __static_initialization_and_destruction_0>) [0 S1 A8])
+        (const_int 0 [0])) ./denominator.cpp:46 618 {*call_0}
+     (expr_list:REG_EH_REGION (const_int 0 [0])
+        (nil))
+    (expr_list:REG_DEP_TRUE (use (reg:SI 5 di))
+        (expr_list:REG_DEP_TRUE (use (reg:SI 4 si))
+            (nil))))
+
+(note 14 7 15 2 NOTE_INSN_EPILOGUE_BEG)
+
+(insn/f 15 14 16 2 (set (reg/f:DI 6 bp)
+        (mem:DI (post_inc:DI (reg/f:DI 7 sp)) [0 S8 A8])) ./denominator.cpp:46 52 {*popdi1}
+     (expr_list:REG_CFA_DEF_CFA (plus:DI (reg/f:DI 7 sp)
+            (const_int 8 [0x8]))
+        (nil)))
+
+(jump_insn 16 15 17 2 (return) ./denominator.cpp:46 634 {return_internal}
+     (nil))
+
+(barrier 17 16 10)
+
+(note 10 17 0 NOTE_INSN_DELETED)
