@@ -1,0 +1,224 @@
+FCFooDecision.cc: In member function ‘void RS::FCFooDecision::ThetaCorrection()’:
+FCFooDecision.cc:253: error: no matching function for call to ‘floor(float)’
+FCFooDecision.cc:254: error: no matching function for call to ‘floor(float)’
+FCFooDecision.cc: In member function ‘void RS::FCFooDecision::writeQFile()’:
+FCFooDecision.cc:293: error: ‘nostate’ was not declared in this scope
+FCFooDecision.cc:295: error: ‘fileout’ was not declared in this scope
+FCFooDecision.cc:296: error: ‘fileout’ was not declared in this scope
+FCFooDecision.cc: At global scope:
+FCFooDecision.cc:300: error: prototype for ‘void RS::FCFooDecision::ActionSelection(int)’ does not match any in class ‘RS::FCFooDecision’
+FCFooDecision.h:157: error: candidate is: void RS::FCFooDecision::ActionSelection()
+FCFooDecision.cc: In member function ‘void RS::FCFooDecision::getPlayerInfo(const std::vector<RS::PlayerObject, std::allocator<RS::PlayerObject> >&, const std::vector<RS::PlayerObject, std::allocator<RS::PlayerObject> >&, const std::vector<RS::PlayerObject, std::allocator<RS::PlayerObject> >&, RS::WorldModel, float*, float*)’:
+FCFooDecision.cc:550: error: ‘class RS::CoordPoint<double>’ has no member named ‘getDistance’
+FCFooDecision.cc:641: error: ‘agentballdist’ was not declared in this scope
+FCFooDecision.cc:641: error: no matching function for call to ‘RS::CoordPoint<double>::getDistanceTo(<unresolved overloaded function type>)’
+../../../Library/src/CoordPoint.h:291: note: candidates are: T RS::CoordPoint<T>::getDistanceTo(const RS::CoordPoint<T>&) const [with T = double]
+FCFooDecision.cc:642: error: ‘amIClosest’ was not declared in this scope
+FCFooDecision.cc:526: warning: unused variable ‘amIclosest’
+FCFooDecision.cc: At global scope:
+FCFooDecision.cc:467: warning: unused parameter ‘wm’
+FCFooDecision.cc: In member function ‘void RS::FCFooDecision::initQtab()’:
+FCFooDecision.cc:650: error: ‘nostate’ was not declared in this scope
+FCFooDecision.cc: At global scope:
+FCFooDecision.cc:682: error: ISO C++ forbids initialization of member ‘lastkick_status’
+FCFooDecision.cc:682: error: making ‘lastkick_status’ static
+FCFooDecision.cc:682: error: ISO C++ forbids in-class initialization of non-const static member ‘lastkick_status’
+FCFooDecision.cc:686: warning: non-local variable ‘RS::<anonymous struct> RS::cmd_rec’ uses anonymous type
+FCFooDecision.cc:688: error: ‘cmd_rec’ does not name a type
+FCFooDecision.cc:692: error: no ‘void RS::FCFooDecision::Qvalupdate()’ member function declared in class ‘RS::FCFooDecision’
+FCFooDecision.cc: In member function ‘void RS::FCFooDecision::passM(RS::PlayerObject, int)’:
+FCFooDecision.cc:752: error: ‘rec_rtheta’ was not declared in this scope
+FCFooDecision.cc:757: error: no matching function for call to ‘RS::FCFooDecision::ActionSelection(int&)’
+FCFooDecision.h:157: note: candidates are: void RS::FCFooDecision::ActionSelection()
+/usr/include/stdlib.h:380: error: too many arguments to function ‘int rand()’
+FCFooDecision.cc:763: error: at this point in file
+FCFooDecision.cc:764: error: no matching function for call to ‘RS::FCFooDecision::ActionSelection(int&)’
+FCFooDecision.h:157: note: candidates are: void RS::FCFooDecision::ActionSelection()
+FCFooDecision.cc: At global scope:
+FCFooDecision.cc:743: warning: unused parameter ‘rec’
+FCFooDecision.cc:796: error: ‘FCFooDecision’ has not been declared
+FCFooDecision.cc: In function ‘bool decide()’:
+FCFooDecision.cc:797: error: ‘LA_DECISION’ was not declared in this scope
+FCFooDecision.cc:799: error: ‘Command’ was not declared in this scope
+FCFooDecision.cc:799: error: ‘cmd’ was not declared in this scope
+FCFooDecision.cc:800: error: ‘ServerCommand’ was not declared in this scope
+FCFooDecision.cc:800: error: ‘scmd’ was not declared in this scope
+FCFooDecision.cc:800: error: ‘scmd2’ was not declared in this scope
+FCFooDecision.cc:801: error: ‘neckcmd’ was not declared in this scope
+FCFooDecision.cc:802: error: ‘saycmd’ was not declared in this scope
+FCFooDecision.cc:803: error: ‘pointcmd’ was not declared in this scope
+FCFooDecision.cc:805: error: ‘TIME’ was not declared in this scope
+FCFooDecision.cc:805: error: ‘Time’ has not been declared
+FCFooDecision.cc:806: error: ‘CURRTIME’ was not declared in this scope
+FCFooDecision.cc:807: error: ‘opps_wm’ was not declared in this scope
+FCFooDecision.cc:807: error: ‘wm’ was not declared in this scope
+FCFooDecision.cc:808: error: ‘team_wm’ was not declared in this scope
+FCFooDecision.cc:809: error: ‘opps_pv’ was not declared in this scope
+FCFooDecision.cc:809: error: ‘playerView’ was not declared in this scope
+FCFooDecision.cc:811: error: ‘gameView’ was not declared in this scope
+FCFooDecision.cc:811: error: ‘PM_BEFORE_KICK_OFF’ was not declared in this scope
+FCFooDecision.cc:813: error: ‘AngleDeg’ was not declared in this scope
+FCFooDecision.cc:813: error: expected ‘;’ before ‘bodyangle’
+FCFooDecision.cc:814: error: ‘TurnBodyToAbsoluteDirection’ was not declared in this scope
+FCFooDecision.cc:814: error: expected ‘;’ before ‘TurnBody’
+FCFooDecision.cc:815: error: expected type-specifier before ‘ServerCommand’
+FCFooDecision.cc:815: error: expected ‘>’ before ‘ServerCommand’
+FCFooDecision.cc:815: error: expected ‘(’ before ‘ServerCommand’
+FCFooDecision.cc:815: error: expected primary-expression before ‘>’ token
+FCFooDecision.cc:815: error: ‘TurnBody’ was not declared in this scope
+FCFooDecision.cc:815: error: expected ‘)’ before ‘;’ token
+FCFooDecision.cc:816: error: ‘actuatorInterface’ was not declared in this scope
+FCFooDecision.cc:835: error: ‘AngleDegUE’ was not declared in this scope
+FCFooDecision.cc:835: error: expected ‘;’ before ‘goal_dir’
+FCFooDecision.cc:838: error: expected ‘;’ before ‘TurnAngChk_P1’
+FCFooDecision.cc:839: error: expected ‘;’ before ‘TurnAngChk_P2’
+FCFooDecision.cc:840: error: expected ‘;’ before ‘TurnAngChk_P3’
+FCFooDecision.cc:841: error: expected ‘;’ before ‘TurnAngChk_P4’
+FCFooDecision.cc:842: error: ‘Point’ was not declared in this scope
+FCFooDecision.cc:842: error: expected ‘;’ before ‘TurnPoint_P’
+FCFooDecision.cc:843: error: expected ‘;’ before ‘TurnAngChk_P’
+FCFooDecision.cc:846: error: ‘ballView’ was not declared in this scope
+FCFooDecision.cc:846: error: ‘facts’ was not declared in this scope
+FCFooDecision.cc:848: error: ‘goal_dir’ was not declared in this scope
+FCFooDecision.cc:848: error: ‘agentView’ was not declared in this scope
+FCFooDecision.cc:866: error: ‘searchBall’ was not declared in this scope
+FCFooDecision.cc:869: error: expected type-specifier before ‘ServerCommand’
+FCFooDecision.cc:869: error: expected ‘>’ before ‘ServerCommand’
+FCFooDecision.cc:869: error: expected ‘(’ before ‘ServerCommand’
+FCFooDecision.cc:869: error: expected primary-expression before ‘>’ token
+FCFooDecision.cc:869: error: expected ‘)’ before ‘;’ token
+FCFooDecision.cc:872: error: ‘ballView’ was not declared in this scope
+FCFooDecision.cc:872: error: ‘facts’ was not declared in this scope
+FCFooDecision.cc:873: error: ‘goal_dir’ was not declared in this scope
+FCFooDecision.cc:873: error: ‘agentView’ was not declared in this scope
+FCFooDecision.cc:886: error: expected type-specifier before ‘KickCommand’
+FCFooDecision.cc:886: error: expected ‘;’ before ‘KickCommand’
+FCFooDecision.cc:888: error: ‘kick_status’ was not declared in this scope
+FCFooDecision.cc:908: error: ‘PREVTIME’ was not declared in this scope
+FCFooDecision.cc:914: error: expected ‘;’ before ‘ball_pos’
+FCFooDecision.cc:915: error: ‘AngleDeg’ was not declared in this scope
+FCFooDecision.cc:915: error: expected ‘;’ before ‘ang1’
+FCFooDecision.cc:916: error: expected ‘;’ before ‘ang2’
+FCFooDecision.cc:919: error: ‘ang1’ was not declared in this scope
+FCFooDecision.cc:920: error: ‘ang2’ was not declared in this scope
+FCFooDecision.cc:920: error: ‘ang1’ was not declared in this scope
+FCFooDecision.cc:922: error: ‘PREVTIME’ was not declared in this scope
+FCFooDecision.cc:922: error: ‘ang1’ was not declared in this scope
+FCFooDecision.cc:922: error: ‘ang2’ was not declared in this scope
+FCFooDecision.cc:923: error: ‘ang1’ was not declared in this scope
+FCFooDecision.cc:923: error: ‘ang2’ was not declared in this scope
+FCFooDecision.cc:927: error: expected ‘;’ before ‘destPoint’
+FCFooDecision.cc:933: error: ‘PREVTIME’ was not declared in this scope
+FCFooDecision.cc:933: error: ‘ball_pos’ was not declared in this scope
+FCFooDecision.cc:933: error: ‘destPoint’ was not declared in this scope
+FCFooDecision.cc:935: error: ‘PREVTIME’ was not declared in this scope
+FCFooDecision.cc:935: error: ‘ball_pos’ was not declared in this scope
+FCFooDecision.cc:935: error: ‘destPoint’ was not declared in this scope
+FCFooDecision.cc:935: error: ‘ang2’ was not declared in this scope
+FCFooDecision.cc:936: error: expected ‘;’ before ‘relativePoint’
+FCFooDecision.cc:937: error: ‘relativePoint’ was not declared in this scope
+FCFooDecision.cc:939: error: ‘destPoint’ was not declared in this scope
+FCFooDecision.cc:941: error: ‘Vector’ was not declared in this scope
+FCFooDecision.cc:941: error: expected ‘;’ before ‘agenttodest’
+FCFooDecision.cc:942: error: ‘agenttodest’ was not declared in this scope
+FCFooDecision.cc:952: error: expected type-specifier before ‘DashCommand’
+FCFooDecision.cc:952: error: expected ‘;’ before ‘DashCommand’
+FCFooDecision.cc:953: error: ‘DashToPointDir’ was not declared in this scope
+FCFooDecision.cc:953: error: expected ‘;’ before ‘DTPD’
+FCFooDecision.cc:954: error: expected type-specifier before ‘ServerCommand’
+FCFooDecision.cc:954: error: expected ‘>’ before ‘ServerCommand’
+FCFooDecision.cc:954: error: expected ‘(’ before ‘ServerCommand’
+FCFooDecision.cc:954: error: expected primary-expression before ‘>’ token
+FCFooDecision.cc:954: error: ‘DTPD’ was not declared in this scope
+FCFooDecision.cc:954: error: expected ‘)’ before ‘;’ token
+FCFooDecision.cc:961: error: ‘turn_status’ was not declared in this scope
+FCFooDecision.cc:937: warning: unused variable ‘dashPower’
+FCFooDecision.cc:968: error: ‘turnBodyToPoint’ was not declared in this scope
+FCFooDecision.cc:970: error: expected type-specifier before ‘ServerCommand’
+FCFooDecision.cc:970: error: expected ‘>’ before ‘ServerCommand’
+FCFooDecision.cc:970: error: expected ‘(’ before ‘ServerCommand’
+FCFooDecision.cc:970: error: expected primary-expression before ‘>’ token
+FCFooDecision.cc:970: error: expected ‘)’ before ‘;’ token
+FCFooDecision.cc:974: error: expected ‘;’ before ‘ball’
+FCFooDecision.cc:975: error: ‘dashToPoint’ was not declared in this scope
+FCFooDecision.cc:975: error: ‘ball’ was not declared in this scope
+FCFooDecision.cc:977: error: expected type-specifier before ‘ServerCommand’
+FCFooDecision.cc:977: error: expected ‘>’ before ‘ServerCommand’
+FCFooDecision.cc:977: error: expected ‘(’ before ‘ServerCommand’
+FCFooDecision.cc:977: error: expected primary-expression before ‘>’ token
+FCFooDecision.cc:977: error: expected ‘)’ before ‘;’ token
+FCFooDecision.cc:983: error: ‘PREVTIME’ was not declared in this scope
+FCFooDecision.cc:991: error: ‘actuatorInterface’ was not declared in this scope
+FCFooDecision.cc:998: error: ‘actuatorInterface’ was not declared in this scope
+FCFooDecision.cc:798: warning: unused variable ‘say_counter’
+FCFooDecision.cc: At global scope:
+FCFooDecision.cc:1048: error: ‘FCFooDecision’ has not been declared
+FCFooDecision.cc: In function ‘void onAuralCoachSensorData()’:
+FCFooDecision.cc:1049: error: ‘agentView’ was not declared in this scope
+FCFooDecision.cc: At global scope:
+FCFooDecision.cc:1053: error: ‘FCFooDecision’ has not been declared
+FCFooDecision.cc:1057: error: ‘FCFooDecision’ has not been declared
+FCFooDecision.cc: In function ‘void onAuralPlayerSensorData()’:
+FCFooDecision.cc:1058: error: ‘agentView’ was not declared in this scope
+FCFooDecision.cc:1067: error: ‘agentView’ was not declared in this scope
+FCFooDecision.cc:1073: error: ‘aural_data’ was not declared in this scope
+FCFooDecision.cc: At global scope:
+FCFooDecision.cc:1076: error: ‘FCFooDecision’ has not been declared
+FCFooDecision.cc: In function ‘void onAuralSelfSensorData()’:
+FCFooDecision.cc:1077: error: ‘agentView’ was not declared in this scope
+FCFooDecision.cc:1079: error: ‘aural_data’ was not declared in this scope
+FCFooDecision.cc: At global scope:
+FCFooDecision.cc:1082: error: ‘FCFooDecision’ has not been declared
+FCFooDecision.cc: In function ‘void onInit()’:
+FCFooDecision.cc:1084: error: ‘Point’ was not declared in this scope
+FCFooDecision.cc:1084: error: expected ‘;’ before ‘movePoint’
+FCFooDecision.cc:1085: error: ‘agentView’ was not declared in this scope
+FCFooDecision.cc:1086: error: ‘UInt’ was not declared in this scope
+FCFooDecision.cc:1086: error: expected ‘;’ before ‘nr’
+FCFooDecision.cc:1087: error: ‘nr’ was not declared in this scope
+FCFooDecision.cc:1089: error: ‘movePoint’ was not declared in this scope
+FCFooDecision.cc:1125: error: ‘MoveCommand’ was not declared in this scope
+FCFooDecision.cc:1125: error: ‘move_cmd’ was not declared in this scope
+FCFooDecision.cc:1125: error: expected type-specifier before ‘MoveCommand’
+FCFooDecision.cc:1125: error: expected ‘;’ before ‘MoveCommand’
+FCFooDecision.cc:1126: error: ‘actuatorInterface’ was not declared in this scope
+FCFooDecision.cc:1129: error: ‘ClangVersionCommand’ was not declared in this scope
+FCFooDecision.cc:1129: error: ‘clangvCommand’ was not declared in this scope
+FCFooDecision.cc:1129: error: expected type-specifier before ‘ClangVersionCommand’
+FCFooDecision.cc:1129: error: expected ‘;’ before ‘ClangVersionCommand’
+FCFooDecision.cc: At global scope:
+FCFooDecision.cc:1134: error: ‘FCFooDecision’ has not been declared
+FCFooDecision.cc:1138: error: ‘FCFooDecision’ has not been declared
+FCFooDecision.cc: In function ‘void onDelayedActions()’:
+FCFooDecision.cc:1139: error: ‘facts’ was not declared in this scope
+FCFooDecision.cc:1140: error: ‘SetTicksBeforeCommandWarning’ was not declared in this scope
+FCFooDecision.cc:1140: error: ‘st’ was not declared in this scope
+FCFooDecision.cc:1141: error: expected type-specifier before ‘SetTicksBeforeCommandWarning’
+FCFooDecision.cc:1141: error: expected ‘;’ before ‘SetTicksBeforeCommandWarning’
+FCFooDecision.cc:1142: error: ‘LA_DECISION’ was not declared in this scope
+FCFooDecision.cc:1142: error: ‘toString’ was not declared in this scope
+FCFooDecision.cc:1145: error: ‘actuatorInterface’ was not declared in this scope
+FCFooDecision.cc: At global scope:
+FCFooDecision.cc:1149: error: expected declaration before ‘}’ token
+In file included from ../../../Library/src/library_types_with_error.h:50,
+                 from ../../../Library/src/library_types_with_ue.h:51,
+                 from ../../../BasicSystem/src/basic_system_types.h:79,
+                 from ../../../Framework/src/framework_types.h:52,
+                 from ../../../Framework/src/WorldModelInterface.h:66,
+                 from FCFooDecision.h:102,
+                 from FCFooDecision.cc:141:
+../../../Library/src/WithError.h: In instantiation of ‘RS::WithError<T>::WithError(const T&, const T&, const T&, const T&) [with T = double]’:
+../../../Library/src/WithError.h:1150:   instantiated from ‘RS::WithError<T> RS::sqr(const RS::WithError<T>&) [with T = double]’
+../../../Library/src/WithUE.h:665:   instantiated from ‘RS::WithUE<T> RS::sqr(const RS::WithUE<T>&) [with T = double]’
+../../../Library/src/CoordVectorUE.h:275:   instantiated from ‘RS::CoordVectorUE<T>::CoordVectorUE(const RS::CoordPointUE<T>&, const RS::CoordPointUE<T>&) [with T = double]’
+../../../Framework/src/BallView.icc:94:   instantiated from here
+../../../Library/src/WithError.h:328: warning: unused parameter ‘extra_dummy_arg’
+../../../Library/src/WithError.h: In instantiation of ‘RS::WithError<T>::WithError(const T&, const T&, const T&, const T&) [with T = RS::AngleDegrees<double>]’:
+../../../Library/src/WithError.h:704:   instantiated from ‘RS::WithError<T> RS::WithError<T>::operator-(const RS::WithError<T>&) const [with T = RS::AngleDegrees<double>]’
+../../../Library/src/WithUnknown.h:381:   instantiated from ‘RS::WithUnknown<T> RS::WithUnknown<T>::operator-(const RS::WithUnknown<T>&) const [with T = RS::WithError<RS::AngleDegrees<double> >]’
+../../../Library/src/WithUE.h:285:   instantiated from ‘RS::WithUE<T> RS::WithUE<T>::operator-(const RS::WithUE<T>&) const [with T = RS::AngleDegrees<double>]’
+../../../Library/src/AngleDegreesUE.h:359:   instantiated from ‘RS::AngleDegreesUE<T> RS::AngleDegreesUE<T>::operator-(const RS::AngleDegreesUE<T>&) const [with T = double]’
+../../../Library/src/PlayerObject.icc:84:   instantiated from here
+../../../Library/src/WithError.h:328: warning: unused parameter ‘extra_dummy_arg’
+make: *** [FCFooDecision.o] Error 1
+

@@ -1,0 +1,26 @@
+
+void FCFooDecision::predictedState(ServerCommand *scmd )
+{
+
+	 const CommandStrategy* cmd_strategy
+		    		 	    = WorldModelInterface::instance()->getCommandStrategy();
+		    		 	  const NewCycleStrategy* new_cycle_strategy
+		    		 	    = WorldModelInterface::instance()->getNewCycleStrategy();
+
+		    		 	  WorldModel predicted_wm(WorldModelInterface::instance()->getWorld(NOW));
+
+		    		 	 if ( scmd != 0 ) {
+		    		 		    		 	    cmd_strategy->updateAfterCommand(predicted_wm, scmd);
+		    		 		    		 	  }
+		    		 		    		 	  new_cycle_strategy->updateBeforeNewCycle(predicted_wm);
+
+		    		 		    		 	  AgentObject& agent = predicted_wm.getAgent() ;
+		    		 		    		 	 PointUE predictedPosition = agent.getPosition();
+
+		    		 		    		 	const std::vector<PlayerObject>& opps_pwm   = predicted_wm.getOpponents();
+		    		 		    		 	 const std::vector<PlayerObject>& team_pwm =  predicted_wm.getTeammates() ;
+		    		 		    		 	const std::vector<PlayerObject>& opps_ppv =  0 ;
+
+		    		 		    		 	FCFooDecision::getPlayerInfo( opps_pwm, team_pwm, opps_ppv, predicted_wm, rec_ptheta1 , rec_ptheta2 ) ;
+
+}

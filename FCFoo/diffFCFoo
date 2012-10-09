@@ -1,0 +1,292 @@
+280a281,282
+>  int readqfile[4000][6][4] ;
+> 
+330,331c332,333
+< char buf[100], a[100] , a1[100], a2[100] ;
+< file2.seekg( -100,  std::ios_base::end);
+---
+> char buf[100], a[100] , a1[100], a2[100], a3[100], a4[100], a5[100];
+> file2.seekg( -150,  std::ios_base::end);
+333,335c335,340
+< {    strcpy(a,a2) ;
+< 	file2.getline(a2,100) ;
+<      RS_LOG(LA_AGENT, "the get line a "<<a) ;
+---
+> {   strcpy(a4,a3) ;
+> 	strcpy(a3,a2);
+> 	strcpy(a2, a1) ;
+> 	strcpy(a1,a) ;
+> 	file2.getline(a,100) ;
+>   //   RS_LOG(LA_AGENT, "the get line a "<<a) ;
+339c344,348
+< RS_LOG(LA_AGENT, "QINF READ:"<<a) ;
+---
+> RS_LOG(LA_AGENT, "QINF READ:"<<a4<<"  currtime  "<<CURRTIME ) ;
+> RS_LOG(LA_AGENT, "QINF READ:"<<a3<<"  currtime  "<<CURRTIME ) ;
+> RS_LOG(LA_AGENT, "QINF READ:"<<a2<<"  currtime  "<<CURRTIME ) ;
+> RS_LOG(LA_AGENT, "QINF READ:"<<a1<<"  currtime  "<<CURRTIME ) ;
+> RS_LOG(LA_AGENT, "QINF READ:"<<a<<"  currtime  "<<CURRTIME ) ;
+352c361,378
+< std::sscanf(a,"%d %d %d %d %d %d %d %f\n",&Uno, &currtime, &the1,&the2,&rat1,&rat2,&act,&staval) ;
+---
+> int cntstate2 =0 ;int st,ac ;
+> std::sscanf(a1,"%d %d %d %d %d %d %d %f\n",&Uno, &currtime, &the1,&the2,&rat1,&rat2,&act,&staval) ;
+> //for (int i=0 ; i< 4 ; i++)
+> //{  if( !( (readqfile[currtime][0][0] == the1 and readqfile[currtime][1][0] == the2 and readqfile[currtime][2][0] == rat1 and
+> //		readqfile[currtime][3][0] == rat2 and readqfile[currtime][4][0] == act  and readqfile[currtime][5][0] != -1 )
+> //		or
+> //		(readqfile[currtime][0][1] == the1 and readqfile[currtime][1][1] == the2 and readqfile[currtime][2][1] == rat1 and
+> //				readqfile[currtime][3][1] == rat2 and readqfile[currtime][4][1] == act  and readqfile[currtime][5][1] != -1 )
+> //		or  		(readqfile[currtime][0][2] == the1 and readqfile[currtime][1][2] == the2 and readqfile[currtime][2][2] == rat1 and
+> //				readqfile[currtime][3][2] == rat2 and readqfile[currtime][4][2] == act  and readqfile[currtime][5][2] != -1 )
+> //				or
+> //				(readqfile[currtime][0][3] == the1 and readqfile[currtime][1][3] == the2 and readqfile[currtime][2][3] == rat1 and
+> //						readqfile[currtime][3][3] == rat2 and readqfile[currtime][4][3] == act  and readqfile[currtime][5][0] != -1 )) )
+> //						{
+> //	i
+> //
+> //						}
+> //}
+354,362c380,382
+< states[0]= Uno ;
+< states[1]=currtime ;
+< states[2]=the1 ;
+< states[3] = the2 ;
+< states[4]=rat1 ;
+< states[5] = rat2 ;
+< states[6]=act ;
+< states[7] = staval ;
+< if( AGENUNO!= int(states[0]) and CURRTIME > (states[1]))
+---
+> //if (CURRTIME == (currtime+2))
+> //	{  cntstate2++ ;  }
+> for (int h=0 ; h<4 ; h++ )
+364,369c384,487
+< int st = int(states[2])*notheta2*noratio1*noratio2 +  int(states[3])*noratio1*noratio2  +  int(states[4])*noratio2 + int(states[5]) ;
+< int ac =  int(states[6])-qtabstruct ; ;
+< Qtab[ st ][ac] = states[7] ;
+< RS_LOG(LA_AGENT, "\n updating state from other learner "<<int(states[0])<<" "<<st<<" "<<ac<<" "<< states[7]) ;
+< std::cout<<"\n updating state from other learner "<<int(states[0])<<" "<<st<<" "<<ac<<" "<< states[7] ;
+< }
+---
+> 
+> 	switch(h)
+> 	{
+> 	case 0 :{  std::sscanf(a1,"%d %d %d %d %d %d %d %f\n",&Uno, &currtime, &the1,&the2,&rat1,&rat2,&act,&staval) ; break ; }
+> 	case 1 : {  std::sscanf(a2,"%d %d %d %d %d %d %d %f\n",&Uno, &currtime, &the1,&the2,&rat1,&rat2,&act,&staval) ; break ; }
+> 	case 2 : {  std::sscanf(a3,"%d %d %d %d %d %d %d %f\n",&Uno, &currtime, &the1,&the2,&rat1,&rat2,&act,&staval) ; break ; }
+> 	case 3 : {  std::sscanf(a4,"%d %d %d %d %d %d %d %f\n",&Uno, &currtime, &the1,&the2,&rat1,&rat2,&act,&staval) ; break ; }
+> 	}
+> if( AGENUNO != Uno and CURRTIME > currtime  ) //and ( CURRTIME == currtime or CURRTIME == (currtime+1) or CURRTIME == (currtime+2 ) ) and cntstate2 <=1 )
+>  {
+> if   (   not( (readqfile[currtime][0][0] == the1 and readqfile[currtime][1][0] == the2 and readqfile[currtime][2][0] == rat1 and
+> 		readqfile[currtime][3][0] == rat2 and readqfile[currtime][4][0] == act  and readqfile[currtime][5][0] ==  -1 )
+> 		or
+> 		        (readqfile[currtime][0][1] == the1 and readqfile[currtime][1][1] == the2 and readqfile[currtime][2][1] == rat1 and
+> 				readqfile[currtime][3][1] == rat2 and readqfile[currtime][4][1] == act  and readqfile[currtime][5][1] == -1 )
+> 		or  		(readqfile[currtime][0][2] == the1 and readqfile[currtime][1][2] == the2 and readqfile[currtime][2][2] == rat1 and
+> 				     readqfile[currtime][3][2] == rat2 and readqfile[currtime][4][2] == act  and readqfile[currtime][5][2] == -1 )
+> 				or
+> 				(readqfile[currtime][0][3] == the1 and readqfile[currtime][1][3] == the2 and readqfile[currtime][2][3] == rat1 and
+> 			     readqfile[currtime][3][3] == rat2 and readqfile[currtime][4][3] == act  and readqfile[currtime][5][3] == -1 )) )
+> {
+> 
+> 
+> 	RS_LOG(LA_AGENT, "INFO "<<readqfile[currtime][0][0]<<" "<<readqfile[currtime][1][0]<< " "<<readqfile[currtime][2][0]
+> 	<<" "<< readqfile[currtime][3][0]<<" "<<readqfile[currtime][4][0]<<" "<<readqfile[currtime][5][0]) ;
+> 	RS_LOG(LA_AGENT, "INFO "<<readqfile[currtime][0][1]<<" "<<readqfile[currtime][1][1]<< " "<<readqfile[currtime][2][1]
+> 		<<" "<< readqfile[currtime][3][1]<<" "<<readqfile[currtime][4][1]<<" "<<readqfile[currtime][5][1]) ;
+> 	RS_LOG(LA_AGENT, "INFO "<<readqfile[currtime][0][2]<<" "<<readqfile[currtime][1][2]<< " "<<readqfile[currtime][2][2]
+> 		<<" "<< readqfile[currtime][3][2]<<" "<<readqfile[currtime][4][2]<<" "<<readqfile[currtime][5][2]) ;
+> 	RS_LOG(LA_AGENT, "INFO "<<readqfile[currtime][0][3]<<" "<<readqfile[currtime][1][3]<< " "<<readqfile[currtime][2][3]
+> 		<<" "<< readqfile[currtime][3][3]<<" "<<readqfile[currtime][4][3]<<" "<<readqfile[currtime][5][3]) ;
+> 
+> 	int tempnum =-1 ;
+> 	for ( int i=0 ; i < 4 ; i++)
+> 	{ if (readqfile[currtime][5][i] == -2  and  readqfile[currtime][5][i] != -1) { tempnum = i ; break ;}  }
+> 
+> 	if ( tempnum != -1 and tempnum < 4) {
+> 	readqfile[currtime][0][tempnum] = the1 ; readqfile[currtime][1][tempnum] = the2 ; readqfile[currtime][2][tempnum] = rat1;
+> 	readqfile[currtime][3][tempnum] = rat2 ; readqfile[currtime][4][tempnum] = act   ; readqfile[currtime][5][tempnum] = -1 ;
+> 	RS_LOG(LA_AGENT,"la agent read qfile"<< the1<<" "<< the2<<" "<<rat1<<" "<<rat2<<" "<<act) ;
+> 	}
+> 
+>  st = the1*notheta2*noratio1*noratio2 +  the2*noratio1*noratio2  +  rat1*noratio2 + rat2 ;
+>  ac =  act-qtabstruct ; ;
+> Qtab[ st ][ac] = staval ;
+> 
+> RS_LOG(LA_AGENT, "\n updating state from other learner "<<Uno<<" "<<st<<" "<<ac<<" "<< staval) ;
+> std::cout<<"\n updating state from other learner "<<Uno<<" "<<st<<" "<<ac<<" "<< staval ;
+> } // if !
+> 
+> 
+>  } // if agentUNo
+> 
+> } // for
+> //std::sscanf(a2,"%d %d %d %d %d %d %d %f\n",&Uno, &currtime, &the1,&the2,&rat1,&rat2,&act,&staval) ;
+> //
+> //
+> //if (CURRTIME == (currtime+2))
+> //	{  cntstate2++ ;  }
+> //if( AGENUNO != Uno and ( CURRTIME == currtime or CURRTIME == (currtime+1) or CURRTIME == (currtime+2 ) ) and cntstate2 <=1 )
+> //{
+> //
+> // st = the1*notheta2*noratio1*noratio2 +  the2*noratio1*noratio2  +  rat1*noratio2 + rat2 ;
+> // ac =  act-qtabstruct ; ;
+> //Qtab[ st ][ac] = staval ;
+> //
+> //RS_LOG(LA_AGENT, "\n updating state from other learner "<<Uno<<" "<<st<<" "<<ac<<" "<< staval) ;
+> //std::cout<<"\n updating state from other learner "<<int(states[0])<<" "<<st<<" "<<ac<<" "<< staval ;
+> //}
+> //
+> //
+> //std::sscanf(a3,"%d %d %d %d %d %d %d %f\n",&Uno, &currtime, &the1,&the2,&rat1,&rat2,&act,&staval) ;
+> //
+> //
+> //if (CURRTIME == (currtime+2))
+> //	{  cntstate2++ ;  }
+> //if( AGENUNO != Uno and ( CURRTIME == currtime or CURRTIME == (currtime+1) or CURRTIME == (currtime+2 ) ) and cntstate2 <=1 )
+> //{
+> //
+> // st = the1*notheta2*noratio1*noratio2 +  the2*noratio1*noratio2  +  rat1*noratio2 + rat2 ;
+> // ac =  act-qtabstruct ; ;
+> //Qtab[ st ][ac] = staval ;
+> //
+> //RS_LOG(LA_AGENT, "\n updating state from other learner "<<Uno<<" "<<st<<" "<<ac<<" "<< staval) ;
+> //std::cout<<"\n updating state from other learner "<<int(states[0])<<" "<<st<<" "<<ac<<" "<< staval ;
+> //}
+> //
+> //std::sscanf(a4,"%d %d %d %d %d %d %d %f\n",&Uno, &currtime, &the1,&the2,&rat1,&rat2,&act,&staval) ;
+> //
+> //
+> //if (CURRTIME == (currtime+2))
+> //	{  cntstate2++ ;  }
+> //if( AGENUNO != Uno and ( CURRTIME == currtime or CURRTIME == (currtime+1) or CURRTIME == (currtime+2 ) ) and cntstate2 <=1 )
+> //{
+> //
+> // st = the1*notheta2*noratio1*noratio2 +  the2*noratio1*noratio2  +  rat1*noratio2 + rat2 ;
+> // ac =  act-qtabstruct ; ;
+> //Qtab[ st ][ac] = staval ;
+> //
+> //RS_LOG(LA_AGENT, "\n updating state from other learner "<<Uno<<" "<<st<<" "<<ac<<" "<< staval) ;
+> //std::cout<<"\n updating state from other learner "<<int(states[0])<<" "<<st<<" "<<ac<<" "<< staval ;
+> //}
+> 
+> 
+478c596,597
+< 	 if( agentView->getPosition().getDirectionTo(TurnPoint_P).isKnown() and agentView->getBodyDirection().isKnown()) {
+---
+> 	 if( agentView->getPosition().getDirectionTo(TurnPoint_P).isKnown() and
+> 			 agentView->getBodyDirection().isKnown() ) {
+1239c1358
+< float alph = 0.4 ; float gamma = 0.3 ; int lastkickprocess=0 , lastactprocess=0 ;
+---
+> float alph = 0.6 ; float gamma = 0.3 ; int lastkickprocess=0 , lastactprocess=0 ;
+1762a1882
+> 
+1773a1894
+> 
+1813d1933
+< 
+1818c1938,1946
+< 	  { readQFile() ;  Qfilereadstatus = true ; }
+---
+> 	  {    	  readQFile() ;  Qfilereadstatus = true ;
+> 
+> 	  for (int i=0 ; i <4000 ; i++)
+> 	  {
+> 		  for (int j=0 ; j<4 ; j++)
+> 		  { readqfile[i][5][j] = -2  ;}
+> 	  } // for
+> 	  } // if Qfile
+> 	  if ( agentView->getBodyDirection().isKnown()) {
+1822a1951
+> 	  }
+1836,1837c1965
+< 
+< 	        if ( agentView->getBodyDirection().isKnown()) {
+---
+> 	        if (agentView->getUniformNumber().isKnown()) {
+1908c2036
+<  //  qvalUpdate() ;
+---
+> 
+1911,1917c2039,2041
+< 	                          gameView->isKickAllowed() and
+< 	                   ( ballView->getRelativeDistance() <= facts->SP_kickable_margin))
+< 	          {
+< 
+< 	                  ServerCommand *kickcm = new KickCommand(75, 0) ;
+< 	                  if (kickcm != 0) { actuatorInterface->addToPlan(kickcm) ;	   return true ;}
+< 	          }
+---
+> 			  gameView->isKickAllowed() and
+> 			  	  	      ( ballView->getRelativeDistance() <= facts->SP_kickable_margin))
+> 	  {
+1918a2043,2048
+> 		  ServerCommand *kickcm = new KickCommand(75, 0) ;
+> 		  if (kickcm != 0) { actuatorInterface->addToPlan(kickcm) ;
+> 		  return true ;}
+> 	  }
+> 
+>  //  qvalUpdate() ;
+2057,2062c2187,2189
+< 
+< 	  	  	 // scmd = new KickCommand(50,AngleDeg(TurnAngChk_P));
+< 	  	  	 if( maxkicktheta != -1000) {
+< 	  	  	                       scmd = new KickCommand(50,AngleDeg(TurnAngChk_P)); }
+< 	  	  	                        else { scmd = new KickCommand(100,AngleDeg(TurnAngChk_P)); }
+< 
+---
+> 	  	  	  if( maxkicktheta != -1000) {
+> 	  	  	  scmd = new KickCommand(50,AngleDeg(TurnAngChk_P)); }
+> 	  	  	  else { scmd = new KickCommand(100,AngleDeg(TurnAngChk_P)); }
+2285,2297c2412,2435
+< //
+< //    	   map_ind = MapUnoToPass[i] ;  // mapping to pass no to Uno
+< //
+< //    	   if(map_ind==0) { std::cout<<"\n error the unable to map to a correct receiver" ;
+< //    	    RS_LOG(LA_AGENT,"\n error the unable to map to a correct receiver" ) ;
+< //    	   }
+< //
+< //    	   Qtab[rec_rtheta1[map_ind]*18*16 + rec_rtheta2[map_ind]*16 + rec_rratio1[map_ind]*4 + rec_rratio2[map_ind]][pass_act[map_ind]]
+< //    	                    =  alph* Qtab[rec_rtheta1[map_ind]*18*16 + rec_rtheta2[map_ind]*16 + rec_rratio1[map_ind]*4 + rec_rratio2[map_ind]][pass_act[map_ind]]
+< //    	                                  + (1-alph)* pass_q[map_ind] ;
+< //
+< //    	   std::cout<<"\n q pred update " ;
+< //    	   RS_LOG(LA_AGENT,"\n q pred update "  ) ;
+---
+> 
+>     		   map_ind = MapUnoToPass[i] ;
+>     if( pass_q[map_ind] != -1000000000000000 and  pass_act[map_ind] != -1) {
+> 
+> 
+>     	if(pass_q[map_ind] < -10 ) { RS_LOG(LA_AGENT, "pass q is less than -10 DEBUG") ; }
+> 
+> 
+>     	   if(map_ind==0) { std::cout<<"\n error the unable to map to a correct receiver" ;
+>     	    RS_LOG(LA_AGENT,"\n error the unable to map to a correct receiver" ) ;
+>     	   }
+> 
+>     	   std::cout<<"\n q pred update " ;
+>     	      	   RS_LOG(LA_AGENT,"\n q pred update "  ) ;
+>     	   Qtab[rec_rtheta1[map_ind]*notheta2*noratio1*noratio2 + rec_rtheta2[map_ind]*noratio1*noratio2 + rec_rratio1[map_ind]*noratio2 + rec_rratio2[map_ind]][pass_act[map_ind]]
+>     	                    =  (1-alph)* Qtab[rec_rtheta1[map_ind]*notheta2*noratio1*noratio2 + rec_rtheta2[map_ind]*noratio1*noratio2 + rec_rratio1[map_ind]*noratio2 + rec_rratio2[map_ind]][pass_act[map_ind]]
+>     	                                  + alph* pass_q[map_ind] ;
+>     	   updateQInf(AGENUNO, CURRTIME,rec_rtheta1[map_ind], rec_rtheta2[map_ind],rec_rratio1[map_ind], rec_rratio2[map_ind],pass_act[map_ind],
+>     	   					 		 			Qtab[ rec_rtheta1[map_ind]*notheta2*noratio1*noratio2 + rec_rtheta2[map_ind]*noratio1*noratio2 + rec_rratio1[map_ind]*noratio2 + rec_rratio2[map_ind] ][pass_act[map_ind]] ) ;
+>             RS_LOG(LA_AGENT,"updating the qtable AUno CURRTIME the1 the2 r1 r2 cmdtype stateval "<<AGENUNO<<" "<<rec_rtheta1[map_ind]<<" "
+>             		<<rec_rtheta2[map_ind]<<" "<<rec_rratio1[map_ind]<<" "<<rec_rratio2[map_ind]<<" "<<pass_act[map_ind]<<" "<<
+>             		Qtab[ rec_rtheta1[map_ind]*notheta2*noratio1*noratio2 + rec_rtheta2[map_ind]*noratio1*noratio2 + rec_rratio1[map_ind]*noratio2 + rec_rratio2[map_ind] ][pass_act[map_ind]] ) ;
+> 
+>     		   }// if pass_q
+2421c2559
+< 	 	   	  		        		 and agentView->getBodyDirection().isKnown())
+---
+> 	 	   	  		        		 and agentView->getPosition().isKnown() and agentView->getBodyDirection().isKnown())
+2422a2561
+> 
+2480c2619
+< 			 )
+---
+> 	 			 )

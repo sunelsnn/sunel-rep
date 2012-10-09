@@ -1,0 +1,495 @@
+/* -*- Mode: C++ -*-
+ * $Id: FCFooDecision.cc,v 1.33 2005/08/13 13:33:11 frehe Exp $
+ *
+ *
+ * COPYRIGHT INFORMATION
+ *
+ * This file is part of RoboSoc created by Fredrik Heintz <frehe@ida.liu.se>
+ * Copyright (C) 1999, 2000 Fredrik Heintz, Linkping University, Sweden
+ *
+ * You are allowed to modify and use this code as long as you retain this
+ * notice. If you make any changes or have any comments I would appreciate
+ * it if you send me a message. For more information, please see
+ * http://www.ida.liu.se/~frehe/RoboCup/RoboSoc/
+ *
+ *
+ * IDENTIFICATION
+ *
+ * Filename: FCFooDecision.cc
+ * Unitname: Framework/example/FCFoo
+ * $Revision: 1.33 $
+ * Created by: Fredrik Heintz 1999-xx-xx
+ * Last modified by $Author: frehe $ $Date: 2005/08/13 13:33:11 $
+ *
+ *
+ * HISTORY
+ *
+ * $Log: FCFooDecision.cc,v $
+ * Revision 1.33  2005/08/13 13:33:11  frehe
+ * Test the point to command.
+ *
+ * Revision 1.32  2004/08/16 13:12:55  petan
+ * Made decision a bit leaner using AgentStep instead of Step
+ *
+ * Revision 1.31  2004/08/13 11:48:30  petan
+ * Turned off logging, updated with better running
+ *
+ * Revision 1.30  2004/08/10 15:03:48  petan
+ * Removed GotoBall from FCFoo
+ *
+ * Revision 1.29  2003/09/02 18:03:00  frehe
+ * Updated to the new command pointer semantics.
+ *
+ * Revision 1.28  2003/08/27 09:25:42  petan
+ * Fixed warnings at compile time
+ *
+ * Revision 1.27  2003/08/20 12:33:38  s02davro
+ * onDelayedActions function
+ *
+ * Revision 1.26  2003/07/22 14:47:23  s02davro
+ * Updated coach/trainer/player for testing new features
+ *
+ * Revision 1.25  2003/07/21 09:28:10  s02davro
+ * Updated FCFoo to test v.9 features
+ *
+ * Revision 1.24  2002/09/04 14:48:05  s02davro
+ * Updated FCFoos desision making
+ *
+ * Revision 1.23  2002/08/31 15:17:16  s02davro
+ * FCFoo now run coach with -coach option, changed the main loop
+ *
+ * Revision 1.22  2002/08/02 22:03:38  s02davro
+ * Changed FCFoo to test the modifications done (WorldModelInterface, Errors ...)
+ *
+ * Revision 1.21  2001/10/14 21:21:43  frehe
+ * Added better support for messages from self and from other players.
+ *
+ * Revision 1.20  2001/10/14 14:41:42  frehe
+ * Added a sample communication between the agent and itself.
+ *
+ * Revision 1.19  2001/09/26 13:05:37  frehe
+ * Changed the order of include files to make circular updates less likely.
+ *
+ * Revision 1.18  2001/09/01 23:55:08  frehe
+ * Made minor changes.
+ *
+ * Revision 1.17  2001/08/30 22:08:26  frehe
+ * Wrote two simple decision makers that goes to the ball and scores.
+ *
+ * Revision 1.16  2001/08/29 16:31:19  frehe
+ * Added some exception handling.
+ *
+ * Revision 1.15  2001/08/29 14:16:27  frehe
+ * Made a simpler decision maker to avoid skills (until I get them to work).
+ *
+ * Revision 1.14  2001/08/29 08:38:34  petan117
+ * Unreachable code found, marked with a FIXME
+ *
+ * Revision 1.13  2001/08/17 07:15:16  frehe
+ * Made changes to compile RoboSoc with RCCParser-0.10.
+ *
+ * Revision 1.12  2001/01/08 13:41:40  frehe
+ * Fixed a minor bug in FCFooDecision.
+ *
+ * Revision 1.11  2001/01/08 13:27:45  frehe
+ * Fixed a minor bug in FCFooDecision.
+ *
+ * Revision 1.10  2000/11/08 09:41:10  frehe
+ * Updated the FCFooDecision to use the Score skill.
+ *
+ * Revision 1.9  2000/11/02 16:33:45  frehe
+ * Minor updates.
+ *
+ * Revision 1.8  2000/10/24 15:15:46  frehe
+ * Made minor updates and tests.
+ *
+ * Revision 1.7  2000/10/19 00:05:35  frehe
+ * Made minor changes.
+ *
+ * Revision 1.6  2000/10/18 23:07:11  frehe
+ * Added a say message and a display of them.
+ *
+ * Revision 1.5  2000/10/11 18:40:29  frehe
+ * Upgraded FCFoo.
+ *
+ * Revision 1.4  2000/10/10 11:55:37  frehe
+ * Fixed FCFooDecision to work with the new skills.
+ *
+ * Revision 1.3  2000/10/08 17:34:11  frehe
+ * Fixed FCFoo.
+ *
+ * Revision 1.2  2000/09/05 21:12:55  frehe
+ * Made FCFoo compile with RoboSoc 2.5.0
+ *
+ * Revision 1.1.1.1  2000/08/31 13:26:05  frehe
+ * Importet the current version of RoboSoc (soon to be v2.5.0)
+ *
+ */
+
+/**
+ * @file FCFooDecision.cc
+ * Implementation of the class FCFooDecision.
+ *
+ * @par Unit:
+ *      Framework/example/FCFoo
+ * $Revision: 1.33 $
+ * $Author: frehe $
+ * $Date: 2005/08/13 13:33:11 $
+ */
+
+
+#include "FCFooDecision.h"
+
+#include <unistd.h>
+#include <errno.h>
+#include <iostream>
+
+#include "BallView.h"
+#include "GameView.h"
+#include "AgentView.h"
+#include "PlayerView.h"
+#include "ActuatorInterface.h"
+#include "ViewManager.h"
+#include "view_constants.h"
+#include "InitCommand.h"
+#include "ClangVersionCommand.h"
+#include "MoveCommand.h"
+#include "SayCommand.h"
+#include "DashCommand.h"
+#include "KickCommand.h"
+#include "TurnCommand.h"
+#include "TurnNeckCommand.h"
+#include "TurnNeckToAbsoluteDirection.h"
+#include "TurnNeckToPoint.h"
+#include "TurnNeckToBall.h"
+#include "TurnBodyToAbsoluteDirection.h"
+#include "TurnBodyToPoint.h"
+#include "PointToCommand.h"
+#include "TackleCommand.h"
+#include "SetTicksBeforeCommandWarning.h"
+#include "rs_assert.h"
+#include "rs_log.h"
+#include "DashToPointDir.h"
+#include "AlignNeckToBody.h"
+
+RS_BEGIN_NAMESPACE
+// Defines the max angle before turning when dashing to a point
+#define DASH_MAX_ANGLE 15
+
+FCFooDecision::FCFooDecision(ActuatorInterface* const actuator_interface)
+  : Decision(actuator_interface),
+    viewManager(ViewManager::instance()),
+    worldModelInterface(WorldModelInterface::instance()),
+    facts(worldModelInterface->getWorldFacts()),
+    gameView(NULL),
+    ballView(NULL),
+    playerView(NULL),
+    agentView(NULL),
+    aural_data(0),
+    dashToPoint(Point(0,0)),
+    turnBodyToPoint(Point(0,0)) {
+  getView(ballView, BALL_VIEW_ID);
+  getView(playerView, PLAYER_VIEW_ID);
+  getView(gameView, GAME_VIEW_ID);
+  getView(agentView, AGENT_VIEW_ID);
+}
+
+FCFooDecision::~FCFooDecision() {
+  viewManager->releaseView(GAME_VIEW_ID);
+  viewManager->releaseView(BALL_VIEW_ID);
+  viewManager->releaseView(PLAYER_VIEW_ID);
+  viewManager->releaseView(AGENT_VIEW_ID);
+}
+
+ServerCommand* FCFooDecision::initAgent() {
+  InitCommand* init_cmd = new InitCommand(facts->CP_team_name,
+					  facts->SP_version,
+					  facts->CP_goalie);
+  return init_cmd;
+}
+
+bool FCFooDecision::start() {
+  RS_REQUIRE( initialized == true );
+  return true;
+}
+
+bool FCFooDecision::decide() {
+  RS_LOG ( LA_DECISION, "Decide" );
+  static int say_counter = 10;
+  Command *cmd = 0;
+  ServerCommand *scmd = 0;
+  ServerCommand *neckcmd = 0;
+  ServerCommand *saycmd = 0;
+  ServerCommand *pointcmd = 0;
+
+  // Example of a simple decision maker using skills.
+  // If the ball's position is known, the agent will run
+  // To that position, and try to kick the ball towards the
+  // opponents goal.
+
+  if ( gameView->getPlayMode() == PM_BEFORE_KICK_OFF ) {
+    /*
+    // Turn body straight head
+    TurnBodyToAbsoluteDirection turn_body(0);
+    scmd = dynamic_cast<ServerCommand*>(turn_body.generateStep().getNextCommand());
+    */
+
+    // Turn neck straight ahead
+    TurnNeckToAbsoluteDirection turnNeck(0, scmd);
+
+    // Send the commands to the actuators.
+    if ( scmd != 0 ) {
+      actuatorInterface->addToPlan(scmd);
+    }
+//    actuatorInterface->addToPlan(turnNeck.generateStep());
+  } else {
+
+	  //Position a ;
+
+	  if ( ballView->getPosition().isKnown())
+	  	  	  	  {
+	  	  	  TurnBodyToPoint TBTP (ballView->getPosition().getPoint()) ;
+	  	  	  ServerCommand* scmd = dynamic_cast <ServerCommand*> (TBTP.generateStep().getNextCommand()) ;
+	  	  	  DashToPointDir  DTPD( ballView->getPosition().getPoint(), scmd) ;
+	  	  	 actuatorInterface->addToPlan(scmd) ;
+	  	  	  actuatorInterface->addToPlan(DTPD.generateStep().getNextCommand()) ;
+	  	          std::cout<< "commands are stacked in queue "<<"\n\n\n" ;
+	  	  	  	  } else
+	  	  	  	  {
+
+	  	  		        ServerCommand *scmd3=0, *scmd2=0, *scmd4=0, *scmd5=0 ;
+	  	  		        TurnNeckToAbsoluteDirection TNTa( AngleDeg
+	  	  		        		(agentView->getBodyDirection().getDeg() + 30 ) 	,     scmd3		) ;
+	  	  		       scmd3 = dynamic_cast <ServerCommand*> (TNTa.generateStep().getNextCommand()) ;
+	  	  		//TurnNeckToBall turnNeckToBall(scmd3);
+	  	  		       //AlignNeckToBody  antb123 ;
+	  	  		   //  scmd4 = dynamic_cast <ServerCommand*> (antb.generateStep().getNextCommand()) ;
+
+	  	  		     TurnNeckToAbsoluteDirection TNTb( AngleDeg
+	  	  		     	  		        		(agentView->getBodyDirection().getDeg() - 30 )		,       scmd3		) ;
+	  	  		     	  		       scmd2 = dynamic_cast <ServerCommand*> (TNTb.generateStep().getNextCommand()) ;
+	  	  		     	  		  TurnNeckToAbsoluteDirection TNTc( AngleDeg
+	  	  		     	  		  	  		        		(agentView->getBodyDirection().getDeg() + 30) 	,     scmd2	) ;
+	  	  		     	  		  	  		       scmd4 = dynamic_cast <ServerCommand*> (TNTc.generateStep().getNextCommand()) ;
+
+
+	  	  		     	  		  	  		TurnNeckToAbsoluteDirection TNTd( AngleDeg
+	  	  		     	  		  	  			  		        		(agentView->getBodyDirection().getDeg()  ) ,     scmd5) ;
+	  	  		     	  		  	  			  		  scmd5 = dynamic_cast <ServerCommand*> (TNTd.generateStep().getNextCommand()) ;
+
+	  	  		     	  		       //  AlignNeckToBody  antba123();
+	  	  		     	    //  scmd5 = dynamic_cast <ServerCommand*> (antba.generateStep().getNextCommand()) ;
+
+
+	  	  		//ServerCommand* scmd2 = dynamic_cast <ServerCommand*> (turnNeckToBall.generateStep().getNextCommand()) ;
+	  	  		  // actuatorInterface->addToPlan(scmd3) ;
+	  	  	// actuatorInterface->addToPlan(antb123.generatePlan()) ;
+	  	  		actuatorInterface->addToPlan(scmd3);
+	  	  		actuatorInterface->addToPlan(scmd2) ;
+	  	  		actuatorInterface->addToPlan(scmd4) ;
+	  	  		actuatorInterface->addToPlan(scmd5) ;
+	  	  		// actuatorInterface->addToPlan(antba123.generatePlan()) ;
+
+	  	  	  			 //actuatorInterface->addToPlan(scmd) ;
+	  	  	  			 //actuatorInterface->addToPlan(DTPD.generateStep().getNextCommand()) ;
+	  	  	  		        std::cout<< "commands are stacked in queue "<<"\n\n\n" ;
+
+
+
+
+
+
+	  	  	  		if ( ballView->getPosition().isKnown()) {
+	  	  	  		TurnBodyToPoint TBTP (ballView->getPosition().getPoint()) ;
+	  	  	  		ServerCommand* scmd = dynamic_cast <ServerCommand*> (TBTP.generateStep().getNextCommand()) ;
+
+	  	  	  		DashToPointDir  DTPD( ballView->getPosition().getPoint(), scmd) ;
+	  	  	      // Send the commands to the actuators.
+
+	  	  	      actuatorInterface->addToPlan(scmd);
+	  	  	      actuatorInterface->addToPlan(DTPD.generateStep().getNextCommand()) ;
+	  	  	  		}
+	  	  	  		else { std::cout<< "ball position unknown"<<"\n" ;
+	  	  	  				//std::cin.get() ;
+	  	  	  		}
+
+	  	  	  	  }
+
+	  	  	  	return true ;
+
+
+	  	  std::cout<<"commands after return"<<"\n\n\n" ;
+
+
+    if (searchBall.applicable()) {
+      RS_LOG ( LA_DECISION, "SearchBall" );
+      cmd = searchBall.generateStep().getNextCommand();
+      scmd = dynamic_cast<ServerCommand*>(cmd);
+    }
+    else if ( gameView->isKickAllowed() &&
+	      ( ballView->getRelativeDistance() <= facts->SP_kickable_margin) ) {
+      RS_LOG ( LA_DECISION, "Kicking" );
+      // The ball is kickable, can we kick it to the ball.
+      // Get the direction to the opponents goal.
+      AngleDegUE goal_dir = agentView->getPosition().getDirectionTo
+	(facts->getTheirGoal().getPosition());
+      // Kick the ball towards the goal.
+      scmd = new KickCommand(50,(goal_dir -
+				 agentView->getBodyDirection()).getAngle());
+    }
+    else {
+      if (ballView->getRelativeDirection().isKnown()) {
+	if (abs(ballView->getRelativeDirection().getDeg()) > DASH_MAX_ANGLE) {
+	  turnBodyToPoint.setPosition(ballView->getPosition().getPoint());
+	  cmd = turnBodyToPoint.generateStep().getNextCommand();
+	  scmd = dynamic_cast<ServerCommand*>(cmd);
+	}
+	else {
+	  Point ball = ballView->getPosition().getPoint();
+	  dashToPoint.setPosition(ball);
+	  cmd = dashToPoint.generateStep().getNextCommand();
+	  scmd = dynamic_cast<ServerCommand*>(cmd);
+	}
+      }
+    }
+
+    if ( scmd != 0 ) {
+      // Look at the ball
+      TurnNeckToBall turnNeckToBall(scmd);
+
+      // Send the commands to the actuators.
+      actuatorInterface->addToPlan(scmd);
+      actuatorInterface->addToPlan(turnNeckToBall.generateStep());
+    }
+
+    // Example of pointing.
+
+    /*  if (agentView->getPosition().isKnown() && (say_counter == 5)) {
+	RS_LOG ( LA_DECISION, "Pointing" );
+	Vector v = agentView->getPosition().getVectorTo(facts->getTheirGoal().getPosition()).getVector();
+	pointcmd = new PointToCommand(v);
+	actuatorInterface->addToPlan(pointcmd);
+	}
+	else if (say_counter == 8) {
+	RS_LOG ( LA_DECISION, "Pointing off" );
+	pointcmd = new PointToCommand();
+	actuatorInterface->addToPlan(pointcmd);
+	}
+
+	// Example of communication.
+
+	if ( say_counter == 0 ) {
+	RS_LOG ( LA_DECISION, "Talking" );
+	saycmd = new SayCommand("Hello" + toString(aural_data));
+	actuatorInterface->addToPlan(saycmd);
+	say_counter = 9;
+	} else {
+	--say_counter;
+	} */
+  }
+
+  return true;
+}
+
+void FCFooDecision::onAuralCoachSensorData() {
+  std::cerr << "I got " << agentView->getCoachMessage()
+	    << " from the coach (trainer or non-CLang coach)" << std::endl;
+}
+
+void FCFooDecision::onAuralRefereeSensorData() {
+  std::cerr << "I got message from the referee." << std::endl;
+}
+
+void FCFooDecision::onAuralPlayerSensorData() {
+  if (agentView->getTeammateMessageDirection().isKnown()) {
+    std::cerr << "I got " << agentView->getTeammateMessage()
+	      << " from teammate nr " << agentView->getTeammateSpeaker()
+	      << " from direction " << agentView->getTeammateMessageDirection()
+	      << std::endl;
+    if (agentView->getOpponentMessageDirection().isKnown()) {
+      std::cerr << " and " << std::endl;
+    }
+  }
+  if (agentView->getOpponentMessageDirection().isKnown()) {
+    std::cerr << "I got " << agentView->getOpponentMessage()
+	      << " from an opponent from direction "
+	      << agentView->getOpponentMessageDirection()
+	      << std::endl;
+  }
+  ++aural_data;
+}
+
+void FCFooDecision::onAuralSelfSensorData() {
+  std::cerr << "I got " << agentView->getOwnMessage()
+	    << " from myself" << std::endl;
+  ++aural_data;
+}
+
+void FCFooDecision::onInit() {
+  // Position the players with some distance at the beginning of game.
+  Point movePoint = Point(-10,-10);
+  if (agentView->getUniformNumber().isKnown()) {
+    UInt nr = agentView->getUniformNumber().getValue();
+    switch (nr) {
+    case 1:
+      movePoint = Point(-10, 0);
+      break;
+    case 2:
+      movePoint = Point(-5, -15);
+      break;
+    case 3:
+      movePoint = Point(-5, 15);
+      break;
+    case 4:
+      movePoint = Point(-25, 10);
+      break;
+    case 5:
+      movePoint = Point(-25, -10);
+      break;
+    case 6:
+      movePoint = Point(-25, 20);
+      break;
+    case 7:
+      movePoint = Point(-25, -20);
+      break;
+    case 8:
+      movePoint = Point(-45, 10);
+      break;
+    case 9:
+      movePoint = Point(-25, -10);
+      break;
+    case 10:
+      movePoint = Point(-25, 20);
+      break;
+    case 11:
+      movePoint = Point(-25, -20);
+      break;
+    default:
+      movePoint = Point(-10,-10);
+    }
+  }
+  MoveCommand* move_cmd = new MoveCommand(movePoint);
+  actuatorInterface->addToPlan(move_cmd);
+
+  // Tell server (and coach) what coachlanguage versions we're supporting.
+  ClangVersionCommand* clangvCommand = new ClangVersionCommand(facts->CP_clang_version_min,
+							       facts->CP_clang_version_max);
+  actuatorInterface->addToPlan(clangvCommand);
+}
+
+void FCFooDecision::onCommandWarning() {
+  decide();
+}
+
+void FCFooDecision::onDelayedActions() {
+  if (facts->CP_ticks_before_command_warning > facts->CP_min_ticks_before_sending_command) {
+    SetTicksBeforeCommandWarning* st =
+      new SetTicksBeforeCommandWarning(facts->CP_ticks_before_command_warning - 1);
+    RS_LOG(LA_DECISION, "Responding to server command hole by lowering " <<
+	   "'ticks_before_command_warning' to " <<
+	   toString((facts->CP_ticks_before_command_warning - 1)));
+    actuatorInterface->addToPlan(st);
+  }
+}
+
+RS_END_NAMESPACE

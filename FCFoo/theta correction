@@ -1,0 +1,11 @@
+void FCFooDecision::ThetaCorrection()
+ {
+	 for (int i=0; i<11 ; i++)
+	 {   if( rec_theta1[i] > 180 )  {rec_theta1[i] = 360 - rec_theta1[i] ; }
+	      if (rec_theta2[i] > 180 ) { rec_theta2[i] = 360 - rec_theta2[i] ; }
+	      rec_rtheta1[i] =   floor( int(rec_theta1[i]) / 10 ) ;
+	      rec_rtheta2[i] = floor( int(rec_theta2[i])/ 10 ) ;
+	 }
+
+
+ }

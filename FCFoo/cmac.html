@@ -1,0 +1,98 @@
+<FONT face="Modern" size="-1">
+
+<a name="cmac"></a>
+<dl>
+<dt><b>class <font color="blue">CMAC</font> </b>
+<dd> Class that implements a CMAC function approximator with eligibility traces for tunable parameters. Implements abstract class <a href="int_class_desc.html#approximator"><b>Approximator</b></a>.
+</dl>
+
+Synopsys:  <b>#include "cmac.h"</b><br>
+Link: <b>cmac.cpp</b><br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<b>sarepr.cpp</b><br>
+<dl>
+<dt><u>Public methods:</u>
+<dd><br><dl>
+<dt><b>CMAC</b>(char* <b>fileName</b>)
+<dd><br>General constructor. <br>
+The single argument specifies the name (with path if not in the current directory) of the text file with the structural parameters of the CMAC, such as the number of tilings and  the number of tiles along each dimension for each tiling. It is assumed that the static variable <a href="int_class_desc.html#state"><b>State</b></a><b>::dimensionality</b> has been set to the appropriate value before the call to this constructor. The text file must have the following format (example for two state variables): 
+
+<font size="+0">
+<b>
+<pre>
+TilingsNumber = 3
+Number of tiles along each dimension:
+Tiling 0
+25 25
+Tiling 1
+25 25
+Tiling 2
+25 25
+</pre> 
+</b>
+</font>
+
+The lines following <b>Tiling <i>n</i> </b> list the number of tiles along each dimension for the corresponding <b><i>n</i></b>th tiling. 
+
+<dt><br>static void <b>setInputBounds</b>(const double* <b>left</b>, const double* <b>right</b>)
+<dd><br>Sets bounds on input variables. Argument <b>left</b> is an array with lower bounds and <b>right</b> is array with upper bounds.<br>
+Usage: <b>CMAC::setInputBounds(left, right)</b>
+
+<dt><br>static void <b>deleteInputBounds</b>()
+<dd><br> Deallocates memory used for bounds on input variables.
+<br>
+Usage: <b>CMAC::deleteInputBounds()</b>
+
+<dt><br>int <b>getSize</b>()
+<dd><br>Implements the corresponding pure virtual function of the base class <a href="int_class_desc.html#approximator"><b>Approximator</b></a>. Returns total number of tunable parameters in this cmac architecture.
+
+<dt><br>void <b>predict</b>(const State& <b>s</b>, double& <b>output</b>)
+<dd><br>Implements the corresponding pure virtual function of the base class <a href="int_class_desc.html#approximator"><b>Approximator</b></a>. Predicts an <b>output</b> value for a given input <b>s</s>.
+     	
+<dt><br>void <b>learn</b>(const State& <b>s</b>, const double <b>target</b>)
+<dd><br>Implements the corresponding pure virtual function of the base class <a href="int_class_desc.html#approximator"><b>Approximator</b></a>. Learns an input-output pair, where input is state <b>s</b> and target is passed by <b>target</b> argument. An appropriate update to a tunable parametr is found by gradient descent on  Mean Squared Error criteria and then multiplied by the learning rate and eligibility trace of this parameter. The learnng rate is updated automatically according to the <b>schedule</b> specified as the argument to <b>setLearningParameters</b> function. By default, all eligibility traces are initiated to 1 and will stay like this if not explicitly changed by the user code by means of the appropriate functions described below. If learning algorithm with eligibility traces is desired (e.g. replacing or accumulating traces), eligibility traces have to be updated separately, with appropriate functions.
+  
+<dt><br>void <b>computeGradient</b>(const State& <b>s</b>, double* <b>GradientVector</b>)
+<dd><br>Implements the corresponding pure virtual function of the base class <a href="int_class_desc.html#approximator"><b>Approximator</b></a>. Compute the gradient vector w.r.t. architecture parameters at input <b>s</b> and current parameter values. The computed gradient values are returned with argument <b>GradientVector</b>. The user code has to make sure that this array has the correct size, namely the number of tunable parameters in this architecture. This number can be obrained with <b>getSize</b> function.
+
+<dt><br>void <b>updateParameters</b>(double* <b>delta</b>)
+<dd><br>Implements the corresponding pure virtual function of the base class <a href="int_class_desc.html#approximator"><b>Approximator</b></a>. Increase tunable parameters by amounts in <b>delta</b> array multiplied by appropriate learning step and eligibility trace for each parameter.
+
+<dt><br>void <b>replaceTraces</b>(const State& <b>s</b>, double <b>replace</b>)
+<dd><br>Implements the corresponding pure virtual function of the base class <a href="int_class_desc.html#approximator"><b>Approximator</b></a>. Set eligibility traces of tunable parameters, activated by input state <b>s</b>, to the value <b>replace</b>.
+
+<dt><br>void <b>decayTraces</b>(double <b>factor</b>)
+<dd><br>Implements the corresponding pure virtual function of the base class <a href="int_class_desc.html#approximator"><b>Approximator</b></a>. Multiply all eligibility traces by <b>factor</b>.
+
+<dt><br>void <b>accumulateTraces</b>(const State& <b>s</b>, double <b>amount</b>)
+<dd><br>Implements the corresponding pure virtual function of the base class <a href="int_class_desc.html#approximator"><b>Approximator</b></a>. Increase traces of the parameters, activated by input state <b>s</b>, by <b>amount</b>.
+
+<dt><br>void <b>setArchitectureParameters</b>(int <b>argc</b>, char *<b>argv[]</b>)
+<dd><br>Implements the corresponding pure virtual function of the base class <a href="int_class_desc.html#approximator"><b>Approximator</b></a>. Loads parameters of the architecture from a text file. Parameters to this function have a command-line-like format, where <b>argc</b> is number of supplied arguments in array <b>argv</b>. In this case 1 argument is expected (<b>argc</b>=1) and  <b>argv[0]</b> must be the name of the file from which parameters are to be read.
+	
+<dt><br>void <b>saveArchitectureParameters</b>(int <b>argc</b>, char *<b>argv[]</b>)
+<dd><br>Implements the corresponding pure virtual function of the base class <a href="int_class_desc.html#approximator"><b>Approximator</b></a>. Saves parameters of the architecture to a text file. Parameters to this function have a command-line-like format, where <b>argc</b> is number of supplied arguments in array <b>argv</b>. In this case 1 argument is expected (<b>argc</b>=1) and  <b>argv[0]</b> must be the name of the file to which parameters are to be read.
+
+<dt><br>void <b>setLearningParameters</b>(int <b>argc</b>, char *<b>argv[]</b>)
+<dd><br>Implements the corresponding pure virtual function of the base class <a href="int_class_desc.html#approximator"><b>Approximator</b></a>. Sets learning parameters. Parameters to this function have a command-line-like format, where <b>argc</b> is number of supplied arguments in array <b>argv</b>.<br>
+ Format and meaning of the parameters passed in "argv":
+<ul>
+<li><b>schedule=</b><i>value</i> : schedule for the learning rates. Acceptable values are: <b>constant</b>, <b>decrease</b> and <b>visitation</b>.
+<li><b>alpha=</b><i>value</i> : initial value for learning rates (in (0,1])
+<li><b>f=</b><i>value</i> : frequency of decreasing learning rates with <b>decrease</b> schedule (in terms of the number of seen training examples).
+<li><b>d=</b><i>value</i> : factor (>1) by which learning rates should be decreased  with <b>decrease</b> schedule.
+<li><b>v=</b><i>value</i> : constant used in the <b>visitation</b> schedule for the learning rate decrease: <b>v</b>/(<b>v</b>+number of visits to the parameter).
+<li><b>decay=</b><i>value</i> : decay factor for eligibility traces (usually set directly by RL agent functions, since it depends on discounted factor gamma) .
+</ul>
+These parameters may be specified as command-line arguments to <b>main</b>(int <b>argc</b>, char *<b>argv[]</b>) and then passed directly to this function. 
+
+<dt><br>static void <b>helpLearningParameters</b>()
+<dd><br>Print out the format for command-line specification of the learning parameters.<br>
+Usage: <b>CMAC::helpLearningParameters();</b>
+
+<dt><br><b>~CMAC()</b>
+<dd><br>Destructor.
+</dl>
+</dl>
+See also <a href="int_class_desc.html#safa"><b>StateActionFA</b></a> class.
+<HR>
+</font>
