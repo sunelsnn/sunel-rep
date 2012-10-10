@@ -1,0 +1,128 @@
+org/apache/mahout/cf/taste/hadoop/item/RecommenderJob.class
+
+org\/apache\/mahout\/cf\/taste\/hadoop/item/RecommenderJob.class
+
+
+awk  '{ getline < "alljarechofiles" ; x =$1 } 	{ getline < "alljarfiles" ; y =$1 } {print x y }'test1 > output
+
+org.apache.mahout.cf.taste.example.jester.JesterRecommender
+
+
+
+
+mvn -q exec:java -Dexec.mainClass="org.apache.mahout.cf.taste.hadoop.pseudo.RecommenderJob" -Dexec.args="-i/opt/mapredinput/ -o/opt/mapredoutput/ -n10"
+
+
+org.apache.mahout.cf.taste.hadoop.item.RecommenderJob
+
+
+
+sudo mvn -q exec:java -Dexec.mainClass="org.apache.mahout.cf.taste.hadoop.item.RecommenderJob" -Dexec.args="-i hdata3 -o hout9 -n 1 --similarityClassname SIMILARITY_LOGLIKELIHOOD"
+
+
+
+org.apache.mahout.cf.taste.hadoop.similarity.item.ItemSimilarityJob 
+
+sudo mvn -q exec:java -Dexec.mainClass="org.apache.mahout.cf.taste.hadoop.similarity.item.ItemSimilarityJob " -Dexec.args="-i /opt/mapredinput/ -o /opt/mapredoutput/  --similarityClassname SIMILARITY_LOGLIKELIHOOD"
+
+
+./mahout kmeans --input hdata3  --output hout8 --clusters 10 --numClusters 10  --maxIter 1000
+
+
+mvn -q exec:java -Dexec.mainClass="org.apache.mahout.cf.taste.hadoop.item.RecommenderJob" -Dexec.args="-i /opt/mapredinput/ -o /opt/mapredoutput/ -n 1 --similarityClassname SIMILARITY_LOGLIKELIHOOD"
+
+
+mvn -q exec:java -Dexec.mainClass="org.apache.mahout.cf.taste.hadoop.item.RecommenderJob" -Dexec.args="-i hdata3 -o hout9 -n 1 --similarityClassname SIMILARITY_LOGLIKELIHOOD"
+
+
+
+
+hadoop jar mahout-examples-0.7-job.jar org.apache.mahout.cf.taste.hadoop.item.RecommenderJob -i hdata3 -o hout9 -n 1 similarityClassname SIMILARITY_LOGLIKELIHOOD
+
+
+
+hadoop jar mahout-examples-0.7-job.jar org.apache.mahout.cf.taste.hadoop.item.RecommenderJob -i hdata3 -o hout10 -n 1 --similarityClassname SIMILARITY_EUCLIDEAN_DISTANCE
+
+
+
+<property>
+  <name>mapreduce.reduce.shuffle.maxfetchfailures</name>
+  <value>2</value>
+  <description>The maximum number of times a reducer tries to
+  fetch a map output before it reports it.
+</description></property>
+
+
+<property>
+  <name>mapreduce.reduce.shuffle.connect.timeout</name>
+  <value>1800</value>
+  <description>Expert: The maximum amount of time (in milli seconds) a reduce
+  task spends in trying to connect to a tasktracker for getting map output.
+  </description>
+</property>
+
+<property>
+  <name>mapreduce.reduce.shuffle.read.timeout</name>
+  <value>1800</value>
+  <description>Expert: The maximum amount of time (in milli seconds) a reduce
+  task waits for map output data to be available for reading after obtaining
+  connection.
+  </description>
+</property>
+
+<property>
+  <name>mapred.task.timeout</name>
+  <value>6000</value>
+  <description>The number of milliseconds before a task will be
+  terminated if it neither reads an input, writes an output, nor
+  updates its status string.
+  </description>
+</property>
+
+<property>
+  <name>mapred.tasktracker.map.tasks.maximum</name>
+  <value>5</value>
+  <description>The maximum number of map tasks that will be run
+  simultaneously by a task tracker.
+  </description>
+</property>
+
+<property>
+  <name>mapred.tasktracker.reduce.tasks.maximum</name>
+  <value>5</value>
+  <description>The maximum number of reduce tasks that will be run
+  simultaneously by a task tracker.
+  </description>
+</property>
+
+<property>
+  <name>mapred.jobtracker.completeuserjobs.maximum</name>
+  <value>100</value>
+  <description>The maximum number of complete jobs per user to keep around
+  before delegating them to the job history.</description>
+</property>
+
+
+
+<property>
+  <name>io.sort.mb</name>
+  <value>500</value>
+  <description>The total amount of buffer memory to use while sorting
+  files, in megabytes.  By default, gives each merge stream 1MB, which
+  should minimize seeks.</description>
+</property>
+
+
+<property>
+  <name>mapred.tasktracker.expiry.interval</name>
+  <value>6000</value>
+  <description>Expert: The time-interval, in miliseconds, after which
+  a tasktracker is declared 'lost' if it doesn't send heartbeats.
+  </description>
+</property>
+
+
+
+
+
+

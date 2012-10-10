@@ -1,0 +1,36 @@
+#!/usr/bin/perl
+package utilpac;
+use strict;
+use warnings;
+
+sub dupstrings()
+{
+my @words =@_;
+my $i;my $str1;my $str2;
+open(TFILE, ">>tempfile") ;
+for ($i=0;$i<=$#words;$i++)
+{
+print TFILE  "$words[$i]\n" ;
+}
+#print TFILE @words ; 
+close(TFILE);
+@words = qx(cat tempfile | sort) ;
+qx(rm tempfile);
+#print"\n$words[0]" ;
+for($i=0;$i<$#words;$i++)
+{
+print $words[0] if($i==0) ;
+$str1 =$words[$i] ;
+$str2=$words[$i+1] ;
+#print "\n" ;
+chomp($str1) ;
+chomp($str2) ;
+#print "\n B  $str1  $str2  E";
+if( $str1 ne $str2 )
+{ print "\n $str2" ; }
+
+}
+
+}   
+
+1;
