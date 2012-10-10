@@ -18,5 +18,8 @@ public class Dblsrt {
      double[] lengths = {120.0, 0.5, 0.0,120.0, 999.0, 77.3};
      Arrays.sort(lengths);
      System.out.println(Arrays.toString(lengths));
+     
+     
+     // afadsf
  }
 }
