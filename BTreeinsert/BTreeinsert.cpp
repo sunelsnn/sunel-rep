@@ -10,7 +10,6 @@
  *
  */
 
-
 // simple test
 #include <iostream>
 #include <vector>
