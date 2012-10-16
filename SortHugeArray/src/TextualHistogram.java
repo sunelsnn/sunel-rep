@@ -236,66 +236,76 @@ public class TextualHistogram {
     
     
     
-public static void main(String[] args) throws IOException, Exception
-{
+    public static void main(String[] args) throws IOException, Exception
+    {
 	
-		
-	if(args.length !=1  || args.length !=2)
-	{
-		System.out.println("\n TextualHistogram: \n Description: This program sorts the Inputfile with integers with limited memory " +
+    	
+    	String InputFileName = new String() ;
+		//Usage
+    	if(args.length !=1 && args.length !=2)
+    	{
+    		System.out.println("\n TextualHistogram: \n Description: This program sorts the Inputfile with integers with limited memory " +
 							"\n Usage "+
-							"\n Linux: java -classpath $CLASSPATH:$PWD TextualHistogram InputFileName " +
-							"\n        java -classpath $CLASSPATH:$PWD TextualHistogram InputFileName  MemoryBlockSize" +
-							"\n Windows: \n java -classpath %CLASSPATH%;%PWD% TextualHistogram InputFileName" +
+							"\n		Linux:		java -classpath $CLASSPATH:$PWD TextualHistogram InputFileName " +
+							"\n				java -classpath $CLASSPATH:$PWD TextualHistogram InputFileName  MemoryBlockSize" +
+							"\n		Windows:	java -classpath %CLASSPATH%;%PWD% TextualHistogram InputFileName" +
 							"\n Note: The system will process the InputFile even if the total Integers are less than 1 million ") ;
 		
-		System.out.println("\n Please enter a input file with integers or type 'q' for quit \n\n") ; ;
-		InputStreamReader converter = new InputStreamReader(System.in);
-		BufferedReader in = new BufferedReader(converter);
-		if(in.readLine() == "q")
-		{	
-			System.exit(0);
-		}
-		else if (!( new File(args[0]).exists()))
-		{
-			System.out.println("\n Sorry File does not exists. Please run the program again") ;
-		}
+    		System.out.println("\n Please enter a input file with integers or type 'quit' for quit \n\n") ; ;
+    		InputStreamReader converter = new InputStreamReader(System.in);
+    		BufferedReader in = new BufferedReader(converter);
+    		InputFileName = in.readLine().trim();
+    		if(InputFileName.equals("quit"))
+    		{	
+    			System.exit(0);
+    		}
+    		else if (!( new File(InputFileName).exists()) )
+    		{
+    			System.out.println("\n Sorry File does not exists. Please run the program again") ;
+    			System.exit(0) ;
+    		}
 			
-	}
+    	}
+    	else
+    	{
+    		InputFileName = args[0] ;
+    	}
 	
+	   
 	
+    	TextualHistogram   TextualHistogram_object  = new TextualHistogram(InputFileName)  ;
+    	if(args.length == 1)
+    	{
+    		TextualHistogram_object = new TextualHistogram(args[0]) ;
+    	}
+    	else if (args.length == 2)
+    	{
+    		TextualHistogram_object = new TextualHistogram(args[0], Integer.parseInt(args[1])) ;
+    	}
 	
-	TextualHistogram   TextualHistogram_object  = new TextualHistogram(args[0])  ;
-	if(args.length == 1)
-	{
-		TextualHistogram_object = new TextualHistogram(args[0]) ;
-	}
-	else if (args.length == 2)
-	{
-		TextualHistogram_object = new TextualHistogram(args[0], Integer.parseInt(args[1])) ;
-	}
-	
-    //Linearly read the inputfile  and sort and store in fileblocks. 
+    
 
-	try{
+    	try{
+    		
+    		 //Sort Block Wise
+    			TextualHistogram_object.partitionAndSort() ;
     
-    TextualHistogram_object.partitionAndSort() ;
-    
-    TextualHistogram_object.allocateArrayMemory(TextualHistogram_object.getTotalBlockCount()) ;
-    // This is Merge Phase.
-    
-    TextualHistogram_object.MergeSortedBlockFiles() ;
+    		// Resize the Array 
+    			TextualHistogram_object.allocateArrayMemory(TextualHistogram_object.getTotalBlockCount()) ;
+
+    		// Merge the Sorted Block Files
+    			TextualHistogram_object.MergeSortedBlockFiles() ;
 	
     
-  }
-    catch(Exception E)
-    {
-    	E.printStackTrace() ;
-    }
+    		}
+    	catch(Exception E)
+    		{
+    			E.printStackTrace() ;
+    		}
     
    
    
-}
+    }
 
 
 };
