@@ -28,16 +28,16 @@ import java.util.logging.Logger;
   public class FeatureProcess {
 	  
 	  private static Logger log ;
-	  private static String userid;//  = "blems" ;
-		private static String password ;//  = "flat2#isi" ;
-		private static String url ;// = "jdbc:mysql://cb.isi.edu:3306/blems" ;
-		private static String driver; // = "com.mysql.jdbc.Driver" ;
-		private static String IpAdd ; //= "http://128.9.160.95:28081" ;
-		private static String lab ; //= "CBG" ;
+	  private static String userid;
+		private static String password ;
+		private static String url ;// 
+		private static String driver; // 
+		private static String IpAdd ; //
+		private static String lab ; //
 		public static String  loading_mode;// valid values "estimation" , "regular", "groundtruth"   
 		private static String outputesttable ;
-		  private static String primaryconfig = "primary"; //= "blems" ;
-		    private static String secconfig = "secconfig" ;//  "cbg" ;
+		  private static String primaryconfig = "primary";// 
+		    private static String secconfig = "secconfig" ;// 
 		    private static boolean is_pplcounter=false ;
 		    private static String peoplecounter ;// 
 		    private static int batchsize ;

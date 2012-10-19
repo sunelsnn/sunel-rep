@@ -115,13 +115,13 @@ public class BlemsCBGAgent extends  DirectBlemsAgent
 	class CBGAgentTask extends TimerTask 
 	{
 	
-	 	private  String userid;//  = "blems" ;
-		private  String password ;//  = "flat2#isi" ;
-		private  String url ;// = "jdbc:mysql://cb.isi.edu:3306/blems" ;
-		private  String driver; // = "com.mysql.jdbc.Driver" ;
-		private  String IpAdd ; //= "http://128.9.160.95:28081" ;
-		private  String lab ; //= "CBG" ;
-	// 	public static String  loading_mode;// valid values "estimation" , "regular", "groundtruth"   
+	 	private  String userid;//  
+		private  String password ;//
+		private  String url ;// 
+		private  String driver; //  
+		private  String IpAdd ; //
+		private  String lab ; //
+	// 	public static String  loading_mode;//    
 		private  String outputesttable ;
 		private String primaryconfig = "blems" ;
 		private  String secconfig = "cbg" ;

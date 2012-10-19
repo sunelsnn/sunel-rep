@@ -49,31 +49,25 @@ public class ExtractRawData {
 	 * 
 	 */
 	 private Logger log = Logger.getLogger(getClass().getName());
-	private static String userid ; //= "blems" ;
-	private static String password ; //= "flat2#isi" ;
-	private static String url ; //= "jdbc:mysql://cb.isi.edu:3306/blems" ;
-	private static String driver; // = "com.mysql.jdbc.Driver" ;
- //   private static String IpAdd = "http://128.9.160.95:28081" ;
-     private static String IpAdd ;//= "http://68.181.161.6/" ;
+	private static String userid ; //
+	private static String password ; //;
+	private static String url ; //= 
+	private static String driver; // 
+ //   private static String IpAdd = "" ;
+     private static String IpAdd ;//= "" ;
     private static String lab ;// = "KAP" ;
     private static String  inputinfotable ;
     private static String  outputesttable ;
     private static String peoplecounter ; 
     private static boolean  is_pplcounter ;
-    private static String primaryconfig = "primary" ; // "blems" ;
-    private static String secconfig = "secconfig" ; // "cbg" ;
+    private static String primaryconfig = "" ; // "blems" ;
+    private static String secconfig = "" ; // "cbg" ;
     private static int batchsize ;
     private static boolean insertException= false ;
   //  private ResultSet rsavg ;
 
 	  public ExtractRawData () {
 		
-		  //  userid = "blems" ;	}
-		 // password = "flat2#isi" ;
-		 // url= "jdbc:mysql://cb.isi.edu:3306/blems" ;
-		 // driver = "com.mysql.jdbc.Driver" ;
-		 // IpAdd = "http://68.181.161.6/" ;
-		 // lab = "KAP" ;
 		  
 	//	  FileReader 
 		   
