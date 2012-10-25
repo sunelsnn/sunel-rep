@@ -1,0 +1,510 @@
+package BlemsCBGAgentpkg;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date ;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import edu.isi.blems.DirectBlemsAgent;
+import edu.isi.blems.Reading;
+import edu.isi.blems.ReadingTypes;
+import edu.isi.blems.SensorRecord;
+// import edu.isi.blems.behavior.OccupancyEstimatorAgent.EstimateOccupancyTask;
+
+// a room table with columns  room#,ipadd, lastudate model , no of features
+// Test settings BlemsRaw <==> BlemsAgent DB and CBG <==> Blems DB and dont touch  or directly access tatiana's DB tables. simulate appropriately.
+//   
+
+public class BlemsCBGAgent extends  DirectBlemsAgent
+{
+
+	/**
+	 * @param args
+	 */
+	
+		    
+		    
+		    private Logger log = Logger.getLogger(getClass().getName());
+			
+			private Timer timer; // scheduled task
+
+			
+			
+			  
+		    
+		    private long delay = 900000;
+		 
+			private String baseDir = ".";
+
+			/** Output writer. Debug time */
+		// 	private FileWriter writer;
+
+			public String getBaseDir() {
+				return baseDir;
+			}
+
+			public void setBaseDir(String dir) {
+				this.baseDir = dir;
+			}
+
+			public void setDelayS(long delay) {
+				this.delay = delay * 1000;
+			}
+
+			public long getDelayS() {
+				return this.delay / 1000;
+			}
+			
+		  public void startup ()
+		  {
+			  log.log(Level.INFO, "Starting " + getID());
+				super.startup();
+				
+				 /*EstimateOccupancyTask task = new EstimateOccupancyTask();
+				timer = new Timer("Estimator");
+				timer.scheduleAtFixedRate(task, 0, delay);
+				*/
+				
+				ArrayList<SensorRecord>  TempSensorIds =  getSensors(  null ,ReadingTypes.CURRENT_TEMP ,null) ;
+				CBGAgentTask task = new CBGAgentTask() ;
+				timer= new Timer("BlemsCBGAgent") ;
+				timer.scheduleAtFixedRate(task,0,delay) ;
+				
+		  }
+			
+		 public void shutdown()
+		 {
+				log.log(Level.INFO, "Shutting down " + getID());
+				timer.cancel();
+		 }
+		 
+
+	 /* public static void main(String[] args) throws SQLException, Exception {
+
+		// BlemsAgentAPI BAA = new BlemsAgentAPI() ;
+		BlemsCBGAgent cbgAgent =  new BlemsCBGAgent() ;
+		CBGAgentTask tsk =  new CBGAgentTask() ;
+		  tsk.run() ;
+  */
+		// TODO Auto-generated method stub
+
+	
+		
+
+
+
+ class CBGAgentTask extends TimerTask {
+	
+	
+	 	private  String userid;//  = "blems" ;
+		private  String password ;//  = "flat2#isi" ;
+		private  String url ;// = "jdbc:mysql://cb.isi.edu:3306/blems" ;
+		private  String driver; // = "com.mysql.jdbc.Driver" ;
+		private  String IpAdd ; //= "http://128.9.160.95:28081" ;
+		private  String lab ; //= "CBG" ;
+	// 	public static String  loading_mode;// valid values "estimation" , "regular", "groundtruth"   
+		private  String outputesttable ;
+		 private String primaryconfig = "blems" ;
+		    private  String secconfig = "cbg" ;
+		    private String spaceDB ;
+		    private  String localmodeldir ;
+		 
+		    
+		    public CBGAgentTask()
+		    {}
+		    
+	 public void run()
+	 {
+		 try {
+			 
+			onAgentwakeup() ;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	 }
+
+	
+
+	    public  void reset_config() 
+		  {
+			  
+			  driver="" ;
+			  password="";
+			  url="";
+			  userid="";
+		  }
+	
+	
+	public void load_config(String configname ) throws Exception
+	 {
+				  
+		BufferedReader  freader = new  BufferedReader ( new  FileReader("./dbconfig.txt" ) ) ;
+		String testline = new String() ;
+		String[] testlinearr ;
+					
+		while((testline=freader.readLine())!= null )
+		{
+			if(testline.contains("configstart:"+configname))
+				{
+				while((testline=freader.readLine())!= null && !testline.contains("configend")  )
+				{
+				  if(testline.contains("password")  ) 
+					{
+					  	testlinearr = testline.split("=") ;
+					  	  password=testlinearr[1].trim() ;
+					  	 System.out.println(password) ;
+					}
+					
+					if(testline.contains("url")) 
+					{
+					  	testlinearr = testline.split("=") ;
+					  	  url=testlinearr[1].trim() ;
+					  	  System.out.println(url) ;
+					}
+					
+					if(testline.contains("driver")) 
+					{
+					  	testlinearr = testline.split("=") ;
+					  	  driver=testlinearr[1].trim() ;
+					  	 System.out.println(driver) ;
+					}
+					
+					if(testline.contains("spaceDB"))
+					{
+						testlinearr=testline.split("=") ;
+						spaceDB=testlinearr[1].trim();
+						System.out.println(spaceDB) ;
+					}
+					if(testline.contains("localmodeldir"))
+					{
+						testlinearr=testline.split("=") ;
+						localmodeldir=testlinearr[1].trim();
+						System.out.println(localmodeldir) ;
+					}
+					if(testline.contains("userid")) 
+					{
+					  	testlinearr = testline.split("=") ;
+					  	  userid=testlinearr[1].trim() ;
+					  	 System.out.println(userid) ;
+					}
+					} 
+					} else { continue ;}
+					}
+					
+					freader.close();
+	  }
+					
+		
+	
+	
+	
+	
+	public   Connection getDBconnection()  throws SQLException 
+		     {
+		   	 Connection   con ;
+		   	 try {
+					Class.forName(driver);	
+				} catch(java.lang.ClassNotFoundException e) {
+					 //System.err.print(”ClassNotFoundException: “);
+					// System.err.println(e.getMessage());
+					
+					throw new SQLException( "ClassNotFoundException " + e.getMessage()) ;
+				}
+
+				try {
+				    con = DriverManager.getConnection(url, userid, password);
+				} catch(SQLException ex) {
+					// System.err.println(”SQLException: ” + ex.getMessage());
+					throw new SQLException( ex.getMessage()) ;
+				}
+
+				return con;
+				
+		            	  
+		   	  
+		     }	
+	
+	 
+	
+	
+	
+	
+	public  void onAgentwakeup() throws SQLException, Exception
+	          {
+	        	  
+	        	  
+	        	  // get all the sensors and then retrieve the readings.
+	        	  
+	        	  
+	        	  load_config("primary") ;
+	        	  System.out.println(driver ) ;
+	         
+	        	Connection  prim_con=  getDBconnection()  ;
+	        	reset_config();
+	        	load_config("secconfig") ;
+	        	Connection sec_con = getDBconnection() ;
+	        	reset_config() ;
+	        	
+	        	// Statement room_st = prim_con.createStatement() ;
+	        	Statement lastupdate_st= prim_con.createStatement();
+	         //	Statement getSensors = prim_con.createStatement();
+	        // 	Statement  getReadType = prim_con.createStatement();
+	        	Statement insertblemsraw = prim_con.createStatement();
+	        	Statement insertCBGraw = sec_con.createStatement();
+	        	Statement updateblemslastupdatetime = prim_con.createStatement() ;
+	        	Statement updateCBGlastupdatetime = prim_con.createStatement() ;
+	        	Statement modelfeaturest = prim_con.createStatement() ;
+	        	
+	        	// Statement StReading =dbcon.createStatement() ;
+	        	
+	        	/*** carefully test this part accessing a different schema when using jdbc connection to a different database */
+	        	// String getRoomnoSql = "Select spaceid  from "+spaceDB+".spaces" ;
+	        	
+	        //	DirectBlemsAgent dba = new DirectBlemsAgent() ;
+	        	 
+	        	ArrayList<SensorRecord>  TempSensorIds =  getSensors(  null ,ReadingTypes.CURRENT_TEMP ,null) ;
+	        	   
+	        	   String[]   roomlist = new String[TempSensorIds.size()];
+	        	   
+	        	   for (int i=0 ; i< TempSensorIds.size() ; i++)
+	        	   {
+	        		   roomlist[i] = TempSensorIds.get(i).getRoom() ;
+	        	   }
+	        	   
+	        	        	
+	        	String getSensorSql = new String();
+	        	String  getSensorPointsSql = new String() ;  // = "Select sensorId, readingtype from sensors  " ;
+	        	
+	        // 	ResultSet roomno_rs = room_st.executeQuery(getRoomnoSql) ;
+	        	
+	        	// get the rooms using getSensor for currenttemp reading type and using each room id get all the sensorids in that room 
+	        	// and then using sensorids get the information for varying time range. 
+	        	
+	        	// for (int index=0 ; index < rs.g)
+	        	for(int index=0 ; index< roomlist.length ; index++)
+	        	{
+	          		
+	        	// 	String  getLastUpdateTimeSql =  "select lastupdatetime from blemsRoom where roomid="+roomno_rs.getString(1)+";" ;
+	        		String  getLastUpdateTimeSql =  "select lastupdatetime,ip,estimatormodel, featurelist, featurecount from blemsRoom where roomid='"+ roomlist[index].trim()+"';" ;
+	        	   //  String getReadingTypeSql = " select * from readtype" ;
+ 	        		
+	        		System.out.println("room processed is "+ roomlist[index].trim()) ;
+	        	  //   ResultSet  readtype_rs =  getReadType.executeQuery(getReadingTypeSql) ;
+	        	      ResultSet lastupdate_rs =   lastupdate_st.executeQuery(getLastUpdateTimeSql) ;
+	        	       //lastupdate_rs.next() ;
+	        	       System.out.println("test1") ;
+	        	       int roomreccount = 0 ;
+	        	       while(lastupdate_rs.next())
+	        	       {
+	        	    	  roomreccount++ ;
+	        	    	   }
+	        	       if (roomreccount==0)
+	        	       {    System.out.println(" no room match found continuing to next room "+ roomlist[index].trim()) ;
+	        	       		continue ;}
+	        	       lastupdate_rs.beforeFirst() ;
+	        	       lastupdate_rs.next();
+	        	       
+	        	       
+	        	     //  if(lastupdate_rs.isAfterLast())
+	        	      // { continue ;}
+	        	  
+	        	       Date dt = new Date(System.currentTimeMillis()) ;
+	        	    
+	        	  //   while (readtype_rs.next())
+	        	  //  {
+	        	    	dt.setTime(System.currentTimeMillis())  ;
+	        	    	
+	        	    	 // ArrayList<SensorRecord>   ALSR = getSensors(roomno_rs.getString(1),"" ,"" ) ;
+	        	    	
+	        	    	ArrayList<SensorRecord>   ALSR = getSensors(roomlist[index],null ,null ) ;
+	        	    	System.out.println(System.currentTimeMillis() +" "+ lastupdate_rs.getTimestamp(1).getTime() ) ;
+	        	   	int temporalreadings = (int) Math.floor( (Double)( ( (int)(System.currentTimeMillis() - lastupdate_rs.getTimestamp(1).getTime()) )/60000.0) ) ;
+	        	    	//int temporalreadings =  Double. (System.currentTimeMillis() - lastupdate_rs.getTimestamp(1).getTime()) /60000.0 ;;
+	        	    	System.out.println("no of sensordevs "+ ALSR.size() +" temporal readings " + temporalreadings) ;
+	        	    	Reading[][] SensorRead=  new Reading [ALSR.size()][ temporalreadings] ;
+	        	    	boolean[] temporalreadstatus = new boolean[temporalreadings] ;
+	        	    	for (int readstatindex=0 ; readstatindex< temporalreadings; readstatindex++)
+	        	    	{
+	        	    		temporalreadstatus[readstatindex]= false ;
+	        	    	}
+	        	    	
+	        	    	int  count=0;
+	        	    	  String  insertargstr = new String("");
+	        	    	for (SensorRecord  sr : ALSR)
+	        	    	{
+	        	    		    if (insertargstr == "")
+	        	    		    {  insertargstr = sr.getSensorId().trim().split(sr.getRoom().trim())[0] ;
+	        	    		    }
+	        	    		    else {
+	        	    			insertargstr = insertargstr+","+ sr.getReadingType().trim().split(sr.getRoom().trim())[0] ;
+	        	    		    }
+	        	    			ArrayList<Reading>  sensorReadings =   getReadings(sr.getSensorId() , new  Date(lastupdate_rs.getTimestamp(1).getTime()),   dt   );
+	        	    			System.out.println("Sensor readings retrieved "+ sr.getSensorId()+" "+ sr.getReadingType()+ " "+ sensorReadings.size()) ;
+	        	    			
+	        	    	 // int internalcount=0 ;
+	        	    			for (Reading rd: sensorReadings)
+	        	    			{
+	        	    				SensorRead[count][ (int) Math.floor( (Double)( ( (int) (rd.getStart().getTime() - lastupdate_rs.getTimestamp(1).getTime()))/60000.0))]= rd ;
+	        	    				temporalreadstatus[(int) Math.floor( (Double)( ( (int) (rd.getStart().getTime() - lastupdate_rs.getTimestamp(1).getTime()))/60000.0))] = true  ;
+	        	    		 // 	        	    		  internalcount++;
+	        	    			}
+	        	    			count++;
+	        	    	}
+	        	    	
+	        	    	int totalupdatecount = 0 ;
+	        	  
+	        	    	for (int ind=0; ind< temporalreadings; ind++)
+	        	    	{
+	        	//  String insertsql = "insert into blemsRaw("+insertargstr+") values("+)" " 	 ;
+	        	    		String valuesstring = new String();
+	        	    		boolean nulltemporalvaluedetect = false ;
+	        	    		for(int ind1=0 ; ind1 < ALSR.size(); ind1++)
+	        	    		{
+	        	    			
+	        	    			if (temporalreadstatus[ind] == false)
+	        	    			{ nulltemporalvaluedetect = true ; break ; }
+	        	    			System.out.println( "temporal index "+Integer.toString(ind) +" sensor index "+ Integer.toString(ind1)) ;
+	        	    			System.out.println( SensorRead[ind1][ind].getStart()+" "+ SensorRead[ind1][ind].getEnd()) ;
+	        	    			System.out.println( SensorRead[ind1][ind].getVmax() +" "+  SensorRead[ind1][ind].getVmin()) ;
+	        	    			 if ( Double.isNaN(SensorRead[ind1][ind].getVmax())   )
+	        	    			 { nulltemporalvaluedetect = true ; break ; }
+	        	    			if(ind1==0)
+	        	    			{ 	
+	        	    				// valuesstring =    (Double.toString((SensorRead[ind1][ind].getVmax()+SensorRead[ind1][ind].getVmin())/2)) ; }
+	        	    				valuesstring =    Double.toString(SensorRead[ind1][ind].getVmax()) ; }
+	        	    			else
+	        	    			{ 	 
+	        	    				// valuesstring = valuesstring+ ","+   (Double.toString((SensorRead[ind1][ind].getVmax()+SensorRead[ind1][ind].getVmin())/2)) ; }
+	        	    				valuesstring = valuesstring+ ","+   Double.toString(SensorRead[ind1][ind].getVmax()) ; }
+	        	    				
+	        	    		}
+	        	    		if(nulltemporalvaluedetect == true )
+	        	    		{ continue ;}
+	        	    		insertargstr = insertargstr+ ","+"curtime" ;
+	        	    			        	    		Calendar temptimestamp = Calendar.getInstance();
+	        	    		temptimestamp.setTimeInMillis(lastupdate_rs.getTimestamp(1).getTime()+ (ind+1)*60*1000) ;
+	        	    		String  IntervalStartstr = new String( Integer.toString( temptimestamp.get(temptimestamp.YEAR))+"-"+Integer.toString(temptimestamp.get(temptimestamp.MONTH)+1)
+	        	          			 +"-"+ Integer.toString(temptimestamp.get(temptimestamp.DATE))+" "+
+	        	          	  Integer.toString(temptimestamp.get(temptimestamp.HOUR_OF_DAY)) +":"+ Integer.toString( temptimestamp.get(temptimestamp.MINUTE) ) + ":" +
+	        	          	  Integer.toString( temptimestamp.get(temptimestamp.SECOND ) )) ;
+	        	    	  valuesstring =  valuesstring +",'"+ IntervalStartstr+"'"   ;
+	        	    	   insertargstr = insertargstr+ ","+"ip" ;
+	        	    	   valuesstring = valuesstring +","+lastupdate_rs.getString(2) ;
+	        	    	  System.out.println(insertargstr+" "+ valuesstring) ;
+	        	    		String insertsql = new String ("insert into blemsRaw("+insertargstr+") values("+ valuesstring+ ");" ) ;
+	        	    		totalupdatecount++ ;
+	        	    		 System.out.println("total update count" + Integer.toString(totalupdatecount) + " "+insertsql) ;
+	        	    		 
+	        	    		insertblemsraw.addBatch(insertsql) ;
+	        	    		insertCBGraw.addBatch(insertsql) ;
+	        	   	        	   
+	        	    	} 
+	        	   
+	        	   
+	        	    	int[] sqlexeccnt= insertblemsraw.executeBatch();
+	        	    	int totalnotupdatedrecords=0;
+	        	    	
+	        	    	for ( int index1=sqlexeccnt.length-1 ; index1 >=0; index1++)
+	        	    	{ 
+	        	    		if(sqlexeccnt[index1] == 0 )
+	        	    	    break ;
+	        	    		
+	        	    		totalnotupdatedrecords++ ;
+	        	    	}
+	              	    	
+	        	    	
+	        	    	long 	lastupdatetimetoupdate = System.currentTimeMillis() -  (long) (totalnotupdatedrecords*60*1000) ;
+	        	    	String lastupdatesqlupdate = " update blemsAgent.rooms  set lastupdatetime ="+ new Date(lastupdatetimetoupdate)+"; " +
+	        	    			"where room = " ;
+	        	        updateblemslastupdatetime.executeUpdate(lastupdatesqlupdate) ;
+	        	        updateCBGlastupdatetime.executeUpdate(lastupdatesqlupdate) ;
+	        	        
+	        	    	
+	        	        
+	        	        ExtractRawData  ERD = new ExtractRawData() ;
+	        	        Calendar strt = Calendar.getInstance() ;
+	        	        strt.setTimeInMillis(lastupdate_rs.getTimestamp(1).getTime()) ;
+	        	        Calendar enddate = Calendar.getInstance() ;
+	        	        enddate.setTimeInMillis(dt.getTime()) ;
+	        	        
+	        	        ERD.dataProcess(strt, enddate) ;
+	        	        // get model from the database.
+	        	        Estimator es = new Estimator();
+	        	        int[] featureDataType = new int[lastupdate_rs.getInt(5)] ;
+	        	        String modelfeaturesql = "Select * from modelfeature where model like '"+lastupdate_rs.getString(3)+"';" ;
+	        	        ResultSet modelfeaturers = modelfeaturest.executeQuery(modelfeaturesql) ;
+	        	        for(int index7=0 ; index7 < lastupdate_rs.getInt(5) ; index7++)
+	        	        {
+	        	          featureDataType[index7] = modelfeaturers.getInt(index7+2) ;
+	        	        }
+	        	        
+	        	        // es.estimate(localmodeldir+lastupdate_rs.getString(3), arfffilename,  stringdate, timestart, timeend, lastupdate_rs.getString(4), lastupdate_rs.getInt(5)) ;
+	        	        
+	        	        for (int index6=0 ; index6<temporalreadings ; index6++)
+	        	        {
+	        	        	
+	        	        	
+	        	        	  
+	        	        es.estimate(localmodeldir+lastupdate_rs.getString(3), lastupdate_rs.getString(6),  
+	        	        		Integer.toString(strt.get(strt.YEAR))+"-"+Integer.toString(strt.get(strt.MONTH)+1)+"-"+Integer.toString(strt.DAY_OF_MONTH),
+	        	        		strt.MINUTE + strt.HOUR_OF_DAY*60+index6, strt.MINUTE + strt.HOUR_OF_DAY*60+index6, lastupdate_rs.getString(4), lastupdate_rs.getInt(5), featureDataType) ;
+	        	        }
+	        	
+	        	
+	        	}  // for each room.
+	        	    	
+	        	//     }
+//	        		
+	        		
+	        		
+	        		
+	        		
+	        		
+	        		
+	        		
+	        		/*
+	        		getSensors = "Select sensorId, readingtype from sensors where room = " + rs.getString(1) ;
+	        		
+	        		getSensorPoints  = "Select sensorId, vmax, vmin from points where sensorId in " +
+	        				" (select sensorId   from sensors where room = " + rs.getString(1) +");" ;
+	        		
+	        		ResultSet rsreading = StReading.executeQuery(getSensorPoints) ; 
+	        		*/
+	        		
+	        		
+	        		
+	        		
+	        		
+	        	
+	   }  //on wakeup
+	           
+	          
+	          
+	        	
+	        	  
+	        	// for (int )
+	        	  
+	        	  // for the each room# / sensorbox  with a new record run the preprocessing agents.
+	        		// 
+	        	  
+	          
+	
+	 
+}
+
+}

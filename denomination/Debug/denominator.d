@@ -1,0 +1,1 @@
+denominator.d: ../denominator.cpp

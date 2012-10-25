@@ -620,7 +620,7 @@ vector<std::string> BinaryTree::patternregex(std::string  searchstr ,std::string
 
 
 
-
+/*
 
 int  main()
 {
@@ -639,3 +639,4 @@ int  main()
 	std::cout<<"\n some junk" ;
 
 }
+*/

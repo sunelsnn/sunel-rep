@@ -1,0 +1,22 @@
+configstart:primary
+userid = blems 
+password = flat2#isi 
+url= jdbc:mysql://cb.isi.edu:3306/blemsAgent
+driver = com.mysql.jdbc.Driver
+configend
+configstart:secconfig
+userid = blems 
+password = flat2#isi 
+url= jdbc:mysql://cb.isi.edu:3306/blems 
+driver = com.mysql.jdbc.Driver
+configend
+IpAdd = http://68.181.161.6/
+lab = KAP 
+inputinfotable=sensor_info_v3
+outputesttable=Sensor_est_data
+peoplecounter=people_counter_v2
+is_pplcounter=false
+batchsize=1
+model=/opt/weka/weka-3-6-4/svm15attribmodel10400.model
+spaceDB=blemsAgent
+localmodeldir=somedirectory

@@ -1,0 +1,1 @@
+primenumbersum.d: ../primenumbersum.cpp

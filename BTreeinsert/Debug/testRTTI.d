@@ -1,0 +1,1 @@
+testRTTI.d: ../testRTTI.cpp
