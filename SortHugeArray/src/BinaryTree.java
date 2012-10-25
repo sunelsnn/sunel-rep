@@ -203,8 +203,7 @@ public class BinaryTree<T> {
 		BinaryTree<Float> BTobject = new BinaryTree<Float>() ;
 		try
 		{
-			
-			
+				
 		
 		flag = BTobject.insertElements((float)15.1) ;
 		System.out.println("1 "+flag) ;
