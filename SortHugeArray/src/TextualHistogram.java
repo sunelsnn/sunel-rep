@@ -14,7 +14,20 @@ import java.io.* ;
 import java.math.*; 
 import java.util.Arrays;
 
+
+
+
 public class TextualHistogram {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	public int[] Integerarray  ; 
@@ -236,12 +249,15 @@ public class TextualHistogram {
     
     
     
-    public static void main(String[] args) throws IOException, Exception
+    public static void main(String[] args) 
     {
 	
     	
     	String InputFileName = new String() ;
-		//Usage
+    	
+    	//Usage
+    	try
+    	{
     	if(args.length !=1 && args.length !=2)
     	{
     		System.out.println("\n TextualHistogram: \n Description: This program sorts the Inputfile with integers with limited memory " +
@@ -257,22 +273,34 @@ public class TextualHistogram {
     		InputFileName = in.readLine().trim();
     		if(InputFileName.equals("quit"))
     		{	
+    			System.runFinalization() ;
     			System.exit(0);
     		}
+    		/*
     		else if (!( new File(InputFileName).exists()) )
     		{
     			System.out.println("\n Sorry File does not exists. Please run the program again") ;
     			System.exit(0) ;
     		}
-			
+			*/
     	}
     	else
     	{
     		InputFileName = args[0] ;
     	}
 	
-	   
-	
+    	}
+    	catch(Exception E)
+    	{
+    		E.printStackTrace() ;
+    	}
+    	
+    	finally
+    	{
+    		System.out.println("some error reading file");
+    		System.exit(0);
+    		
+    	}
     	TextualHistogram   TextualHistogram_object  = new TextualHistogram(InputFileName)  ;
     	if(args.length == 1)
     	{
@@ -302,7 +330,11 @@ public class TextualHistogram {
     		{
     			E.printStackTrace() ;
     		}
-    
+    		
+    	finally 
+    	{
+    		System.out.println("\n there was some exception") ;
+    	}
    
    
     }
