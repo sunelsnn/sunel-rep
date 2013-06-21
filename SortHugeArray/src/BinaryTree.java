@@ -62,6 +62,9 @@ public class BinaryTree<T> {
 	public BinaryTree ()
 	{
 		RootNode= null ;
+		
+		Class<T> Tobj ;
+		System.out.println(Tobj.type) ;
 	}
 	
 	public void classnametype(T  Tobj)
@@ -227,6 +230,8 @@ public class BinaryTree<T> {
 		}
 		
 		BTobject.inOrderTraversal(BTobject.getRootNode()) ;
+		
+		int tempint =  (Integer) (new String("12345")) ;
 		
 		
 	}

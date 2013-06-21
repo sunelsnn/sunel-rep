@@ -16,7 +16,7 @@ import org.hibernate.Session;
 
 public class TestPerson {
 
- 
+ /*
 
 public static void main(String[] args) {
 
@@ -28,7 +28,7 @@ session.beginTransaction();
 
  
 
-createPerson(session);
+// createPerson(session);
 
  
 
@@ -37,8 +37,8 @@ queryPerson(session);
  
 
 }
+*/
 
- 
 
 private static void queryPerson(Session session) {
 
@@ -73,6 +73,8 @@ Person person = new Person();
 
  
 
+
+
 person.setName("Barak");
 
 person.setSurname("Obhama");      
@@ -82,6 +84,7 @@ person.setAddress("White House");
  
 
 session.save(person);
+
 
 }
 

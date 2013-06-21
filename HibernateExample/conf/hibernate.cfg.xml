@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE hibernate-configuration PUBLIC
 
 "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
@@ -17,14 +18,14 @@
 
 <property name="hibernate.connection.username">root</property>
 
-<property name="hibernate.connection.password">**</property>
+<property name="hibernate.connection.password">SNNsnn126</property>
 
 <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
  
 
 <!-- Automatic schema creation (begin) === -->
 
-<property name="hibernate.hbm2ddl.auto">create</property>
+<property name="hibernate.hbm2ddl.auto">update</property>
 
 <!-- Simple memory-only cache -->
 
@@ -39,7 +40,8 @@
 <!-- ############################################ -->
 
 
-<mapping resource="Person.hbm.xml" />
+<!-- mapping resource="Person.hbm.xml" / -->
+<mapping resource="flights.hbm.xml" />
 
  
 </session-factory>
