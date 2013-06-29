@@ -8,11 +8,13 @@
  *   from each file into the Array  (the size of this Array is 400 which is less than 2500 ). 
  *   Scan the above Array for minimum and it's count and repeat the scanning process until a there is no different in countvalue.
  *   The above scanning process repeats on maximum to 100000.
+ *   time with out memory managed files 1:30 min
  * 
  */
 import java.io.* ;
 import java.math.*; 
 import java.util.Arrays;
+import java.util.Date;
 
 
 
@@ -252,6 +254,7 @@ public class TextualHistogram {
     public static void main(String[] args) 
     {
 	
+    	System.out.println("start time "+  (new Date(System.currentTimeMillis()))) ;
     	
     	String InputFileName = new String() ;
     	
@@ -287,6 +290,13 @@ public class TextualHistogram {
     	else
     	{
     		InputFileName = args[0] ;
+    		System.out.println(" given input file "+ InputFileName);
+    		
+    		if (!( new File(InputFileName).exists())) {
+    			System.out.println("input file doesn't exists");
+    		}
+    		
+    	
     	}
 	
     	}
@@ -295,12 +305,15 @@ public class TextualHistogram {
     		E.printStackTrace() ;
     	}
     	
+    	/*
     	finally
     	{
     		System.out.println("some error reading file");
     		System.exit(0);
     		
     	}
+    	*/
+    	
     	TextualHistogram   TextualHistogram_object  = new TextualHistogram(InputFileName)  ;
     	if(args.length == 1)
     	{
@@ -315,6 +328,8 @@ public class TextualHistogram {
 
     	try{
     		
+    		
+    		
     		 //Sort Block Wise
     			TextualHistogram_object.partitionAndSort() ;
     
@@ -323,6 +338,8 @@ public class TextualHistogram {
 
     		// Merge the Sorted Block Files
     			TextualHistogram_object.MergeSortedBlockFiles() ;
+    			
+    		    System.out.println("start time "+  (new Date(System.currentTimeMillis()))) ;
 	
     
     		}
@@ -330,14 +347,16 @@ public class TextualHistogram {
     		{
     			E.printStackTrace() ;
     		}
-    		
+    	/*	
     	finally 
     	{
     		System.out.println("\n there was some exception") ;
     	}
+    	*/
    
    
     }
+
 
 
 };

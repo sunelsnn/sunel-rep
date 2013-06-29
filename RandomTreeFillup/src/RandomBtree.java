@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.io.*;
 
 /*
@@ -244,6 +246,28 @@ public class RandomBtree {
 		 System.out.println( "example \"0LC1,0RC2,1LC3,1RC4,2LC5,5RC6,6LC7\" 8,3,10,5,7,13,11,19");
 	 }
 	 
+	 /*
+	 String teststr="k@@$&K@k765QW";
+	 String patt="(?=.*[a-z]).{2,10}(?=.*[A-Z]).{2,4}(?=.*[0-9])(?=.*[$@&]).{7,20}";
+	 boolean testbool= teststr.matches(patt);
+	 
+	 if(testbool) { System.out.println("match") ; }
+	 else { System.out.println("not match") ;}
+	 
+	 String str = "Hello {World} this {is} a {Tokens} test";
+	 String secondstr = "Alert:Date:12321321321:testmsgs";
+	 
+	 Pattern pt = Pattern.compile("Alert:Date:([0-9].*):([ a-zA-Z].*)");
+	 
+	 Matcher m = pt.matcher(secondstr);
+	 
+	 while(m.find()) {
+		  System.out.println(m.group(0)); 
+		  System.out.println(m.group(1)); 
+		  System.out.println(m.group(2)); 
+	 }
+	 */
+	 
 	 RandomBtree bt=new RandomBtree();
 	 bt.buildRadTree(args[0]);
 	 int[] infoArray = new int[bt.nodeList.size()];
@@ -259,6 +283,7 @@ public class RandomBtree {
 	 bt.insertArray(infoArray);
 	 System.out.println(" binary property test"+ bt.testBinaryTreeProperty(bt.root));
 	 bt.printIndexAndInfo(bt.root);
+	 
  }
 }
 
