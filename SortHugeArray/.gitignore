@@ -1,8 +1,14 @@
-tempfile
+tempfile*
 Sortedfile.txt
 bin
 .settings
 .classpath
 .svn
-
-
+sorttempfile*
+Sortedfile*
+largeFile*
+largefile*
+tempsortlargefiles
+.project
+Large*
+tempCopySortedFile
